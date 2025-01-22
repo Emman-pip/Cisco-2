@@ -1,0 +1,60 @@
+* 1.4.7 notes
+Process:
+1. set the IP addresses and default of the PCs accordingly
+2. set the addresses of g0/0 and g0/1 interfaces (and acticate the
+   said interfaces)
+
+** Addressing table
+[[./lab2_addressing.png]]
+
+*** PCs
+
+**** PC1
+set the IP address (subnet mask is 255.255.255.128) and default gateway
+
+**** PC2
+set the IP address (subnet mask is 255.255.255.128) and default gateway
+
+**** PC3
+set the IP address and default gateway
+
+**** PC4
+set the IP address and default gateway
+
+*** Routers
+**** R1
+#+NAME: R1
+#+BEGIN_SRC 
+Password: cisco
+R1>enable
+Password class
+R1#conf terminal
+R1(config)#int g0/0
+R1(config-if)#ip add
+R1(config-if)#ip address 172.16.20.1 255.255.255.128
+R1(config-if)#no shu
+R1(config-if)#no shutdown
+R1(config-if)#int g0/1
+R1(config-if)#ip address 172.16.20.129 255.255.255.128
+R1(config-if)#noshu
+R1(config-if)#no shu
+R1(config-if)#no shutdown 
+#+END_SRC
+
+**** R2
+#+NAME: R2
+#+BEGIN_SRC 
+Password: cisco
+R2>enable
+Password class
+R2#conf terminal
+R2(config)#int g0/0
+R2(config-if)#ipv6 add 2001:db8:c0de:12::1/64
+R2(config-if)#no shu
+R2(config-if)#no shutdown 
+R2(config-if)#int g0/1
+R2(config-if)#ipv6 add 2001:db8:c0de:13::1/64
+R2(config-if)#
+R2(config-if)#no shu
+R2(config-if)#no shutdown 
+#+END_SRC

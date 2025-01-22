@@ -1,0 +1,108 @@
+* 1.6.1 Lab: Implementing a small network
+** PC1
+set the ip and default gateway accordingly
+- IP: 10.10.10.4
+- subnet mask: 255.255.255.0
+- default gateway: 10.10.10.1
+** PC2
+set the ip and default gateway accordingly
+- IP: 10.10.20.4
+- subnet mask: 255.255.255.0
+- default gateway: 10.10.20.1
+** RTA
+#+NAME: RTA config
+#+BEGIN_SRC 
+enable
+config terminal
+banner motd "Welcome to RTA."
+hostname RTA
+int g0/0
+ip address 10.10.10.1 255.255.255.0
+no shutdown
+
+description Connection to SW1
+int g0/1
+ip address 10.10.20.1 255.255.255.0
+no shutdown
+
+description Connection to SW2
+exit
+enable secret Ciscoenpa55
+line vty 0 4
+password Ciscolinepa55
+login
+ exit
+
+line con 0
+password Ciscolinepa55
+login
+
+exit
+
+do copy run start
+
+
+#+END_SRC
+
+** SW1
+#+NAME: SW1 config
+#+BEGIN_SRC 
+
+enable
+config terminal
+hostname SW1
+
+enable secret Ciscoenpa55
+line vty 0 4
+password Ciscolinepa55
+login
+exit
+
+line con 0
+password Ciscolinepa55
+login
+exit
+
+int vlan 1
+ip address 10.10.10.2 255.255.255.0
+no shut
+
+exit
+
+ip default-ga 10.10.10.1
+
+do copy run start
+
+#+END_SRC
+
+** SW2
+#+NAME: SW2 config
+#+BEGIN_SRC 
+enable
+config terminal
+hostname SW1
+
+enable secret Ciscoenpa55
+line vty 0 4
+password Ciscolinepa55
+login
+exit
+
+line con 0
+password Ciscolinepa55
+login
+exit
+
+int vlan 1
+ip address 10.10.20.2 255.255.255.0
+no shut
+
+exit
+
+ip default-ga 10.10.20.1
+
+do copy run start
+
+
+
+#+END_SRC

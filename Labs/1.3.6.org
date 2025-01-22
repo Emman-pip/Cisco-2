@@ -1,0 +1,22 @@
+* Commands
+PC1 > Desktop > Command Prompt
+#+NAME: commands
+#+BEGIN_SRC bash
+C:>telnet 10.10.10.2
+Password: cisco
+S1>enable
+Password: cisco
+S1# copy run start
+S1# conf ter
+S1(config)# service pass
+S1(config)# do show run | section password
+# Passwords are now encrypted!
+S1(config)#
+S1(config)# ip domain-name netacad.pka
+S1(config)# crypto key generate rsa general-keys modulus 1024
+S1(config)# username administrator secret cisco
+S1(config)# line vty 0 15
+S1(config-if)# login local
+S1(config)# no password cisco
+S1(config)# transport input ssh
+#+END_SRC
