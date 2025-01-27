@@ -1,0 +1,77 @@
+* Chapter 1: Basic Device Configuration
+** 1.1 Configure a switch with initial settings
+*** 1.1.1 Switch boot sequence
+Before a switch is configured, it goes through a five-step boot
+sequence
+
+1. loads a power-on self-test (POST) program stored in ROM
+2. loads the boot loader software
+3. boot loader performs low-leve CPU initialization. It initializes
+   the CPU registers which control where physical memory is mapped,
+   the quantity of the memory, and its speed
+4. the boot loader initializes the flash file system on the system board
+5. the boot loader locates and loads a default IOS operating system
+   software image into memory and gives control of the switch over to
+   the IOS
+
+*** 1.1.2 The boot system command
+An environment variable (BOOT) is used by the switches to
+automatically boot to a specific IOS. If it is not set, the switch
+attempts to load and execute the first executatble file it can find.
+
+Admins can use the command ~show boot~ to shut which IOS is currently
+running. To boot a different IOS to the switch use the command:
+
+#+NAME: BOOT COMMAND
+#+BEGIN_SRC
+S1(config)# boot system flash:/c2960-lanbasek9-mz.150-2.SE/c2960-lanbasek9-mz.150-2.SE.bin
+#+END_SRC
+
+*** 1.1.3 Switch LED Indicators
+1. SYST
+   - shows whether the system is receiving power and is functioning properly
+   - OFF: system is off
+   - GREEN: system is operating normally
+   - AMBER: system is receiving power but is not functioning properly
+2. RPS
+   - redundant power supply system
+   - OFF: RPS is off and/or not properly connected
+   - GREEN: connected and ready to provide backup power
+   - BLINKING GREEN: RPS is connected but is unavailable because of
+     providing power to other device
+   - AMBER: RPS is in standby mode or in a fault condition
+   - BLINKING AMBER: internal power supply in the switch has failed,
+     RPS is providing power
+3. STAT
+   - Port status LED
+   - when whathever GREEN: port status mode is delected (this is the
+     default mode)
+   - OFF: no link or the port is administratively shutdown
+   - GREEN: link is present
+   - BLINKING GREEN: there is activity and the port is sending or
+     receiving data
+   - ALTERNATING GREEN-AMBER: there is a link fault
+   - AMBER: the port is blocked to ensure that a loop does not exist
+     in the forwarding domain
+   - BLINKING AMBER: port is blocked to prevent a possible loop in the
+     forwarding domain
+4. DUPLX
+   - whenever green: duplex mode is selected
+   - OFF: half-duplex mode
+   - GREEN: full-duplex mode
+5. SPEED
+   - indicates that the  port speed mode is selected
+   - OFF: port operating at 10Mbps
+   - GREEN: port operating at 100Mbps
+   - BLINKING GREEN: port operating at 1000Mbps
+6. PoE
+   - Power over ethernet
+   - OFF: PoE mode is not selected
+   - BLINKING AMBER: PoE mode not selected but at least 1 port has
+     denied power or placed in a fault condition
+   - GREEN: PoE is on
+   - GREEN-AMBER: denied power because the switch power capacity will
+     be exceeded by the port
+
+*** 1.1.4 Recovering from a System Crash
+...Will skip since recall lang naman...
