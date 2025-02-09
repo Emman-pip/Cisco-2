@@ -1,12 +1,16 @@
+#+TITLE: CHAPTER 1
+#+DESCRIPTION: chapter 1 in cisco 2
+#+AUTHOR: Emmanuel Parreno
+
 * Chapter 1: Basic Device Configuration
 ** 1.1 Configure a switch with initial settings
-*** 1.1.1 Switch boot sequence
+***  Switch boot sequence
 Before a switch is configured, it goes through a five-step boot
 sequence
 
 1. loads a power-on self-test (POST) program stored in ROM
 2. loads the boot loader software
-3. boot loader performs low-leve CPU initialization. It initializes
+3. boot loader performs low-level CPU initialization. It initializes
    the CPU registers which control where physical memory is mapped,
    the quantity of the memory, and its speed
 4. the boot loader initializes the flash file system on the system board
@@ -14,10 +18,11 @@ sequence
    software image into memory and gives control of the switch over to
    the IOS
 
-*** 1.1.2 The boot system command
-An environment variable (BOOT) is used by the switches to
-automatically boot to a specific IOS. If it is not set, the switch
-attempts to load and execute the first executatble file it can find.
+***  The boot system command
+An environment variable (*BOOT environment variable*) is used by the
+switches to automatically boot to a specific IOS. If it is not set,
+the switch attempts to load and execute the first executatble file it
+can find.
 
 Admins can use the command ~show boot~ to shut which IOS is currently
 running. To boot a different IOS to the switch use the command:
@@ -27,14 +32,14 @@ running. To boot a different IOS to the switch use the command:
 S1(config)# boot system flash:/c2960-lanbasek9-mz.150-2.SE/c2960-lanbasek9-mz.150-2.SE.bin
 #+END_SRC
 
-*** 1.1.3 Switch LED Indicators
+***  Switch LED Indicators
 1. SYST
    - shows whether the system is receiving power and is functioning properly
    - OFF: system is off
    - GREEN: system is operating normally
    - AMBER: system is receiving power but is not functioning properly
 2. RPS
-   - redundant power supply system
+   - redundant power system
    - OFF: RPS is off and/or not properly connected
    - GREEN: connected and ready to provide backup power
    - BLINKING GREEN: RPS is connected but is unavailable because of
@@ -68,10 +73,349 @@ S1(config)# boot system flash:/c2960-lanbasek9-mz.150-2.SE/c2960-lanbasek9-mz.15
    - Power over ethernet
    - OFF: PoE mode is not selected
    - BLINKING AMBER: PoE mode not selected but at least 1 port has
-     denied power or placed in a fault condition
+     denied power or placed in a faulty condition
    - GREEN: PoE is on
    - GREEN-AMBER: denied power because the switch power capacity will
      be exceeded by the port
 
-*** 1.1.4 Recovering from a System Crash
-...Will skip since recall lang naman...
+***  Recovering from a System Crash
+The boot loader provides access into the switch if the operating
+system cannot be used because of missing or damaged system files. The
+boot loader has a command-line that provides access to the files
+stored in flash memory
+
+The boot loader can be accessed through a console connection through
+the following steps:
+
+1. connect a PC via console
+2. unplug the switch power cord
+3. reconnect the power cord to the switch and within 15 secs, press
+   and hold down the mode button while the system LED is still
+   flashing green
+4. continue until the system LED turns briefly amber and then solid
+   green; then release the mode button
+5. the boot loader prompt appears in the terminal emulation software
+   on the PC.
+
+
+**** Process of recovering
+1. set the BOOT variable through the command ~set BOOT=__file_location_here__~
+2. initialize the flash file system using ~flash_init~
+3. after initializing the flash file system, it can be viewed using
+   the command ~dir flash:~
+4. use the command ~BOOT=flash~ to change the boot environment
+   variable path te switch uses to load the new IOS in flash
+5. (verification) issue the ~set~ command
+6. enter ~boot~ to load the new IOS type
+
+***  Switch Management Access
+To prepare for remote management access, a switch must have a *SVI
+(switch virtual interface)* configured with an *IPv4 address and a
+subnet mask* or *IPv6 and a prefix length*.
+
+SVI
+  - is not a physical port on the switch
+
+/NOTE/: to manage a switch from a remote network, it must be
+configured with a *default gateway* (similar to how end devices need
+a default gateway).
+
+***  Switch SVI Configuration Example
+1. Configure the management interface on S1
+#+NAME: configuration example
+#+BEGIN_SRC 
+enable
+configure terminal
+int vlan vlan-id
+ip add 172.17.99.11 255.255.255.0
+ipv6 add 2001:db8:acad:99::11/64
+no shutdown
+#+END_SRC
+
+2. Confiture the default gateway
+#+NAME: default gateway config
+#+BEGIN_SRC 
+enable
+configure terminal
+ip default-gateway address-here
+do copy running-config startup-config
+end
+#+END_SRC
+
+3. verify configuration
+#+NAME: verify config
+#+BEGIN_SRC 
+enable
+show ip interface brief
+show ipv6 interface brief
+#+END_SRC
+
+/NOTE/: The vlan must be existing and a device must to commented to
+the switch port for the SVI on the vlan to be up/up
+
+
+** 1.2 Configure Switch Ports
+
+***  Duplex Communication
+Full-duplex communication
+- increases bandwidth efficiency by allowing both ends of a connection
+  to transmit and receive data simultaneously
+- aka *bidirectional communication*
+- requires *microsegmentation*
+  - a microsegmented LAN is created when a switchport has only one
+    device connected and is oprtating in full duplex mode
+- There is no collision domain
+
+
+Half-duplex communication
+- unidirectional (one direction)
+- creates performance issues because data can flow in only one
+  direction at a time, often results in collusions
+- are typically seen in older hardware such as *hubs*
+- have been replaced by swithes that use full-duplex communication by
+  default
+
+
+/NOTE/: Gigabit Ethernet and 10Gb/s NICs require a full duplex
+connections to operate. 
+
+***  Configure switch ports at the physical layer
+~duplex~ command (interface configuration mode)
+- used to specify the duplex mode for a switch port
+
+
+~speed~ command (interface configuration mode)
+- use to manually specify the speed
+
+
+The default setting for both duplex and speed for switch ports on
+Cisco Catalyst 2960 and 3560 switches is auto. The 10/100/1000 ports
+operate in either half- or full-duplex mode when they are set to 10 or
+100 Mbps and operate only in full- duplex mode when it is set to 1000
+Mbps (1 Gbps).
+
+
+Autonegotiation
+- useful when the speed and duplex of the device connecting to the
+  port are unknown or may change
+- best practice is to set the speed and duplex settings manually
+
+
+/NOTE/: mismatched settings for the duplex mode and speed of switch
+ports can cause connectivity issues. Autonegotiation failure creates
+mismatched settings
+
+***  Auto-MDIX (automatic medium-dependent-interface crossover)
+- eliminates the problem of using certain cable types
+  (straight-through and crossover) to when connecting devices
+- When enabled, the interface automatically detects the required cable
+  connection type and configures the connection appropriately
+- without it, straight-through and crossover cables must be used appropriately
+- the interface configuration command ~mdix auto~ enables the
+  auto-MDIX in a specific interface
+
+
+To *examine the auto-MDIX setting for a specific interface~
+use the command ~show controllers ethernet-controller~ command
+
+***  verify switch port configuration
+~show running-config~ can be used if the switch is correctly
+configured. It shows the switchport modes,  ip addresses, default
+gateways, and other useful information when debugging a configuration
+
+
+~show interfaces~ command displays *status and statistics information*
+on the network interfaces of the switch
+
+***  Network Access layer issues
+The output from the ~show interfaces~ command is useful for detecting
+common media issues. [take into consideration the output of the line
+and data link protocol status]
+
+**** Common errors detected by the show interface command
+| Error Type      | Description                                                                                              |
+|-----------------+----------------------------------------------------------------------------------------------------------|
+| input errors    | total number of errors                                                                                   |
+|                 | includes runts, giants, no buffer, CRC, frame, overrun, and ignored counts                               |
+| runts           | frames smaller than the minimum packet size (64bytes)                                                    |
+|                 |                                                                                                          |
+| Giants          | ethernet frame greater than 1518 bytes                                                                   |
+|                 |                                                                                                          |
+| CRC             | generated when the calculated checksum is not the same as the checksum received                          |
+|                 |                                                                                                          |
+| output errors   | sum of all errors that prevented the final transmission of datagrams out of the interface being examined |
+|                 |                                                                                                          |
+| collissions     | number of messages retransmitted because of an ethernet collision                                        |
+|                 |                                                                                                          |
+| late collisions | a collision that occurs after the 512 bits of the frame have been transmitted                            |
+
+***  Interface input and output errors
+Input errors
+- sum of all errors in datagrams that were received on the interface
+  being examined (runts, giants, CRC, no buffer, frame, overrun, and
+  ignored counts)
+
+
+Output errors
+- sum of all errors that prevented the final transmission of datagrams
+  out the interface that is being examined. (collisions, late collisions)
+
+***  Troubleshooting network access layer issues
+Use the ~show interfaces~ command to check the interface status
+
+**** interface is down
+- check to make sure that the proper cables are being used (check the connections)
+- if still down, check the speed settings
+
+**** interface is up but issues with conenctivity are still present
+- using the command ~show interfaces~, check for indications of
+  excessive noise. Check the statistics (input and output
+  errors). Also, check the cable length
+- if noise is not an issue, check for excessive collisions. if there
+  are *collisions or late collisions*, verify the duplex settings on
+  both ends of the conenction
+
+** Secure remote access
+
+*** Telnet operation
+Telnet uses transmission control protocol (TCP) port 23. It is an
+older protocol that uses unsecure plain text transmission of both the
+login and authentication and the data transmitted between
+communicating devices. A threat actor can monitor packets using tools
+such as wireshark.
+
+*** SSH Operation
+Is a secure protocol that uses TCP port 22. It provices a secure
+management connection to a remote device. SSH should replace telnet
+for management connections. SSH provides security for remote
+conenctions by providing strong encryption when a device is
+authenticated and also for the transmitted data between the
+comminicating devices
+
+*** Verify the switch supports SSH
+SSH can only be used by devices with an IOS software including
+cryptographic features and capabilities. Use the ~show version~
+command to see the current IOS running. An IOS with a name that
+includes "k9" is one that supports cryptographic features and
+capabilities. 
+
+*** Configure SSH
+SSH requires a unique hostname and corry network connectivity setings
+
+**** Step 1: Verify SSH Support
+~show ip ssh~ command to verify if the switch supports SSH
+
+**** Step 2: Configure the IP domain
+~ip domain-name domain-name~ command to set the domain name 
+
+**** Step 3: Generate the RSA key pairs
+Some IOS variants default to SSH version 2 and version 1. To configure
+SSH version 2, issue the command *~ip ssh version 2~*. To generate a
+Rivest, Shamit, Adleman (RSA) key pair to automatically enable SSH,
+use the command ~crypto key generate rsa general-keys modulus 1024~
+
+/NOTE/: To delete the RSA key pair ~crypto key zeroize rsa~
+
+**** Configure user authentication
+create a username and password useing the command ~username
+your-username password your-password~ 
+
+**** Configure the vty lines
+Enable the SSH protocol on the vty lines using the ~transport input
+ssh~ and ~login local~ line configuration mode command. 
+
+**** Enable SSH version 2
+~ip ssh version 2~ global configuration mode command
+
+*** Verify SSH
+Connect using a pc ~ssh -l ip-address-of-device~ command line command
+
+** Basic Router Configuration
+
+*** Configure basic router settings
+
+#+NAME: Basic router config
+#+BEGIN_SRC 
+enable
+configure terminal
+hostname R1
+enable secret class
+line console 0
+password cisco
+login
+exit
+line vty 0 4
+password cisco
+login
+exit
+service password-encryption
+banner motd "Authorized access only!"
+end
+copy running-config startup-config
+#+END_SRC
+
+*** Dual Stack Topology
+Configuration of routers in both IPv4 and IPv6
+
+*** Configure Router Interfaces
+
+*** IPv4 Loopback Interfaces
+Is a logical interface that is internal to the router. It is not
+assigned to a phycial port and can never be connected to any other
+device. It is considered as a *software interface* that is
+automatically placed in an "up" state as long as the router is
+functioning.
+
+
+It is *useful if testing and managing* a Cisco IOS device as it
+ensures that at least one interface will always be available.
+
+#+NAME: Assigning a loopback address
+#+BEGIN_SRC 
+enable
+configure terminal
+interface loopback number
+ip address ip-here subnet-here
+#+END_SRC
+
+** Verify Directly Connected Networks
+
+*** Interface verification commands
+use the following commands to quickly identify the status of
+interfaces
+#+NAME: verification of router interfaces
+#+BEGIN_SRC 
+show ip interface brief
+show ipv6 interface brief
+show ip interface g0/1
+show ipv6 interface g0/1
+show running-config interface interface-id
+show ip route
+show ipv6 route
+#+END_SRC
+
+*** Verify Interface Status
+~show ip interface brief~ and ~show ipv6 interface brief~ can be used
+to quickly reveal the status of all interfaces on the router. 
+
+*** Verify IPv6 Link Local and Multicase Addresses
+~show ipv6 interface brief~
+
+*** Verify Routes
+#+NAME: route verification
+#+BEGIN_SRC 
+show ip route
+show ipv6 route
+ping address
+#+END_SRC
+
+*** Filter Show Command Output
+The pipe "|" character is used to filter comands. The commands
+~section~, ~include~, ~exclude~, and ~begin~ are used with the pipe
+character to filter show commands.
+
+*** Command History Feature
+CTRL+P go to previous command and CTRL+N go to next. ~show history~
+privileged exec mode command will show the last 10 captured
+commands. To change the size, the command ~terminal history size
+new-size~ can be used. 
