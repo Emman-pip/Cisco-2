@@ -1,0 +1,1052 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-02-10 Mon 07:32 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CHAPTER 1</title>
+<meta name="author" content="Emmanuel Parreno" />
+<meta name="description" content="chapter 1 in cisco 2" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">CHAPTER 1</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org19f3f0c">1. Chapter 1: Basic Device Configuration</a>
+<ul>
+<li><a href="#org6f648eb">1.1. 1.1 Configure a switch with initial settings</a>
+<ul>
+<li><a href="#orgef928ee">1.1.1. Switch boot sequence</a></li>
+<li><a href="#org15d863c">1.1.2. The boot system command</a></li>
+<li><a href="#org59bb6b0">1.1.3. Switch LED Indicators</a></li>
+<li><a href="#org659272e">1.1.4. Recovering from a System Crash</a></li>
+<li><a href="#orgdb20cc1">1.1.5. Switch Management Access</a></li>
+<li><a href="#org8291062">1.1.6. Switch SVI Configuration Example</a></li>
+</ul>
+</li>
+<li><a href="#org1926a14">1.2. 1.2 Configure Switch Ports</a>
+<ul>
+<li><a href="#orgf407865">1.2.1. Duplex Communication</a></li>
+<li><a href="#org6c8187f">1.2.2. Configure switch ports at the physical layer</a></li>
+<li><a href="#org2e4a2aa">1.2.3. Auto-MDIX (automatic medium-dependent-interface crossover)</a></li>
+<li><a href="#orgbf14f78">1.2.4. verify switch port configuration</a></li>
+<li><a href="#org73b8a8f">1.2.5. Network Access layer issues</a></li>
+<li><a href="#org1d8e421">1.2.6. Interface input and output errors</a></li>
+<li><a href="#org035ab59">1.2.7. Troubleshooting network access layer issues</a></li>
+</ul>
+</li>
+<li><a href="#orgafeae6d">1.3. Secure remote access</a>
+<ul>
+<li><a href="#orga73005c">1.3.1. Telnet operation</a></li>
+<li><a href="#org7b441f7">1.3.2. SSH Operation</a></li>
+<li><a href="#org7136b21">1.3.3. Verify the switch supports SSH</a></li>
+<li><a href="#org065cd94">1.3.4. Configure SSH</a></li>
+<li><a href="#orge0d46e5">1.3.5. Verify SSH</a></li>
+</ul>
+</li>
+<li><a href="#org7b611e7">1.4. Basic Router Configuration</a>
+<ul>
+<li><a href="#org621e905">1.4.1. Configure basic router settings</a></li>
+<li><a href="#org955d1da">1.4.2. Dual Stack Topology</a></li>
+<li><a href="#org0318299">1.4.3. Configure Router Interfaces</a></li>
+<li><a href="#org8dd629b">1.4.4. IPv4 Loopback Interfaces</a></li>
+</ul>
+</li>
+<li><a href="#orgcc90b5b">1.5. Verify Directly Connected Networks</a>
+<ul>
+<li><a href="#orgeab2f30">1.5.1. Interface verification commands</a></li>
+<li><a href="#org63689f2">1.5.2. Verify Interface Status</a></li>
+<li><a href="#org6ee1152">1.5.3. Verify IPv6 Link Local and Multicase Addresses</a></li>
+<li><a href="#org8d5f464">1.5.4. Verify Routes</a></li>
+<li><a href="#org4227c38">1.5.5. Filter Show Command Output</a></li>
+<li><a href="#orgcb5676b">1.5.6. Command History Feature</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org19f3f0c" class="outline-2">
+<h2 id="org19f3f0c"><span class="section-number-2">1.</span> Chapter 1: Basic Device Configuration</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org6f648eb" class="outline-3">
+<h3 id="org6f648eb"><span class="section-number-3">1.1.</span> 1.1 Configure a switch with initial settings</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-orgef928ee" class="outline-4">
+<h4 id="orgef928ee"><span class="section-number-4">1.1.1.</span> Switch boot sequence</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Before a switch is configured, it goes through a five-step boot
+sequence
+</p>
+
+<ol class="org-ol">
+<li>loads a power-on self-test (POST) program stored in ROM</li>
+<li>loads the boot loader software</li>
+<li>boot loader performs low-level CPU initialization. It initializes
+the CPU registers which control where physical memory is mapped,
+the quantity of the memory, and its speed</li>
+<li>the boot loader initializes the flash file system on the system board</li>
+<li>the boot loader locates and loads a default IOS operating system
+software image into memory and gives control of the switch over to
+the IOS</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org15d863c" class="outline-4">
+<h4 id="org15d863c"><span class="section-number-4">1.1.2.</span> The boot system command</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+An environment variable (<b>BOOT environment variable</b>) is used by the
+switches to automatically boot to a specific IOS. If it is not set,
+the switch attempts to load and execute the first executatble file it
+can find.
+</p>
+
+<p>
+Admins can use the command <code>show boot</code> to shut which IOS is currently
+running. To boot a different IOS to the switch use the command:
+</p>
+
+<pre class="example" id="org1991a99">
+S1(config)# boot system flash:/c2960-lanbasek9-mz.150-2.SE/c2960-lanbasek9-mz.150-2.SE.bin
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org59bb6b0" class="outline-4">
+<h4 id="org59bb6b0"><span class="section-number-4">1.1.3.</span> Switch LED Indicators</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<ol class="org-ol">
+<li>SYST
+<ul class="org-ul">
+<li>shows whether the system is receiving power and is functioning properly</li>
+<li>OFF: system is off</li>
+<li>GREEN: system is operating normally</li>
+<li>AMBER: system is receiving power but is not functioning properly</li>
+</ul></li>
+<li>RPS
+<ul class="org-ul">
+<li>redundant power system</li>
+<li>OFF: RPS is off and/or not properly connected</li>
+<li>GREEN: connected and ready to provide backup power</li>
+<li>BLINKING GREEN: RPS is connected but is unavailable because of
+providing power to other device</li>
+<li>AMBER: RPS is in standby mode or in a fault condition</li>
+<li>BLINKING AMBER: internal power supply in the switch has failed,
+RPS is providing power</li>
+</ul></li>
+<li>STAT
+<ul class="org-ul">
+<li>Port status LED</li>
+<li>when whathever GREEN: port status mode is delected (this is the
+default mode)</li>
+<li>OFF: no link or the port is administratively shutdown</li>
+<li>GREEN: link is present</li>
+<li>BLINKING GREEN: there is activity and the port is sending or
+receiving data</li>
+<li>ALTERNATING GREEN-AMBER: there is a link fault</li>
+<li>AMBER: the port is blocked to ensure that a loop does not exist
+in the forwarding domain</li>
+<li>BLINKING AMBER: port is blocked to prevent a possible loop in the
+forwarding domain</li>
+</ul></li>
+<li>DUPLX
+<ul class="org-ul">
+<li>whenever green: duplex mode is selected</li>
+<li>OFF: half-duplex mode</li>
+<li>GREEN: full-duplex mode</li>
+</ul></li>
+<li>SPEED
+<ul class="org-ul">
+<li>indicates that the  port speed mode is selected</li>
+<li>OFF: port operating at 10Mbps</li>
+<li>GREEN: port operating at 100Mbps</li>
+<li>BLINKING GREEN: port operating at 1000Mbps</li>
+</ul></li>
+<li>PoE
+<ul class="org-ul">
+<li>Power over ethernet</li>
+<li>OFF: PoE mode is not selected</li>
+<li>BLINKING AMBER: PoE mode not selected but at least 1 port has
+denied power or placed in a faulty condition</li>
+<li>GREEN: PoE is on</li>
+<li>GREEN-AMBER: denied power because the switch power capacity will
+be exceeded by the port</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org659272e" class="outline-4">
+<h4 id="org659272e"><span class="section-number-4">1.1.4.</span> Recovering from a System Crash</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+The boot loader provides access into the switch if the operating
+system cannot be used because of missing or damaged system files. The
+boot loader has a command-line that provides access to the files
+stored in flash memory
+</p>
+
+<p>
+The boot loader can be accessed through a console connection through
+the following steps:
+</p>
+
+<ol class="org-ol">
+<li>connect a PC via console</li>
+<li>unplug the switch power cord</li>
+<li>reconnect the power cord to the switch and within 15 secs, press
+and hold down the mode button while the system LED is still
+flashing green</li>
+<li>continue until the system LED turns briefly amber and then solid
+green; then release the mode button</li>
+<li>the boot loader prompt appears in the terminal emulation software
+on the PC.</li>
+</ol>
+</div>
+
+
+<ol class="org-ol">
+<li><a id="orgfc1711e"></a>Process of recovering<br />
+<div class="outline-text-5" id="text-1-1-4-1">
+<ol class="org-ol">
+<li>set the BOOT variable through the command <code>set BOOT=__file_location_here__</code></li>
+<li>initialize the flash file system using <code>flash_init</code></li>
+<li>after initializing the flash file system, it can be viewed using
+the command <code>dir flash:</code></li>
+<li>use the command <code>BOOT=flash</code> to change the boot environment
+variable path te switch uses to load the new IOS in flash</li>
+<li>(verification) issue the <code>set</code> command</li>
+<li>enter <code>boot</code> to load the new IOS type</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgdb20cc1" class="outline-4">
+<h4 id="orgdb20cc1"><span class="section-number-4">1.1.5.</span> Switch Management Access</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<p>
+To prepare for remote management access, a switch must have a <b>SVI
+(switch virtual interface)</b> configured with an <b>IPv4 address and a
+subnet mask</b> or <b>IPv6 and a prefix length</b>.
+</p>
+
+<p>
+SVI
+</p>
+<ul class="org-ul">
+<li>is not a physical port on the switch</li>
+</ul>
+
+<p>
+<i>NOTE</i>: to manage a switch from a remote network, it must be
+configured with a <b>default gateway</b> (similar to how end devices need
+a default gateway).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8291062" class="outline-4">
+<h4 id="org8291062"><span class="section-number-4">1.1.6.</span> Switch SVI Configuration Example</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<ol class="org-ol">
+<li>Configure the management interface on S1</li>
+</ol>
+<pre class="example" id="orgea0ac89">
+enable
+configure terminal
+int vlan vlan-id
+ip add 172.17.99.11 255.255.255.0
+ipv6 add 2001:db8:acad:99::11/64
+no shutdown
+</pre>
+
+<ol class="org-ol">
+<li>Confiture the default gateway</li>
+</ol>
+<pre class="example" id="org7d5683d">
+enable
+configure terminal
+ip default-gateway address-here
+do copy running-config startup-config
+end
+</pre>
+
+<ol class="org-ol">
+<li>verify configuration</li>
+</ol>
+<pre class="example" id="org51d31bb">
+enable
+show ip interface brief
+show ipv6 interface brief
+</pre>
+
+<p>
+<i>NOTE</i>: The vlan must be existing and a device must to commented to
+the switch port for the SVI on the vlan to be up/up
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org1926a14" class="outline-3">
+<h3 id="org1926a14"><span class="section-number-3">1.2.</span> 1.2 Configure Switch Ports</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-orgf407865" class="outline-4">
+<h4 id="orgf407865"><span class="section-number-4">1.2.1.</span> Duplex Communication</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+Full-duplex communication
+</p>
+<ul class="org-ul">
+<li>increases bandwidth efficiency by allowing both ends of a connection
+to transmit and receive data simultaneously</li>
+<li>aka <b>bidirectional communication</b></li>
+<li>requires <b>microsegmentation</b>
+<ul class="org-ul">
+<li>a microsegmented LAN is created when a switchport has only one
+device connected and is oprtating in full duplex mode</li>
+</ul></li>
+<li>There is no collision domain</li>
+</ul>
+
+
+<p>
+Half-duplex communication
+</p>
+<ul class="org-ul">
+<li>unidirectional (one direction)</li>
+<li>creates performance issues because data can flow in only one
+direction at a time, often results in collusions</li>
+<li>are typically seen in older hardware such as <b>hubs</b></li>
+<li>have been replaced by swithes that use full-duplex communication by
+default</li>
+</ul>
+
+
+<p>
+<i>NOTE</i>: Gigabit Ethernet and 10Gb/s NICs require a full duplex
+connections to operate. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6c8187f" class="outline-4">
+<h4 id="org6c8187f"><span class="section-number-4">1.2.2.</span> Configure switch ports at the physical layer</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+<code>duplex</code> command (interface configuration mode)
+</p>
+<ul class="org-ul">
+<li>used to specify the duplex mode for a switch port</li>
+</ul>
+
+
+<p>
+<code>speed</code> command (interface configuration mode)
+</p>
+<ul class="org-ul">
+<li>use to manually specify the speed</li>
+</ul>
+
+
+<p>
+The default setting for both duplex and speed for switch ports on
+Cisco Catalyst 2960 and 3560 switches is auto. The 10/100/1000 ports
+operate in either half- or full-duplex mode when they are set to 10 or
+100 Mbps and operate only in full- duplex mode when it is set to 1000
+Mbps (1 Gbps).
+</p>
+
+
+<p>
+Autonegotiation
+</p>
+<ul class="org-ul">
+<li>useful when the speed and duplex of the device connecting to the
+port are unknown or may change</li>
+<li>best practice is to set the speed and duplex settings manually</li>
+</ul>
+
+
+<p>
+<i>NOTE</i>: mismatched settings for the duplex mode and speed of switch
+ports can cause connectivity issues. Autonegotiation failure creates
+mismatched settings
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2e4a2aa" class="outline-4">
+<h4 id="org2e4a2aa"><span class="section-number-4">1.2.3.</span> Auto-MDIX (automatic medium-dependent-interface crossover)</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<ul class="org-ul">
+<li>eliminates the problem of using certain cable types
+(straight-through and crossover) to when connecting devices</li>
+<li>When enabled, the interface automatically detects the required cable
+connection type and configures the connection appropriately</li>
+<li>without it, straight-through and crossover cables must be used appropriately</li>
+<li>the interface configuration command <code>mdix auto</code> enables the
+auto-MDIX in a specific interface</li>
+</ul>
+
+
+<p>
+To *examine the auto-MDIX setting for a specific interface~
+use the command <code>show controllers ethernet-controller</code> command
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbf14f78" class="outline-4">
+<h4 id="orgbf14f78"><span class="section-number-4">1.2.4.</span> verify switch port configuration</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+<code>show running-config</code> can be used if the switch is correctly
+configured. It shows the switchport modes,  ip addresses, default
+gateways, and other useful information when debugging a configuration
+</p>
+
+
+<p>
+<code>show interfaces</code> command displays <b>status and statistics information</b>
+on the network interfaces of the switch
+</p>
+</div>
+</div>
+
+<div id="outline-container-org73b8a8f" class="outline-4">
+<h4 id="org73b8a8f"><span class="section-number-4">1.2.5.</span> Network Access layer issues</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<p>
+The output from the <code>show interfaces</code> command is useful for detecting
+common media issues. [take into consideration the output of the line
+and data link protocol status]
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org43eca0a"></a>Common errors detected by the show interface command<br />
+<div class="outline-text-5" id="text-1-2-5-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Error Type</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">input errors</td>
+<td class="org-left">total number of errors</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">includes runts, giants, no buffer, CRC, frame, overrun, and ignored counts</td>
+</tr>
+
+<tr>
+<td class="org-left">runts</td>
+<td class="org-left">frames smaller than the minimum packet size (64bytes)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Giants</td>
+<td class="org-left">ethernet frame greater than 1518 bytes</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">CRC</td>
+<td class="org-left">generated when the calculated checksum is not the same as the checksum received</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">output errors</td>
+<td class="org-left">sum of all errors that prevented the final transmission of datagrams out of the interface being examined</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">collissions</td>
+<td class="org-left">number of messages retransmitted because of an ethernet collision</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">late collisions</td>
+<td class="org-left">a collision that occurs after the 512 bits of the frame have been transmitted</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org1d8e421" class="outline-4">
+<h4 id="org1d8e421"><span class="section-number-4">1.2.6.</span> Interface input and output errors</h4>
+<div class="outline-text-4" id="text-1-2-6">
+<p>
+Input errors
+</p>
+<ul class="org-ul">
+<li>sum of all errors in datagrams that were received on the interface
+being examined (runts, giants, CRC, no buffer, frame, overrun, and
+ignored counts)</li>
+</ul>
+
+
+<p>
+Output errors
+</p>
+<ul class="org-ul">
+<li>sum of all errors that prevented the final transmission of datagrams
+out the interface that is being examined. (collisions, late collisions)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org035ab59" class="outline-4">
+<h4 id="org035ab59"><span class="section-number-4">1.2.7.</span> Troubleshooting network access layer issues</h4>
+<div class="outline-text-4" id="text-1-2-7">
+<p>
+Use the <code>show interfaces</code> command to check the interface status
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org916ef6e"></a>interface is down<br />
+<div class="outline-text-5" id="text-1-2-7-1">
+<ul class="org-ul">
+<li>check to make sure that the proper cables are being used (check the connections)</li>
+<li>if still down, check the speed settings</li>
+</ul>
+</div>
+</li>
+
+<li><a id="orgab019ba"></a>interface is up but issues with conenctivity are still present<br />
+<div class="outline-text-5" id="text-1-2-7-2">
+<ul class="org-ul">
+<li>using the command <code>show interfaces</code>, check for indications of
+excessive noise. Check the statistics (input and output
+errors). Also, check the cable length</li>
+<li>if noise is not an issue, check for excessive collisions. if there
+are <b>collisions or late collisions</b>, verify the duplex settings on
+both ends of the conenction</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgafeae6d" class="outline-3">
+<h3 id="orgafeae6d"><span class="section-number-3">1.3.</span> Secure remote access</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-orga73005c" class="outline-4">
+<h4 id="orga73005c"><span class="section-number-4">1.3.1.</span> Telnet operation</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+Telnet uses transmission control protocol (TCP) port 23. It is an
+older protocol that uses unsecure plain text transmission of both the
+login and authentication and the data transmitted between
+communicating devices. A threat actor can monitor packets using tools
+such as wireshark.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7b441f7" class="outline-4">
+<h4 id="org7b441f7"><span class="section-number-4">1.3.2.</span> SSH Operation</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+Is a secure protocol that uses TCP port 22. It provices a secure
+management connection to a remote device. SSH should replace telnet
+for management connections. SSH provides security for remote
+conenctions by providing strong encryption when a device is
+authenticated and also for the transmitted data between the
+comminicating devices
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7136b21" class="outline-4">
+<h4 id="org7136b21"><span class="section-number-4">1.3.3.</span> Verify the switch supports SSH</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<p>
+SSH can only be used by devices with an IOS software including
+cryptographic features and capabilities. Use the <code>show version</code>
+command to see the current IOS running. An IOS with a name that
+includes "k9" is one that supports cryptographic features and
+capabilities. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org065cd94" class="outline-4">
+<h4 id="org065cd94"><span class="section-number-4">1.3.4.</span> Configure SSH</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<p>
+SSH requires a unique hostname and corry network connectivity setings
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org43a5a81"></a>Step 1: Verify SSH Support<br />
+<div class="outline-text-5" id="text-1-3-4-1">
+<p>
+<code>show ip ssh</code> command to verify if the switch supports SSH
+</p>
+</div>
+</li>
+
+<li><a id="org5584034"></a>Step 2: Configure the IP domain<br />
+<div class="outline-text-5" id="text-1-3-4-2">
+<p>
+<code>ip domain-name domain-name</code> command to set the domain name 
+</p>
+</div>
+</li>
+
+<li><a id="org3c6e713"></a>Step 3: Generate the RSA key pairs<br />
+<div class="outline-text-5" id="text-1-3-4-3">
+<p>
+Some IOS variants default to SSH version 2 and version 1. To configure
+SSH version 2, issue the command <b><code>ip ssh version 2</code></b>. To generate a
+Rivest, Shamit, Adleman (RSA) key pair to automatically enable SSH,
+use the command <code>crypto key generate rsa general-keys modulus 1024</code>
+</p>
+
+<p>
+<i>NOTE</i>: To delete the RSA key pair <code>crypto key zeroize rsa</code>
+</p>
+</div>
+</li>
+
+<li><a id="org02d782d"></a>Configure user authentication<br />
+<div class="outline-text-5" id="text-1-3-4-4">
+<p>
+create a username and password useing the command <code>username
+your-username password your-password</code> 
+</p>
+</div>
+</li>
+
+<li><a id="org2cdf045"></a>Configure the vty lines<br />
+<div class="outline-text-5" id="text-1-3-4-5">
+<p>
+Enable the SSH protocol on the vty lines using the <code>transport input
+ssh</code> and <code>login local</code> line configuration mode command. 
+</p>
+</div>
+</li>
+
+<li><a id="org52b4578"></a>Enable SSH version 2<br />
+<div class="outline-text-5" id="text-1-3-4-6">
+<p>
+<code>ip ssh version 2</code> global configuration mode command
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orge0d46e5" class="outline-4">
+<h4 id="orge0d46e5"><span class="section-number-4">1.3.5.</span> Verify SSH</h4>
+<div class="outline-text-4" id="text-1-3-5">
+<p>
+Connect using a pc <code>ssh -l ip-address-of-device</code> command line command
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7b611e7" class="outline-3">
+<h3 id="org7b611e7"><span class="section-number-3">1.4.</span> Basic Router Configuration</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-org621e905" class="outline-4">
+<h4 id="org621e905"><span class="section-number-4">1.4.1.</span> Configure basic router settings</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<pre class="example" id="orgd8d74dc">
+enable
+configure terminal
+hostname R1
+enable secret class
+line console 0
+password cisco
+login
+exit
+line vty 0 4
+password cisco
+login
+exit
+service password-encryption
+banner motd "Authorized access only!"
+end
+copy running-config startup-config
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org955d1da" class="outline-4">
+<h4 id="org955d1da"><span class="section-number-4">1.4.2.</span> Dual Stack Topology</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+Configuration of routers in both IPv4 and IPv6
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0318299" class="outline-4">
+<h4 id="org0318299"><span class="section-number-4">1.4.3.</span> Configure Router Interfaces</h4>
+</div>
+
+<div id="outline-container-org8dd629b" class="outline-4">
+<h4 id="org8dd629b"><span class="section-number-4">1.4.4.</span> IPv4 Loopback Interfaces</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<p>
+Is a logical interface that is internal to the router. It is not
+assigned to a phycial port and can never be connected to any other
+device. It is considered as a <b>software interface</b> that is
+automatically placed in an "up" state as long as the router is
+functioning.
+</p>
+
+
+<p>
+It is <b>useful if testing and managing</b> a Cisco IOS device as it
+ensures that at least one interface will always be available.
+</p>
+
+<pre class="example" id="orga726568">
+enable
+configure terminal
+interface loopback number
+ip address ip-here subnet-here
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcc90b5b" class="outline-3">
+<h3 id="orgcc90b5b"><span class="section-number-3">1.5.</span> Verify Directly Connected Networks</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-orgeab2f30" class="outline-4">
+<h4 id="orgeab2f30"><span class="section-number-4">1.5.1.</span> Interface verification commands</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+use the following commands to quickly identify the status of
+interfaces
+</p>
+<pre class="example" id="orge5b5537">
+show ip interface brief
+show ipv6 interface brief
+show ip interface g0/1
+show ipv6 interface g0/1
+show running-config interface interface-id
+show ip route
+show ipv6 route
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org63689f2" class="outline-4">
+<h4 id="org63689f2"><span class="section-number-4">1.5.2.</span> Verify Interface Status</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+<code>show ip interface brief</code> and <code>show ipv6 interface brief</code> can be used
+to quickly reveal the status of all interfaces on the router. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6ee1152" class="outline-4">
+<h4 id="org6ee1152"><span class="section-number-4">1.5.3.</span> Verify IPv6 Link Local and Multicase Addresses</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<p>
+<code>show ipv6 interface brief</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8d5f464" class="outline-4">
+<h4 id="org8d5f464"><span class="section-number-4">1.5.4.</span> Verify Routes</h4>
+<div class="outline-text-4" id="text-1-5-4">
+<pre class="example" id="orgd074cd0">
+show ip route
+show ipv6 route
+ping address
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4227c38" class="outline-4">
+<h4 id="org4227c38"><span class="section-number-4">1.5.5.</span> Filter Show Command Output</h4>
+<div class="outline-text-4" id="text-1-5-5">
+<p>
+The pipe "|" character is used to filter comands. The commands
+<code>section</code>, <code>include</code>, <code>exclude</code>, and <code>begin</code> are used with the pipe
+character to filter show commands.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcb5676b" class="outline-4">
+<h4 id="orgcb5676b"><span class="section-number-4">1.5.6.</span> Command History Feature</h4>
+<div class="outline-text-4" id="text-1-5-6">
+<p>
+CTRL+P go to previous command and CTRL+N go to next. <code>show history</code>
+privileged exec mode command will show the last 10 captured
+commands. To change the size, the command <code>terminal history size
+new-size</code> can be used.
+</p>
+
+<p>
+<a href="README.html">HOME</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Emmanuel Parreno</p>
+<p class="date">Created: 2025-02-10 Mon 07:32</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

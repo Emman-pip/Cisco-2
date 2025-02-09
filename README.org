@@ -1,3 +1,5 @@
 * Repository for CISCO 2 NOTES
+Welcome to Cisco 2 notes... yaw ko na..
 
 ** Table of contents
+[[file:Lesson-1.org][Lesson 1]]

@@ -418,4 +418,6 @@ character to filter show commands.
 CTRL+P go to previous command and CTRL+N go to next. ~show history~
 privileged exec mode command will show the last 10 captured
 commands. To change the size, the command ~terminal history size
-new-size~ can be used. 
+new-size~ can be used.
+
+[[file:README.org][HOME]]
