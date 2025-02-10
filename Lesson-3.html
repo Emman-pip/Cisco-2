@@ -1,0 +1,1310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-02-10 Mon 17:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Emmanuel Parreno" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org57c8aed">1. VLANs (Week 2)</a>
+<ul>
+<li><a href="#org84d8656">1.1. Overview of VLANs</a>
+<ul>
+<li><a href="#orge6bc627">1.1.1. VLAN Definitions</a></li>
+<li><a href="#orgf60c264">1.1.2. Benefits of a VLAN Design</a></li>
+<li><a href="#org88139b3">1.1.3. Types of VLANs</a></li>
+</ul>
+</li>
+<li><a href="#orgb5d40c2">1.2. VLANs in a Multi-switched Environment</a>
+<ul>
+<li><a href="#org8b5b274">1.2.1. Defining VLAN Trunks</a></li>
+<li><a href="#orgd2f62b8">1.2.2. Network Without VLANs</a></li>
+<li><a href="#org4f11e31">1.2.3. Network with VLANs</a></li>
+<li><a href="#orgc1eee00">1.2.4. Vlan Identification with a Tag</a></li>
+<li><a href="#orge440074">1.2.5. Native VLANs and 802.1Q Tagging</a></li>
+<li><a href="#org2677f55">1.2.6. Voice VLAN Tagging</a></li>
+<li><a href="#org27c0890">1.2.7. Void Vlan Verification Example</a></li>
+</ul>
+</li>
+<li><a href="#org1714305">1.3. VLAN Configuration</a>
+<ul>
+<li><a href="#orgae7a450">1.3.1. VLAN Ranges on Catalyst Switches</a></li>
+<li><a href="#orge3617d1">1.3.2. VLAN Creation Commands</a></li>
+<li><a href="#org03cd2a4">1.3.3. VLAN Port Assignment Commands</a></li>
+<li><a href="#orgfc08189">1.3.4. Data and Voice VLANs</a></li>
+<li><a href="#org8e9871e">1.3.5. Verify VLAN Information</a></li>
+<li><a href="#org003cb4a">1.3.6. Change VLAN Port Membership</a></li>
+<li><a href="#orgaf6381a">1.3.7. Delete VLANs</a></li>
+</ul>
+</li>
+<li><a href="#org742e9cf">1.4. VLAN Trunks</a>
+<ul>
+<li><a href="#org5f046a3">1.4.1. Trunk configuration commands</a></li>
+<li><a href="#orgabd2a52">1.4.2. Verify Trunk Configuration</a></li>
+<li><a href="#org843956f">1.4.3. Reset the Trunk to the Default State</a></li>
+</ul>
+</li>
+<li><a href="#orgcb0c0b0">1.5. Dynamic Trunking Protocol</a>
+<ul>
+<li><a href="#orgb0165bb">1.5.1. Introduction to DTP</a></li>
+<li><a href="#org33dbd39">1.5.2. Negotiated Interface Modes</a></li>
+<li><a href="#org3064740">1.5.3. Verify DTP Mode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2ebf412">2. Notes During Class</a>
+<ul>
+<li><a href="#org3c3f96d">2.1. [3.0] Overview of a VLAN</a>
+<ul>
+<li><a href="#org9e6bb2c">2.1.1. LAN</a></li>
+<li><a href="#orgcde8a09">2.1.2. VLAN</a></li>
+</ul>
+</li>
+<li><a href="#org6293b71">2.2. Types of VLAN</a></li>
+<li><a href="#org239b4e8">2.3. [3.2] VLANs in a multi switched environment</a></li>
+<li><a href="#orge3df273">2.4. VLAN Identification with Tag</a>
+<ul>
+<li><a href="#orgca4b2e2">2.4.1. Basics</a></li>
+</ul>
+</li>
+<li><a href="#orgaec7a65">2.5. VLAN in multiple switch environment</a>
+<ul>
+<li><a href="#org9e0f19d">2.5.1. VoIP VLAN</a></li>
+<li><a href="#org56039dc">2.5.2. [3.3] VLAN Configuration</a></li>
+<li><a href="#org50b3b65">2.5.3. Changing vlan port membership</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org311c4d4">3. demo notes</a>
+<ul>
+<li><a href="#orgee4d897">3.1. STEPS</a></li>
+<li><a href="#org4d23d68">3.2. Dynamic trunking protocol</a></li>
+<li><a href="#orgb60b7ab">3.3. DTP</a></li>
+<li><a href="#org81c5c47">3.4. switch port modes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org57c8aed" class="outline-2">
+<h2 id="org57c8aed"><span class="section-number-2">1.</span> VLANs (Week 2)</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Are created at the Layer 2 to reduce or eliminate broadcast
+traffic. VLANs are how you break up your network into smaller networks
+so that the devices and people within a single VLAN are communicating
+with each other and not having tof manage traffic from other networks.jj
+</p>
+</div>
+
+<div id="outline-container-org84d8656" class="outline-3">
+<h3 id="org84d8656"><span class="section-number-3">1.1.</span> Overview of VLANs</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-orge6bc627" class="outline-4">
+<h4 id="orge6bc627"><span class="section-number-4">1.1.1.</span> VLAN Definitions</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Provide segmentation and organizational flexibility in a switched
+network. A group of devices withina VLAN communicates as if each
+device was attached to the same cable. VLANs are based on <b>logical</b>
+connections instead of physical connections
+</p>
+
+
+<p>
+A VLAN creates a logical broadcast domain that can span multiple
+physical LAN segments. VLANs improve network performance by separating
+large broadcast domains into smaller ones. If a device in one VLAN
+sends a broadcast Ethernet frame, all devices in the VLAN receive the
+frame, but devices in other VLANs do not.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf60c264" class="outline-4">
+<h4 id="orgf60c264"><span class="section-number-4">1.1.2.</span> Benefits of a VLAN Design</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+Each VLAN in a switched netword corresponds to an IP
+network. Therefore, VLAN design must take into consideration the
+implementation of hiearchical network addressing scheme. <b>Hierarchical
+network addressing</b> means that IP network numbers are applied to
+network segments or VLANs in a way that takes the network as a whole
+into consideration.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Benefit</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Smaller broadcast domains</td>
+<td class="org-left">dividing a network into VLANs reduces the number of devices in the broadcase domain</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Improved security</td>
+<td class="org-left">only used in the same vlan can communicate together</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">access control lists can be provided to restrict the traffic between VLANs</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Improved IT efficiency</td>
+<td class="org-left">VLANs simplify network management because users with similar network requirements can be configured on the same VLAN</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">VLANs can be named</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Reduced cost</td>
+<td class="org-left">reduces the cost for expensive network upgrades</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">better performance</td>
+<td class="org-left">smaller broadcast domains reduce unnecessary traffic on the network and improve performance</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">simpler project and application management</td>
+<td class="org-left">VLANs aggregate users and network devices to support business or geographic requirements</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">having seperate functions makes managing a project or working with a specialized application easire; an example of such an application is an e-learning development platform for faculty]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org88139b3" class="outline-4">
+<h4 id="org88139b3"><span class="section-number-4">1.1.3.</span> Types of VLANs</h4>
+<div class="outline-text-4" id="text-1-1-3">
+</div>
+<ol class="org-ol">
+<li><a id="orgaec857c"></a>Default VLAN<br />
+<div class="outline-text-5" id="text-1-1-3-1">
+<p>
+is the VLAN 1 on a cisco switch.
+</p>
+
+
+<p>
+<i>NOTE</i>: All port are assigned to VLAN 1 by default. The native VLAN and
+management VLAN is VLAN 1. Also, VLAN 1 cannot be renamed or deleted.
+</p>
+
+
+<p>
+The command <code>show vlan brief</code> outputs the vlans on a switch and the
+ports assigned to them.
+</p>
+</div>
+</li>
+<li><a id="org2e4d746"></a>Data VLAN<br />
+<div class="outline-text-5" id="text-1-1-3-2">
+<p>
+are VLANs configured to seperate user-generated traffic. Referred to
+as <b>user VLANs</b> because they seperate the network into groups of users
+or devices.
+</p>
+
+<p>
+<i>NOTE</i>: voice and netowrk management traffic should not be permitted
+on data VLANs
+</p>
+</div>
+</li>
+
+<li><a id="orgcbca4b0"></a>Native VLAN<br />
+<div class="outline-text-5" id="text-1-1-3-3">
+<p>
+User traffic from a  VLAN must be tagged with its VLAN ID when it is
+sent to another switch. Trunk ports are used between switches to
+support the transmission of tagged traffic. Specifically, an <b>802.1Q</b>
+trunk port inserts a 5 byte tag in the ethernet frame header to
+identify the VLAN to which the frame belongs
+</p>
+
+<p>
+Where untagged frames are assigned to
+</p>
+</div>
+</li>
+
+<li><a id="org88f4627"></a>Management VLAN<br />
+<div class="outline-text-5" id="text-1-1-3-4">
+<p>
+is a data VLAN configured specificalled for network management
+traffic, including secure shell (ssh), telnet, HTTPS, HTTP, and
+SNMP. By default, VLAN 1 is configured as the management VLAN.
+</p>
+</div>
+</li>
+
+
+
+<li><a id="orgfe77860"></a>Voide VLAN<br />
+<div class="outline-text-5" id="text-1-1-3-5">
+<p>
+A seperate VLAN called a voice VLAN is needed to support Vocie over
+IP. VoIP traffic requires:
+</p>
+<ul class="org-ul">
+<li>assured bandwidth to ensure voice quality</li>
+<li>transmission priority over other types of network traffic</li>
+<li>ability to be routed around congested areas on the network</li>
+<li>delay of less than 150 ms across the network</li>
+</ul>
+
+
+<p>
+To meet the requirements, the entire network must be designed to
+support VoIP.
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgb5d40c2" class="outline-3">
+<h3 id="orgb5d40c2"><span class="section-number-3">1.2.</span> VLANs in a Multi-switched Environment</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org8b5b274" class="outline-4">
+<h4 id="org8b5b274"><span class="section-number-4">1.2.1.</span> Defining VLAN Trunks</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+trunks allow all VLAN trffic to propagate between switches. It is a
+conduit that allows multiple VLANs between switches and routers. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd2f62b8" class="outline-4">
+<h4 id="orgd2f62b8"><span class="section-number-4">1.2.2.</span> Network Without VLANs</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+When a switch receives a broadcast frame on one of its ports, it
+forwards the frame out all other ports except the port where the
+broadcast was received. Meaning, a faulty device could cause network
+congestion to the whole switched network.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org4f11e31" class="outline-4">
+<h4 id="org4f11e31"><span class="section-number-4">1.2.3.</span> Network with VLANs</h4>
+</div>
+
+
+
+
+<div id="outline-container-orgc1eee00" class="outline-4">
+<h4 id="orgc1eee00"><span class="section-number-4">1.2.4.</span> Vlan Identification with a Tag</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+Tagging is the process of putting the VLAN information of an ethernet
+frame when passing through a trunk. This is accomplished by the IEEE
+802.1Q header
+</p>
+
+
+<p>
+The VLAN tag control information field consists of a Type field,
+priority field, a canonical format identifier field, and VLAN ID field
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">field</th>
+<th scope="col" class="org-left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">type</td>
+<td class="org-left">tag protocol ID (TPID)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">2-byte value</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">user priority</td>
+<td class="org-left">3-bit value that supports level or service implementation</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">CFI (canonical format identifier)</td>
+<td class="org-left">1 bit identifier that enables token ring frames to be carried across ethernet links</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">VLAN ID (VID)</td>
+<td class="org-left">12-bit VLAN identification number that supports up to 4096 VLAN IDs</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+After the tag control information fields are inserted, the switch
+recalculates the FCS values and inserts the new value into the frame
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orge440074" class="outline-4">
+<h4 id="orge440074"><span class="section-number-4">1.2.5.</span> Native VLANs and 802.1Q Tagging</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<p>
+defaults to VLAN 1.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org9ecbbf7"></a>Untagged frames on the native VLAN<br />
+<div class="outline-text-5" id="text-1-2-5-1">
+<p>
+handled by/forwarded to the native vlan
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+
+<div id="outline-container-org2677f55" class="outline-4">
+<h4 id="org2677f55"><span class="section-number-4">1.2.6.</span> Voice VLAN Tagging</h4>
+<div class="outline-text-4" id="text-1-2-6">
+<p>
+Seperatate VLAN is required. This enables QoS and security policies to
+be applied to voice traffice
+</p>
+
+
+<p>
+Cisco IP Phone contains an integrated three-port 10/100 switch. The
+ports provide dedicated connections to the following devices:
+</p>
+<ul class="org-ul">
+<li>Port 1: connects to the switch or other VoIP device</li>
+<li>Port 2: an internal 10/100 interface that carries the IP phone
+traffic</li>
+<li>Port 3: (access port) connects a PC or other device</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org27c0890" class="outline-4">
+<h4 id="org27c0890"><span class="section-number-4">1.2.7.</span> Void Vlan Verification Example</h4>
+<div class="outline-text-4" id="text-1-2-7">
+<p>
+<code>show interface fa0/18 switchport</code> command will output information
+about the said switchport
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org1714305" class="outline-3">
+<h3 id="org1714305"><span class="section-number-3">1.3.</span> VLAN Configuration</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-orgae7a450" class="outline-4">
+<h4 id="orgae7a450"><span class="section-number-4">1.3.1.</span> VLAN Ranges on Catalyst Switches</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+Normal Range
+</p>
+<ul class="org-ul">
+<li>from 1 to 1005</li>
+<li>used in small- and medium-sized business and enterprise networks</li>
+<li>identified by a VLAN ID between 1 to 1005</li>
+<li>IDs 1002 to 1005 are reserved for legacy network technologies</li>
+<li>configurations are stored int the flash:vlan.dat</li>
+<li>when configured, VLAN trunking protocol (VTP) helps synchronize the
+VLAN database between switches</li>
+</ul>
+
+
+
+<p>
+Extended range
+</p>
+<ul class="org-ul">
+<li>from 1006 to 4094</li>
+<li>used by service providers</li>
+<li>by a VLAN ID between 1006 and 4094</li>
+<li>configurations are saved, by default, in the running configuration</li>
+<li>the support fewer VLAN features than normal range VLANs</li>
+<li>required VTP transparent mode configuration support extended range VLANs</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge3617d1" class="outline-4">
+<h4 id="orge3617d1"><span class="section-number-4">1.3.2.</span> VLAN Creation Commands</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<pre class="example" id="orgd16e5a6">
+enable
+conf terminal
+vlan vlan-id
+name vlan-name
+end
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org03cd2a4" class="outline-4">
+<h4 id="org03cd2a4"><span class="section-number-4">1.3.3.</span> VLAN Port Assignment Commands</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<pre class="example" id="org1629a36">
+enable
+configure terminal
+interface range inteface-range-here
+switchport mode access
+switchport access vlan vlan-id
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfc08189" class="outline-4">
+<h4 id="orgfc08189"><span class="section-number-4">1.3.4.</span> Data and Voice VLANs</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<pre class="example" id="orgf1932ba">
+enable
+configure terminal
+int inteface-id
+switchport mode access
+switchport access vlan vlan-id
+mls qos trust cos
+switchport voice vlan vlan-15
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8e9871e" class="outline-4">
+<h4 id="org8e9871e"><span class="section-number-4">1.3.5.</span> Verify VLAN Information</h4>
+<div class="outline-text-4" id="text-1-3-5">
+<pre class="example" id="orgdfb42f6">
+show vlan [brief|vlan-id|vlan-name|summary]
+show interfaces fa0/18 switchport
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org003cb4a" class="outline-4">
+<h4 id="org003cb4a"><span class="section-number-4">1.3.6.</span> Change VLAN Port Membership</h4>
+<div class="outline-text-4" id="text-1-3-6">
+<p>
+simply renter the command <code>switchport access vlan vlan-id</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaf6381a" class="outline-4">
+<h4 id="orgaf6381a"><span class="section-number-4">1.3.7.</span> Delete VLANs</h4>
+<div class="outline-text-4" id="text-1-3-7">
+<p>
+<code>no vlan vlan-id</code> command will delete the selected VLAN. The entire
+vlan.dat file can also be deleted through <code>delete vlan.dat</code>.
+</p>
+
+<p>
+<i>NOTE</i>: before deleting a VLAN, reassign all the member ports
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org742e9cf" class="outline-3">
+<h3 id="org742e9cf"><span class="section-number-3">1.4.</span> VLAN Trunks</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-org5f046a3" class="outline-4">
+<h4 id="org5f046a3"><span class="section-number-4">1.4.1.</span> Trunk configuration commands</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+VLAN trunks are layer 2 links between two switches that carries
+traffic for all VLANs.
+</p>
+
+<pre class="example" id="org0387434">
+enable
+configure terminal
+interface interface-id
+switchport mode trunk
+switchport nonegotiate
+switchport trunk native vlan vlan-id
+switchport trunk allowed vlan vlan-list
+end
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgabd2a52" class="outline-4">
+<h4 id="orgabd2a52"><span class="section-number-4">1.4.2.</span> Verify Trunk Configuration</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<pre class="example" id="orgb3ef5d3">
+show interfaces interface-id switchport
+show interface trunk
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org843956f" class="outline-4">
+<h4 id="org843956f"><span class="section-number-4">1.4.3.</span> Reset the Trunk to the Default State</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<p>
+<code>no switchport trunk allowed vlan</code> and <code>no switchport trunk native
+vlan</code> to remove the allowed vlans and remove the native vlan
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgcb0c0b0" class="outline-3">
+<h3 id="orgcb0c0b0"><span class="section-number-3">1.5.</span> Dynamic Trunking Protocol</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-orgb0165bb" class="outline-4">
+<h4 id="orgb0165bb"><span class="section-number-4">1.5.1.</span> Introduction to DTP</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+It is a protocol that allows automatic negotiate trunking with a
+neigboring device. It is automatically enabled on 2960 and 3650
+Catalyst switches. To enable this mode enter the <code>switchport mode dynamic auto</code> interface configuration command. 
+</p>
+</div>
+</div>
+<div id="outline-container-org33dbd39" class="outline-4">
+<h4 id="org33dbd39"><span class="section-number-4">1.5.2.</span> Negotiated Interface Modes</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+<code>switchport mode { access | dynamic { auto | desirable } | trunk }</code>
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">option</th>
+<th scope="col" class="org-left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">access</td>
+<td class="org-left">puts the interface into permanent nontrunking mode and negotiates to convert the link into a nontrunk link</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">the interface becomes a nontrunk interface regardless of whether the neighboring interface is a trunk interface</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">dynamic auto</td>
+<td class="org-left">makes the interface able to convert the link into a trunk link</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">interfaces becomes a trunk if the neighboring interface is set to <b>trunk or desirable</b></td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">dynamic desirable</td>
+<td class="org-left">makes the interface actively attempt to convert the link to a trunk link</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">interface becomes a trunk interface if the neighboring interface is set to trunk, desirable or dynamic auto mode</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">trunk</td>
+<td class="org-left">puts the interface into permanent trunking mode and negotiates to convert the neighboring link into a trunk link</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">the interface becomes a trunk interface even if the neightboring interface is not a trunk interface</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org3064740" class="outline-4">
+<h4 id="org3064740"><span class="section-number-4">1.5.3.</span> Verify DTP Mode</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<pre class="example" id="orgd8ee4ac">
+show interface fa0/1
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org2ebf412" class="outline-2">
+<h2 id="org2ebf412"><span class="section-number-2">2.</span> Notes During Class</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org3c3f96d" class="outline-3">
+<h3 id="org3c3f96d"><span class="section-number-3">2.1.</span> [3.0] Overview of a VLAN</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org9e6bb2c" class="outline-4">
+<h4 id="org9e6bb2c"><span class="section-number-4">2.1.1.</span> LAN</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<ul class="org-ul">
+<li>Local area network</li>
+<li>connected devices in a small geographical area</li>
+<li>usually are a switch network (switch is sufficient to intermediate
+all)</li>
+<li>problem is usually the <b>broadcast domain</b>
+<ul class="org-ul">
+<li>a switch only has one broadcast domain, all devices connected to
+the switch will receive the b-message</li>
+<li>messages can be unintentionally sent, violates the concept of
+confidentiality</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcde8a09" class="outline-4">
+<h4 id="orgcde8a09"><span class="section-number-4">2.1.2.</span> VLAN</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<ul class="org-ul">
+<li>logical connections with other similar devices</li>
+<li>idea is splitting the switch into parts for segregation (will split
+the broadcast domain)</li>
+<li><b>purpose is to virtually split the switch to several LANs</b></li>
+</ul>
+</div>
+
+<ol class="org-ol">
+<li><a id="orge4520dc"></a>placing devices into various VLANs have the following<br />
+<div class="outline-text-5" id="text-2-1-2-1">
+<ul class="org-ul">
+<li>provides segmentation</li>
+<li>organization</li>
+<li>broadcasts, multicasts, and unicasts are isolated</li>
+<li>VLAN have unique range of IP addressing</li>
+<li>smaller broadcast domains</li>
+<li>improves security
+<ul class="org-ul">
+<li>user groups on the same vlan</li>
+</ul></li>
+<li>reduces cost</li>
+<li>better performance</li>
+<li>simpler management</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org6293b71" class="outline-3">
+<h3 id="org6293b71"><span class="section-number-3">2.2.</span> Types of VLAN</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Default VLAN
+<ul class="org-ul">
+<li>VLAN 1</li>
+<li>switches have this by default</li>
+<li>default: native VLAN, VLAN, Management VLAN, cannot be deleted or
+renamed</li>
+<li>all ports are here by defaultt</li>
+</ul></li>
+</ul>
+
+<pre class="example" id="orgecad53d">
+Switch# show vlan brief
+</pre>
+
+<ul class="org-ul">
+<li>Data vlan
+<ul class="org-ul">
+<li>where users data flow through</li>
+</ul></li>
+<li>Native VLAN
+<ul class="org-ul">
+<li>free passes</li>
+<li>used for trunk links</li>
+</ul></li>
+
+<li>Management VLAN
+<ul class="org-ul">
+<li>for SSH and Telnet VTY</li>
+</ul></li>
+<li>Voice VLAN
+<ul class="org-ul">
+<li>when there is an voIP, a voice VLAN is required</li>
+<li></li>
+</ul></li>
+</ul>
+
+<p>
+<i>VLANS will be changed as best practive</i>
+</p>
+
+<p>
+<i>one [END] device can only have one vlan</i>
+</p>
+
+<p>
+A cisco (catalysy) switch can have 4096 vlans
+</p>
+</div>
+</div>
+
+<div id="outline-container-org239b4e8" class="outline-3">
+<h3 id="org239b4e8"><span class="section-number-3">2.3.</span> [3.2] VLANs in a multi switched environment</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>VLAN trunk
+<ul class="org-ul">
+<li>allows vlan of the same number (vlan 10) through other switches</li>
+<li>will allow devices can have the same broadcast domain even if long
+distance</li>
+<li>Trunk link: allows links between switches' VLANs</li>
+<li><b>a point to point link</b> between two switches, switch or another
+networking device</li>
+<li>allows more than one vlan</li>
+<li>extend vlan over the whole network</li>
+<li>802.1Q trunking</li>
+<li>Vlans cannot communicate without a router (inter VLAN)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orge3df273" class="outline-3">
+<h3 id="orge3df273"><span class="section-number-3">2.4.</span> VLAN Identification with Tag</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li><b>IEEE 802.1Q</b></li>
+<li>used to identify which member of vlan is the frame</li>
+</ul>
+</div>
+<div id="outline-container-orgca4b2e2" class="outline-4">
+<h4 id="orgca4b2e2"><span class="section-number-4">2.4.1.</span> Basics</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<ul class="org-ul">
+<li>if a message will do throught a trunk, 802.1Q(Tagging) is needed</li>
+<li>if native vlan, then tagging is not required</li>
+<li>both ends of the trunk link must be configured with the same native VLAN</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaec7a65" class="outline-3">
+<h3 id="orgaec7a65"><span class="section-number-3">2.5.</span> VLAN in multiple switch environment</h3>
+<div class="outline-text-3" id="text-2-5">
+</div>
+<div id="outline-container-org9e0f19d" class="outline-4">
+<h4 id="org9e0f19d"><span class="section-number-4">2.5.1.</span> VoIP VLAN</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<ul class="org-ul">
+<li>middle man, will still work on the end device at the end&#x2026;</li>
+</ul>
+<p>
+<code>show interfaces fa0/18 switchport</code>
+</p>
+
+<ul class="org-ul">
+<li>modes of VoiP</li>
+<li>auto</li>
+<li>dynamic auto</li>
+<li>dynamic desirable</li>
+<li>access</li>
+<li>trunk</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org56039dc" class="outline-4">
+<h4 id="org56039dc"><span class="section-number-4">2.5.2.</span> [3.3] VLAN Configuration</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<ul class="org-ul">
+<li>stored in a vlan.dat in flash</li>
+<li><p>
+vlan-id can be form vlan 2-1000
+</p>
+
+<p>
+<b>default mode:</b> dynamic auto
+<b>needs to be changed to access</b>
+</p></li>
+</ul>
+<pre class="example" id="org04e76b5">
+# show vlan brief
+# config terminal
+(config)# vlan vlan-id
+(config-vlan)# name vlan-name
+(config-vlan)# exit
+---- ililipat yung port to the newly created vlan ----
+(config)# interface interface-id
+(config-if)# switchport mode access
+(config-if)# switchport access vlan vlan-id
+</pre>
+
+<pre class="example" id="org4fe065a">
+# show vlan brief
+# config terminal
+(config)# vlan vlan-id
+(config-vlan)# name vlan-name
+(config-vlan)# exit
+---- ililipat yung port to the newly created vlan ----
+(config)# interface interface-id
+(config-if)# switchport mode access
+(config-if)# switchport access vlan vlan-id
+(config-if)# mls qos trust cos
+(config-if)# switchport voice vlan 150
+</pre>
+</div>
+</div>
+<div id="outline-container-org50b3b65" class="outline-4">
+<h4 id="org50b3b65"><span class="section-number-4">2.5.3.</span> Changing vlan port membership</h4>
+<div class="outline-text-4" id="text-2-5-3">
+<p>
+&gt; <code>no switchport access vlan</code> -&gt; goes back to VLAN 1
+&gt; <code>no vlan</code> -&gt; deletes vlan (but will persist on memory)
+&gt; <code>delete flash:vlan.dat</code> -&gt; deletes the database file
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org311c4d4" class="outline-2">
+<h2 id="org311c4d4"><span class="section-number-2">3.</span> demo notes</h2>
+<div class="outline-text-2" id="text-3">
+<pre class="example" id="org53145f7">
+enable
+conf t
+hostname swname
+show vlan br -- will probably show vlan 1
+do show flash -- wala pa vlan database
+
+---- vlan creation
+vlan 10
+name FACULTY
+vlan 20
+name STUDENT
+vlan 30
+name GUEST
+
+do show vlan br -- will show new vlans but with no ports
+
+-- setting ports
+
+int range fa0/1-10
+switchport mode access
+switchport access vlan 10
+
+int range fa0/11-15
+switchport mode access
+switchport access vlan 10
+
+int range fa0/16-20
+switchport mode access
+switchport access vlan 10
+
+do show vlan br -- will now show created vlans with ports
+
+</pre>
+</div>
+<div id="outline-container-orgee4d897" class="outline-3">
+<h3 id="orgee4d897"><span class="section-number-3">3.1.</span> STEPS</h3>
+<div class="outline-text-3" id="text-3-1">
+<ol class="org-ol">
+<li>create the vlans</li>
+<li>configure the ports to specify the vlans</li>
+<li>TRUNK:</li>
+</ol>
+
+<pre class="example" id="orgdf700a4">
+interface interface-id
+switchport mode trunk
+switchport nonegotiate# para di magusap yung dalawng switch
+switchport trunk native vlan vlan-id (1)
+switchport trunk allowed vlan 10,20,30,40,99,100
+end
+verify show interfaces fa0/1 switchport
+</pre>
+
+
+<p>
+<b>TCI sa headers ay kung saang vlan pupunta/galing</b>
+</p>
+</div>
+</div>
+<div id="outline-container-org4d23d68" class="outline-3">
+<h3 id="org4d23d68"><span class="section-number-3">3.2.</span> Dynamic trunking protocol</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>IN NETWORKING: dynamic == automatic</li>
+<li>switches automatically make trunk links</li>
+<li>allows two switches to build a common configuration</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb60b7ab" class="outline-3">
+<h3 id="orgb60b7ab"><span class="section-number-3">3.3.</span> DTP</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>proprietary Cisco protocol</li>
+<li>default on in catalyst 2960 and 2950 switches</li>
+<li>dynamic trunk protocol</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org81c5c47" class="outline-3">
+<h3 id="org81c5c47"><span class="section-number-3">3.4.</span> switch port modes</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+access
+</p>
+<ul class="org-ul">
+<li>permanent access mode</li>
+<li>convert the neighboring link into an access link</li>
+</ul>
+
+<p>
+dynamic auto
+</p>
+<ul class="org-ul">
+<li>becomes trunk or desirable mode</li>
+</ul>
+
+<p>
+dynamic desirable
+</p>
+<ul class="org-ul">
+<li>actively seeks to become trunk by negotiating with other auto or
+desirable interfaces</li>
+</ul>
+
+<p>
+trunk
+</p>
+<ul class="org-ul">
+<li></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Emmanuel Parreno</p>
+<p class="date">Created: 2025-02-10 Mon 17:49</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
