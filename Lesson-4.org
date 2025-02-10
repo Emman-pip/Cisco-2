@@ -1,0 +1,316 @@
+#+TITLE: Inter-VLAN Routing
+#+DESCRIPTION: chapter 4 of cisco II course
+#+AUTHOR: Emmanuel Parreno
+
+* Inter-VLAN Routing
+** Inter-VLAN Routing Operation
+*** What is inter-VLAN Routing?
+Is the process of forwarding network traffic from one VLAN to another
+VLAN
+
+
+Three types of inter-VLAN routing options
+- Legacy Inter-VLAN routing
+  - this is a legacy solution, it does not scale well
+- Router-on-a-stick
+  - this is an acceptable solution for small- to medium-sized network
+- layer 3 switch using switched virtual interfaces (SVIs)
+  - this is the most scalable solution for medium to large organizations
+*** Legacy Inter-VLAN Routing
+Relied on using a routing with *multiple Ethernet interfaces*. Each
+router interface was connected to a switch port in different
+VLANs. The router served as the *default gateways* to the local hosts
+on the VLAN subnet.
+
+
+/NOTE/: Legacy Inter-VLAN routing is no longer implemented in switched
+networks.
+*** Router-on-a-Stick Inter-VLAN Routing
+Overcomes the limitationof the legacy inter-VLAN routing as it only
+requires one physical ethernet interface to route traffic between
+multiple VLANs on a network.
+
+
+*Subinterfaces* are used to configure the router interface to identify
+routable VLANs.
+
+/NOTE/: router-on-a-stick method of inter-VLAN does now scale beyond
+50 VLANs
+*** Inter VLAN Routing on a Layer 3 Switch
+The modern method of performing inter-VLAN routing is to use a Layer 3
+swiitch and switched virtual interfaces (SVI).
+
+
+Layer 3 switch
+- is also known as *MLS* (Multilayer switch) because it operates at
+  layer 2 and layer 3. 
+
+** Router-on-a-stick Inter-VLAN Routing
+*** VLAN and Trunking Configuration
+[[./media/routeron.png]]
+**** Step 1: create and name VLANs
+#+NAME: router on a stick
+#+BEGIN_SRC 
+S1(config)# vlan 10
+S1(config-vlan)# name LAN10
+S1(config-vlan)# exit
+S1(config)# vlan 20
+S1(config-vlan)# name LAN20
+S1(config-vlan)# exit
+S1(config)# vlan 99
+S1(config-vlan)# name Management
+S1(config-vlan)# exit
+S1(config)#
+#+END_SRC
+**** Step 2: create the management interface
+#+NAME: create management interface
+#+BEGIN_SRC 
+S1(config)# interface vlan 99
+S1(config-if)# ip add 192.168.99.2
+255.255.255.0
+S1(config-if)# no shut
+S1(config-if)# exit
+S1(config)# ip default-gateway 192.168.99.1
+S1(config)#
+#+END_SRC
+**** Step 3: configure access ports
+#+NAME: configure access ports
+#+BEGIN_SRC 
+S1(config)# interface fa0/6
+S1(config-if)# switchport mode access
+S1(config-if)# switchport access vlan 10
+S1(config-if)# no shut
+S1(config-if)# exit
+S1(config)#
+#+END_SRC
+**** Step 4: configure trunking ports
+#+NAME: configure trunking ports
+#+BEGIN_SRC 
+S1(config)# interface fa0/1
+S1(config-if)# switchport mode trunk
+S1(config-if)# no shut
+S1(config-if)# exit
+S1(config)# interface fa0/5
+S1(config-if)# switchport mode trunk
+S1(config-if)# no shut
+S1(config-if)# end
+*Mar 1 00:23:43.093: %LINEPROTO-5-UPDOWN:
+Line protocol on Interface
+FastEthernet0/1, changed state to up
+*Mar 1 00:23:44.511: %LINEPROTO-5-UPDOWN:
+Line protocol on Interface
+FastEthernet0/5, changed state to up
+#+END_SRC
+*** Subinterface configuration
+~interface interface_is.subinterface~ global configuration mode
+command to create sub interfaces. Each subinterface should also be
+configured with the following commands
+
+
+~encapsulation dot1q vlan_id [native]~
+- to configure the subinterface to respond to 802.1Q encapsulated
+  traffic from the specified VLAN ID. The native keyword is optional,
+  to set the native VLAN to something other than the VLAN 1
+
+
+~ip address ip-address subnet-mask~
+- to configure the IPv4 address of the subinterface. This address
+  typically serves as the default gateway for the identified VLAN
+
+
+
+After entering the said commands, enable (~no shutdown~) the main
+interface of the subinterfaces.
+
+
+#+NAME: subinterface config
+#+BEGIN_SRC 
+R1(config)# interface G0/0/1.10
+R1(config-subif)# description Default
+Gateway for VLAN 10
+R1(config-subif)# encapsulation dot1Q 10
+R1(config-subif)# ip add 192.168.10.1
+255.255.255.0
+R1(config-subif)# exit
+R1(config)#
+R1(config)# interface G0/0/1.20
+R1(config-subif)# description Default
+Gateway for VLAN 20
+R1(config-subif)# encapsulation dot1Q 20
+R1(config-subif)# ip add 192.168.20.1
+255.255.255.0
+R1(config-subif)# exit
+R1(config)#
+R1(config)# interface G0/0/1.99
+R1(config-subif)# description Default
+Gateway for VLAN 99
+R1(config-subif)# encapsulation dot1Q 99
+R1(config-subif)# ip add 192.168.99.1
+255.255.255.0
+R1(config-subif)# exit
+R1(config)#
+R1(config)# interface G0/0/1
+R1(config-if)# description Trunk link to S1
+R1(config-if)# no shut
+R1(config-if)# end
+R1#
+#+END_SRC
+
+
+*** Router-on-a-stick inter-VLAN routing verification
+#+NAME: verification router-on-a-stick
+#+BEGIN_SRC 
+show ip route
+show ip interface brief
+show interfaces
+show interfaces trunk
+#+END_SRC
+
+** Inter-VLAN Routing Using Layer 3 Switches
+*** Layer 3 switch inter-VLAN routing
+Capabilities of a Layer 3 switch include the ability to do the
+following: 
+- Route from one VLAN to another using multiple switched virtual
+  interfaces (SVIs).
+- Convert a Layer 2 switchport to a Layer 3 interface (that is, a
+  routed port). A ~routed port~ is similar to a physical interface on a
+  Cisco IOS router.
+*** Layer 3 switch configuration
+**** Step 1: VLAN creation
+#+NAME: switch config
+#+BEGIN_SRC 
+D1(config)# vlan 10
+D1(config-vlan)# name LAN10
+D1(config-vlan)# vlan 20
+D1(config-vlan)# name LAN20
+D1(config-vlan)# exit
+D1(config)#
+#+END_SRC
+**** Step 2: create the SVI VLAN interfaces
+#+NAME: svi vlan interfaces
+#+BEGIN_SRC 
+D1(config)# interface vlan 10
+D1(config-if)# description Default Gateway
+SVI for 192.168.10.0/24
+D1(config-if)# ip add 192.168.10.1
+255.255.255.0
+D1(config-if)# no shut
+D1(config-if)# exit
+D1(config)#
+D1(config)# int vlan 20
+D1(config-if)# description Default Gateway
+SVI for 192.168.20.0/24
+D1(config-if)# ip add 192.168.20.1
+255.255.255.0
+D1(config-if)# no shut
+D1(config-if)# exit
+D1(config)#
+#+END_SRC
+**** Step 3: configure access ports
+#+NAME: configure access ports
+#+BEGIN_SRC 
+D1(config)# interface GigabitEthernet1/0/6
+D1(config-if)# description Access port to
+PC1
+D1(config-if)# switchport mode access
+D1(config-if)# switchport access vlan 10
+D1(config-if)# exit
+D1(config)#
+D1(config)# interface GigabitEthernet1/0/18
+D1(config-if)# description Access port to
+PC2
+D1(config-if)# switchport mode access
+D1(config-if)# switchport access vlan 20
+D1(config-if)# exit
+#+END_SRC
+**** Step 4: enable IP routing
+#+NAME: enable ip routing
+#+BEGIN_SRC 
+D1(config)# ip routing
+#+END_SRC
+
+*** Routing on a Layer 3 Switch
+use the ~no switchport~ interface configuration mode command to make a
+switchport into a layer 3 interface. 
+
+*** Troubleshoot Inter-VLAN routing
+
+* Class Notes: Inter VLAN
+one practice packet tracer
+skills: ssh, vlan, inter-vlan
+
+** INTER-VLAN ROUTING OPERATION
+*** VLAN GOAL
+- to limit broadcast domain
+- but; they must still be able to communicate
+
+*** communications with default router
+- a default gateway is required
+
+*** Inter vlan routing
+- process of forwarding network traffic from one VLAN to another VLAN
+- types:
+  1. legacy inter-VLAN routing
+  2. router-on-a-stick
+     - small to medium sized
+  3. Layer 3 switch using (SVI)
+     - most scalable solution
+     
+*** legacy Inter vlan
+- problem is its using physical ports to assign VLANS (not efficient)
+
+*** Router-on-a-stick
+- not scalable beyond 50 vlans
+- uses sub-interfaces on one interface (g0/0.10, g0/0.20)
+
+*** Inter-VLAN routing on a layer 3 switch
+- modern method
+- the default gateway here that will be set wil be the default gateway
+- uses a layer 3 switch (multi layer switch [mls])
+**** LINKS in switches
+| dev 1 | dev 2  | name   |
+|-------+--------+--------|
+| pc    | switch | access |
+| voip  | switch | mls    |
+| swith | switch | trunk  |
+|-------+--------+--------|
+**** Inter VLAN advantages
+- faster than router on astick
+- not limited to one link
+- latency is much lower
+
+**** disadvantage
+- more expensive
+
+  
+*** router on a stick
+- steps:
+  1. create and name the VLAN
+  2. create the management interface (create SVI)
+  3. configure access ports (set ports to vlan)
+  4. configure trunking (switchport)
+     
+- configure subinterface
+#+NAME: configure sub interface
+[[~/Documents/studies/Cisco-2/media/subint1.png]]
+
+
+** Inter-VLAN Routing using Layer 3 switch
+1. create vlans and name
+2. create the SVI interfaces
+3. configure acces ports
+4. enable ip routing in the MLS (multilayer switch)
+   ~(config)# ip routing~
+
+   
+*** Routing on a layer 3
+- ~(config-if)# no switchport~
+- converting a switch port to a routed port
+- converts layer 2 switch port in the MLS to a layer 3 switch
+
+**** Steps
+1. no switch port
+2. ip routing # enabling routing
+3. route the networks
+4. show ip route (verification)
+

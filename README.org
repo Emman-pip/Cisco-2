@@ -5,3 +5,4 @@ Welcome to Cisco 2 notes... yaw ko na..
 *** [[file:Lesson-1.org][Lesson 1]]: basic device configuration
 *** [[file:Lesson-2.org][Lesson 2]]: switching concepts
 *** [[file:Lesson-3.org][Lesson 3]]: VLANs
+*** [[file:Lesson-4.org][Lesson 4]]: Inter-VLANs
