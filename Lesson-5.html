@@ -1,0 +1,1343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-03-04 Tue 07:19 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chapter 5: STP Concepts</title>
+<meta name="author" content="Emmanuel Parreno" />
+<meta name="description" content="Outline of STP CONCEPTS IN Cicso 2" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Chapter 5: STP Concepts</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9eb58a8">1. STP Concepts</a>
+<ul>
+<li><a href="#org7ea411d">1.1. Introduction</a></li>
+<li><a href="#org2dc8925">1.2. Purpose of STP</a>
+<ul>
+<li><a href="#org4ea33a7">1.2.1. Redundancy in Layer 2 Switched Networks</a></li>
+<li><a href="#org0bc6a0d">1.2.2. Spanning Tree Protocol</a></li>
+<li><a href="#orgc1c0a69">1.2.3. STP Recalculation</a></li>
+<li><a href="#orgbb81fef">1.2.4. Issues With Redundanct Switch Links</a></li>
+<li><a href="#org7e85d70">1.2.5. Layer 2 Loops</a></li>
+<li><a href="#orgb488409">1.2.6. Broadcast Storm</a></li>
+<li><a href="#org4dc15ed">1.2.7. The Spanning Tree Algorithm (STA)</a></li>
+</ul>
+</li>
+<li><a href="#orgc9dacbb">1.3. STP Operations2</a>
+<ul>
+<li><a href="#org1a56511">1.3.1. Steps to a loop free topology</a></li>
+<li><a href="#org927538f">1.3.2. STP PORT STATES</a></li>
+<li><a href="#org2b09712">1.3.3. Per-VLAN Spanning tree (PVST)</a></li>
+</ul>
+</li>
+<li><a href="#org931f59c">1.4. Evolution of STP (spanning tree varieties)</a>
+<ul>
+<li><a href="#org83e20b7">1.4.1. Varieties of STP</a></li>
+<li><a href="#orge092001">1.4.2. RSTP Concepts</a></li>
+<li><a href="#orgdbd3b62">1.4.3. RSTP Port States and Port Roles</a></li>
+<li><a href="#orgec08abe">1.4.4. PortFast And BPDU Guard</a></li>
+<li><a href="#orgd0461cc">1.4.5. Port fast BPDU</a></li>
+<li><a href="#orga24307c">1.4.6. BPDU Guard</a></li>
+<li><a href="#org99f5dfe">1.4.7. Alternatives to STP</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9eb58a8" class="outline-2">
+<h2 id="org9eb58a8"><span class="section-number-2">1.</span> STP Concepts</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org7ea411d" class="outline-3">
+<h3 id="org7ea411d"><span class="section-number-3">1.1.</span> Introduction</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+TLDR: STP is done for redundancy (fault tolerance) and preventing
+Layer 2 loops
+</p>
+</div>
+</div>
+<div id="outline-container-org2dc8925" class="outline-3">
+<h3 id="org2dc8925"><span class="section-number-3">1.2.</span> Purpose of STP</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org4ea33a7" class="outline-4">
+<h4 id="org4ea33a7"><span class="section-number-4">1.2.1.</span> Redundancy in Layer 2 Switched Networks</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+Redundancy is an important part of hierarchical design for eliminating
+single points of failure and preventing distruption of network
+services to users. Redundant networks require the addition of physical
+paths, but <b>logical redundancy</b> must also be part of the design. 
+</p>
+
+
+
+<p>
+Single points of failure
+</p>
+<ul class="org-ul">
+<li>caused by lack of redundancy in the network</li>
+<li>violates the fault tolerance of a network</li>
+</ul>
+
+
+<p>
+Ethernet LANs require a <b>loop-free topology</b> with a single path between
+any two devices. A loop in an ethernet LAN can cause continued
+propagation of ethernet frames until a link is disrupted and breaks
+the loop
+</p>
+</div>
+</div>
+<div id="outline-container-org0bc6a0d" class="outline-4">
+<h4 id="org0bc6a0d"><span class="section-number-4">1.2.2.</span> Spanning Tree Protocol</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+Is a <b>loop-prevention network protocol</b> that allows for redundancy
+while creating a loop-free Layer 2 topology. <b>IEEE 802.1D</b> (the
+spanning tree protocol) is the original IEEE MAC Bridging standard for
+STP
+</p>
+
+
+<p>
+STP <b>ensures that there is olny one logical path between all
+destination on the network by intentionally blocking</b> redundant paths
+that could cause a loop. After blocking, the physical paths still
+exist to provide redundancy but these paths are disabled to prevent
+the loops from occurring
+</p>
+</div>
+</div>
+<div id="outline-container-orgc1c0a69" class="outline-4">
+<h4 id="orgc1c0a69"><span class="section-number-4">1.2.3.</span> STP Recalculation</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+The following happens when a link fails
+</p>
+<ol class="org-ol">
+<li>pc sends broadcast out onto the network</li>
+<li>the broadcase is then forwarded around the network</li>
+<li>a link fails</li>
+<li>some switch unblocks the previously blocked port for a trunk and
+allows the broadcast traffic to traverse the alternate path around
+the network, permitting communication to continue. If the link
+comes back up, STP reconverges, and the port of S2 is again blocked</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgbb81fef" class="outline-4">
+<h4 id="orgbb81fef"><span class="section-number-4">1.2.4.</span> Issues With Redundanct Switch Links</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+Although path redundancy eliminates the posibility of a single point
+of failure, without proper configuration, Layer 2 loops would
+occur. Thus result in MAC address table instability, link saturation,
+and high CPU utilization on switches and end devices (network will become
+unusable).
+</p>
+
+
+<p>
+Layer 2 does not have protocols that have a mechanism to recognize and
+eliminate endlessly looping frames (unlike in layer 3). In layer 3, a
+router can use the <b>TTL (Time to Live)</b> in every IPv4 packet and the
+<b>hop limit</b> field in every IPv6 packet as a mechanism of stopping
+endless loops.
+</p>
+
+
+<p>
+<i>Note:</i> TTL(IPv4) and Hop Limit(IPv6) are decremented by routers everytime it is
+passed around, the packet will be dropped once the fields reaches 0.
+</p>
+</div>
+</div>
+<div id="outline-container-org7e85d70" class="outline-4">
+<h4 id="org7e85d70"><span class="section-number-4">1.2.5.</span> Layer 2 Loops</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<p>
+Without STP enabled, layer 2 loops can for, causing broadcast,
+multicast, and unknown unicast frames to loop endlessly. This could
+bring down a network in a matter of seconds. 
+</p>
+</div>
+</div>
+<div id="outline-container-orgb488409" class="outline-4">
+<h4 id="orgb488409"><span class="section-number-4">1.2.6.</span> Broadcast Storm</h4>
+<div class="outline-text-4" id="text-1-2-6">
+<p>
+Broadcast storm
+</p>
+<ul class="org-ul">
+<li>ia an abnormally high number of broadcasts overwhelming the network
+during a specofiv amount of time.</li>
+<li>can be caused by a faulty network interface or a Layer 2 loop in the
+network</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4dc15ed" class="outline-4">
+<h4 id="org4dc15ed"><span class="section-number-4">1.2.7.</span> The Spanning Tree Algorithm (STA)</h4>
+<div class="outline-text-4" id="text-1-2-7">
+<p>
+Based on an algorithm invented by <b>Radia Perlman</b> while working for
+digital equipment corporation, and was published in the 1985 paper "An
+Algorithm for Distributed Computation of a Spanning Tree in an
+Extended LAN.
+</p>
+
+
+<p>
+Her STA first selects a root bridge. Then, each switch will determine
+a single, least cost path from itself to the root bridge.
+</p>
+
+
+<p>
+STP ensures that there is only one logical path between all
+destinations on the network by intentionally blocking redundant paths
+that could cause a loop. When a port is blocked, user data is
+prevented form entering or leaving that port. Blocking the redundant
+paths is critical to preventing loops on the network.
+</p>
+
+
+<p>
+<i>NOTE:</i> STA and STP refer to switches as bridges. This is because in
+the early days of Ethernet, switches were referred to as bridges.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org4e86cb1"></a>STP process<br />
+<div class="outline-text-5" id="text-1-2-7-1">
+<ol class="org-ol">
+<li>Select root bridge</li>
+<li>Block redundant paths</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgc9dacbb" class="outline-3">
+<h3 id="orgc9dacbb"><span class="section-number-3">1.3.</span> STP Operations2</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org1a56511" class="outline-4">
+<h4 id="org1a56511"><span class="section-number-4">1.3.1.</span> Steps to a loop free topology</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ol class="org-ol">
+<li>elect a root bridge</li>
+<li>elect the root ports</li>
+<li>elect designation ports</li>
+<li>elect alternate (blocked) ports</li>
+</ol>
+
+
+<p>
+During STA and STP functions, switches use <b>Bridge Protocol Data
+Units</b> (BPDUs) to share information about themselves and their
+connections. BPDUs are used to elect the root bridge, root ports,
+designated ports, and alternate ports. Each BPDU contains a <b>bridge
+ID</b> (BID) that identidies which switch sent the BPDU. The BID is also
+involved in making many of the STA decisions, including root bridge
+and port roles.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org355a36e"></a>Fields of BID<br />
+<div class="outline-text-5" id="text-1-3-1-1">
+<table id="orgbbfc1f8" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">component</th>
+<th scope="col" class="org-left">Bridge priority</th>
+<th scope="col" class="org-left">extended system id</th>
+<th scope="col" class="org-left">mac address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">size</td>
+<td class="org-left">4 bits</td>
+<td class="org-left">12 bits</td>
+<td class="org-left">48 bits</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="org-ol">
+<li><a id="orgbd7e666"></a>Bridge priority<br />
+<div class="outline-text-6" id="text-1-3-1-1-1">
+<p>
+<b>Default value is the decimal value of 32768.</b> The range is 0 to 61440
+in increments of 4096. A lower bridge priority is preferable. A bridge
+priority of 0 takes precedence over all other bridge priorities
+</p>
+</div>
+</li>
+<li><a id="org1d883a4"></a>Extended System ID<br />
+<div class="outline-text-6" id="text-1-3-1-1-2">
+<p>
+Is the decimal value added to the bridge priority value in the BID to
+identify the VLAN for this BPDU. This field allows the later
+implementations STP, such as Rapid Spanning Tree protocol (RSTP), to
+have different root bridges for different sets of VLANs. This can
+allow for redundant, nonforwarding links in an STP topology for one
+set of VLANs used by different set of VLANs using a different root bridge.
+</p>
+</div>
+</li>
+<li><a id="org5b13333"></a>MAC Address<br />
+<div class="outline-text-6" id="text-1-3-1-1-3">
+<p>
+When two switches are configured with the same priority and have the
+same extenses system ID, the switch having the <b>MAC address with the
+lowest value</b>, expressed in hexadecimal, will have the lower BID.
+</p>
+</div>
+</li>
+</ol>
+</li>
+<li><a id="org734864b"></a>Four-step process of building a loop-free topology<br />
+<ol class="org-ol">
+<li><a id="org83dce7a"></a>Elect the Root bridge<br />
+<div class="outline-text-6" id="text-1-3-1-2-1">
+<p>
+STA designates a single switch as a root bridgr and uses it as the
+reference point for all path calculations. The switches exchange BPDUs
+to build the loop-free topology beginning with selecting the root
+bridge.
+</p>
+
+
+<p>
+After the election process that determines the root bridge, BPDU
+frames will be sent out every two seconds. These frames contain the
+BUD of sending switch and the BID of the root bridge, known as the
+Root ID.
+</p>
+
+
+<p>
+The switch with the lowest BID will become the root bridge. At first,
+all switches declare themselves as the root bridge with their own BID
+set as the Root ID. Eventually, the switches learn through the
+exchange of BPDUs which switch had the lowest BID and will agree on
+one root bridge.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org36cfaed"></a>Imapct of Default BIDs<br />
+<div class="outline-text-7" id="text-1-3-1-2-1-1">
+<p>
+It is possible for two or more switches to have the same BID (because
+of the default BID 32768). When this happens, the MAC address becomes
+the deciding factor as to which switch becomes the root bridge.
+</p>
+
+<p>
+<i>NOTE:</i> The priority of switches is 32768 + VLAN ID. Example: 32768 +
+1 = 32769
+</p>
+</div>
+</li>
+<li><a id="orgba02fb2"></a>Determine the Root Path Cost<br />
+<div class="outline-text-7" id="text-1-3-1-2-1-2">
+<p>
+After the root bridge has been selectyed, the STA starts the process
+of determining the best paths to the root bridge from all destinations
+in the broadcast domain. The path information (<b>root path cost</b>) is
+determined by the sum of all the individual port costs along the path
+from the switch to the root bridge.
+</p>
+
+
+
+<p>
+<i>NOTE:</i> The BPDU includes the root path cost. This is the cost of the
+path from the sending switch to the root bridge.
+</p>
+
+
+<p>
+When a switch receives the BPDU, it adds the ingress port cost of the
+segment to determine its internal root path cost.
+</p>
+
+<p>
+The default port cost are defined by the speed at which the port
+operates
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Link speed</th>
+<th scope="col" class="org-right">STP cose</th>
+<th scope="col" class="org-left">RTSP cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">10 gbps</td>
+<td class="org-right">2</td>
+<td class="org-left">2000</td>
+</tr>
+
+<tr>
+<td class="org-left">1 gbps</td>
+<td class="org-right">4</td>
+<td class="org-left">20,000</td>
+</tr>
+
+<tr>
+<td class="org-left">100 mbps</td>
+<td class="org-right">19</td>
+<td class="org-left">200,000</td>
+</tr>
+
+<tr>
+<td class="org-left">10 mbps</td>
+<td class="org-right">100</td>
+<td class="org-left">2,000,000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
+</li>
+<li><a id="orgc5687d8"></a>Elect Root ports<br />
+<div class="outline-text-6" id="text-1-3-1-2-2">
+<p>
+After the STA algorithm is used to select the <b>root port</b>. Every
+non-root switch will select <b>one root port</b>. The root port is the
+<b>closest to the root bridge</b> interms of overall cost (best path) to
+the root bridge. This overall cost is known as the <b>internal root path
+cost</b>
+</p>
+
+
+<p>
+The internal root path cost is equal to the sum of all the port costs
+along the path to the root bridge. Paths with the lowest cost become
+preferred, and all other redundant paths are blocked.
+</p>
+</div>
+</li>
+<li><a id="orgdb140f0"></a>Elect Designated Ports<br />
+<div class="outline-text-6" id="text-1-3-1-2-3">
+<p>
+The loop prevention part of spanning tree becomes evident during these
+next two steps. After each switch selects a root port, the switches
+will then select designated ports.
+</p>
+
+
+<p>
+<b>Every segment bwtween two switches will have one designated port</b> The
+designated port is a port onthe segment (with two switches) that has
+the internal root path cost to the root bridge. <b><i>TLDR</i></b>: the designated
+port <b>has the best path to receive traffic leading to the root bridge</b>
+</p>
+
+
+<p>
+What is not a root port or a designated port becomes an alternate or
+blocked port. The end result is a single path from every switch to the
+root bridge
+</p>
+
+<p>
+<i>NOTE:</i> All switch ports with end devices (hosts) attached are
+<b>designated ports</b>.
+</p>
+</div>
+</li>
+<li><a id="org74e359d"></a>Elect Alternate (Blocked) Ports<br />
+<div class="outline-text-6" id="text-1-3-1-2-4">
+<p>
+If a port is not a root port or a designated port, then it becomes an
+alternet (or backup) port. Alternate ports and backup ports are in
+discarding or blocking state to prevent loops. These ports are in
+discarding or blocking state to prevent loops to prevent loops. 
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="orge0d9a5c"></a>Elect a Root Port from Multiple Equal Cost Paths<br />
+<div class="outline-text-7" id="text-1-3-1-2-4-1">
+<p>
+Root port and designated ports are based on the lowest path cost to
+the root bridge. In case those are equal, the switch uses the
+following criteria to determine port roles:
+</p>
+<ol class="org-ol">
+<li>Lowest sender BID</li>
+<li>Lowest sender port priority</li>
+<li>Lowest sender port ID</li>
+</ol>
+</div>
+<ol class="org-ol">
+<li><a id="orgea53233"></a>Lowest Sender BID<br />
+<div class="outline-text-8" id="text-1-3-1-2-4-1-1">
+<p>
+if equal costs on both paths, then choose the next destination switch
+that has a lower bridge ID
+</p>
+</div>
+</li>
+<li><a id="org66f5266"></a>Lowest Sender Port Priority<br />
+<div class="outline-text-8" id="text-1-3-1-2-4-1-2">
+<p>
+lower port priority will have the root port, other will be set as
+blocking
+</p>
+</div>
+</li>
+<li><a id="orgde5b2df"></a>Lowest Sender Port ID<br />
+<div class="outline-text-8" id="text-1-3-1-2-4-1-3">
+<p>
+<i>NOTE</i>: The decision is based on the sender's port ID, not the
+receiver's port ID
+</p>
+
+<p>
+The lower port ID in the sender will have the pairing root port
+</p>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+<div id="outline-container-org927538f" class="outline-4">
+<h4 id="org927538f"><span class="section-number-4">1.3.2.</span> STP PORT STATES</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+BPDU
+</p>
+<ul class="org-ul">
+<li>sent for the switches to learn</li>
+<li>every two second it is sent (default) [HELLO TIMER yong every two
+secs]</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="orgdf7a691"></a>Hello timer<br />
+<div class="outline-text-5" id="text-1-3-2-1">
+<ul class="org-ul">
+<li>interval between BPDUs.</li>
+<li>default is 2</li>
+<li>too many will flood the network</li>
+<li>can be between 1 and 10 seconds</li>
+</ul>
+</div>
+</li>
+<li><a id="orgfe7e449"></a>Forward Delay Timer<br />
+<div class="outline-text-5" id="text-1-3-2-2">
+<p>
+<b>TIme spent in the listening (listening state) and learning (learning
+ state)</b> (can be between 4 and 30 secs)
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">states</th>
+<th scope="col" class="org-right">time(sec)</th>
+<th scope="col" class="org-left">BPDU</th>
+<th scope="col" class="org-left">MAC address table</th>
+<th scope="col" class="org-left">forwardin data frames</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">blocking</td>
+<td class="org-right">20</td>
+<td class="org-left">receive BPDU frames</td>
+<td class="org-left">no update</td>
+<td class="org-left">No</td>
+</tr>
+
+<tr>
+<td class="org-left">listening</td>
+<td class="org-right">15</td>
+<td class="org-left">receive and send</td>
+<td class="org-left">no update</td>
+<td class="org-left">n</td>
+</tr>
+
+<tr>
+<td class="org-left">learning</td>
+<td class="org-right">15</td>
+<td class="org-left">rece send</td>
+<td class="org-left">update</td>
+<td class="org-left">n</td>
+</tr>
+
+<tr>
+<td class="org-left">forwading</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">yes</td>
+</tr>
+
+<tr>
+<td class="org-left">disable</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">none</td>
+<td class="org-left">no update</td>
+<td class="org-left">no</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><a id="org97223a0"></a>Max age timer<br />
+<div class="outline-text-5" id="text-1-3-2-3">
+<p>
+the max age is the maximum length of time that a switch waits before
+to change the STP. The default is 20 secs. (can be between 6 and 40 secs)
+</p>
+
+
+<p>
+<i>NOTE:</i> default times can be changed on the root bridge, which
+dictated the value of these times for the STP domain
+</p>
+
+
+<p>
+<i>NOTE:</i> STP diameter is the maximum number of switches that data must
+cross to connect any two switches. Every time it is increased, timers
+will have to be adjusted
+</p>
+
+
+<div id="org80995f5" class="figure">
+<p><img src="./media/stp.png" alt="stp.png" />
+</p>
+</div>
+
+<table id="org157d8fb" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">port state</th>
+<th scope="col" class="org-left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">blocking port</td>
+<td class="org-left">port is an alternate port and does not participate in frame forwarding</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">recieves BPDU frames to determine the location and root ID of Root bridge</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">with the max age timer (20 secs) if it hasn't received any BPDU from a neighbor switch, it will go into the blocking state</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">listening</td>
+<td class="org-left">receives BPDU to determine the path to the root</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">port also <b>transmits</b> its own BPDU frames and informs adjacent switches that the switch port is preparing to participate in the active topology</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">learning</td>
+<td class="org-left">a port transitions to learning state after listening</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">receives and processes BPDUs and prepares to participate in frame forwarding</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">it also begins to populate the MAC address table</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">user frames are not forwarded to the destination</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">forwarding</td>
+<td class="org-left">in this state, the port is considered part of the active topology</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">forwards user traffic and sends and receives BPDU</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">disabled</td>
+<td class="org-left">does not participate in spanning tree and does not forward frames</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">is set when the switch port is administratively disabled</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+#+Operational details of each port state
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">port state</th>
+<th scope="col" class="org-left">BPDU</th>
+<th scope="col" class="org-left">MAC Address table</th>
+<th scope="col" class="org-left">Forwarding Data Frames</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">blocking</td>
+<td class="org-left">receive only</td>
+<td class="org-left">no update</td>
+<td class="org-left">no</td>
+</tr>
+
+<tr>
+<td class="org-left">listening</td>
+<td class="org-left">receive and send</td>
+<td class="org-left">no update</td>
+<td class="org-left">no</td>
+</tr>
+
+<tr>
+<td class="org-left">learning</td>
+<td class="org-left">receive and send</td>
+<td class="org-left">updating table</td>
+<td class="org-left">no</td>
+</tr>
+
+<tr>
+<td class="org-left">forwarding</td>
+<td class="org-left">receive and send</td>
+<td class="org-left">updating table</td>
+<td class="org-left">yes</td>
+</tr>
+
+<tr>
+<td class="org-left">disable</td>
+<td class="org-left">none</td>
+<td class="org-left">no update</td>
+<td class="org-left">no</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org2b09712" class="outline-4">
+<h4 id="org2b09712"><span class="section-number-4">1.3.3.</span> Per-VLAN Spanning tree (PVST)</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<p>
+Root bridge for each spanning tree instance. The trees overlap.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org931f59c" class="outline-3">
+<h3 id="org931f59c"><span class="section-number-3">1.4.</span> Evolution of STP (spanning tree varieties)</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+The term STP is misleading. Most professionals generally refer to
+various implementations of STP such as RSTP(Rapid Spanning Tree
+Protocoal) and MSTP(Multiple Spanning Tree Protocol). The IEEE
+standards of spanning tree in context is much more accurate to use.
+</p>
+
+
+<p>
+<i>NOTE</i>: Original STP is standard <b>802.1D</b>
+</p>
+</div>
+<div id="outline-container-org83e20b7" class="outline-4">
+<h4 id="org83e20b7"><span class="section-number-4">1.4.1.</span> Varieties of STP</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">STP Variety</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">STP</td>
+<td class="org-left">original STP</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">IEEE 802.1D-1998 and earlier</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">provices a loop-free topology with reundant links</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">AKA Common Spanning Tree (CST)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">assumes one spanning tree instance for the entire network, regardles of number of VLANs</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">PVST+</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Per-VLAN Spanning Tree</td>
+<td class="org-left">cisco enhancement of STP</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">provices a seperate 802.1D spanning tree instance for each VLAN</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">supports PortFast, UplinkFast, BackboneFast,BPDU guard, BPDU filter, root guard, and loop guard</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">802.1D-2004</td>
+<td class="org-left">updated vertion of STP, incorporating RSTP</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">RSTP</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Rapid Spanning Tree Protocol</td>
+<td class="org-left">802.1w</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">evolution of STP that provides faster convergence than STP</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">RapidPVST+</td>
+<td class="org-left">is a cisco enhancement of RSTP that uses PVST+ and provides a seperate instance of RSTP per VLAN</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">supports PortFast, BPDU, guard, BPDU filter, root guard, and loop guard</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">MSTP</td>
+<td class="org-left">is an IEEE standard inspired by the earlier Cisco proprietary Multiple instance STP (MISTP) implementation</td>
+</tr>
+
+<tr>
+<td class="org-left">Multiple Spanning Tree Protocol</td>
+<td class="org-left">maps multiple VLANs into the same spanning tree instance</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">MST</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Multiple Spanning Tree</td>
+<td class="org-left">is the cisco implementation of MSTP</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">provices up to 16 instances of RSTP and combines many VLANs with the same physical and logical topology into a common RSTP instance</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">each instance supports PortFast, BPDU guard, BPDU filter, root guard, and loop guard</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<i>Class Notes</i>
+</p>
+<ul class="org-ul">
+<li>More commonly known as PVST+ in cisco devices (default STP).</li>
+<li>Open standard is RSTP (Rapid Spanning Tree Protocol)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge092001" class="outline-4">
+<h4 id="orge092001"><span class="section-number-4">1.4.2.</span> RSTP Concepts</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+RSTP (IEEE 802.1w) supersedes the original 802.1D while retaining
+backwards compatibility. Relatively the same when it comes to
+configuration.
+</p>
+
+
+<p>
+RSTP increaded the speed of the recalculation of the spanning tree
+whent he Layer 2 network topology changes. It can achieve much faster
+convergence in a proprly configured network, somtimes in as little as
+a few hundred milliseconds. If a port is configured to be an alternate
+port, it can immediately change to a forwarding state without waiting
+for the network to converge
+</p>
+
+<p>
+<i>NOTE</i>: RAPID PVST+ is the cisco implementation of RSTP on a per-VLAN
+bases. WIth it, an independent instance of RSTP runs for each VLAN.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdbd3b62" class="outline-4">
+<h4 id="orgdbd3b62"><span class="section-number-4">1.4.3.</span> RSTP Port States and Port Roles</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<p>
+Port roles and states between STP and RSTP are similar
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="orge60db29"></a>STP and RSTP Port States<br />
+<div class="outline-text-5" id="text-1-4-3-1">
+<p>
+There are only three port states in TSTP. The 802.1D disabled state,
+blocking state, and listening state are merges into a unique 802.1w
+<b>discarding state</b>
+</p>
+
+
+<div id="org1268cfc" class="figure">
+<p><img src="./media/rstp.png" alt="rstp.png" />
+</p>
+</div>
+
+
+<div id="org148e166" class="figure">
+<p><img src="./media/rstp2.png" alt="rstp2.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>backup port is for hubs</li>
+<li>alternate port is for switches</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgec08abe" class="outline-4">
+<h4 id="orgec08abe"><span class="section-number-4">1.4.4.</span> PortFast And BPDU Guard</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<p>
+When a switch port is set to PortFast, that port can transition form
+blocking to forwarding immediately, bypassing the usual 802.1D STP
+transition states. 
+</p>
+</div>
+</div>
+<div id="outline-container-orgd0461cc" class="outline-4">
+<h4 id="orgd0461cc"><span class="section-number-4">1.4.5.</span> Port fast BPDU</h4>
+<div class="outline-text-4" id="text-1-4-5">
+<p>
+portfast
+</p>
+<ul class="org-ul">
+<li>implemented on a switch that is connected on a end device</li>
+<li>from disable, punta agad ng forwarding</li>
+<li>optimization lang, di sinasama sa spanning tree yung nasa end-devices</li>
+<li>not applicable sa ibang ports (switch to switch), might lose critical data needed for
+the spanning tree</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga24307c" class="outline-4">
+<h4 id="orga24307c"><span class="section-number-4">1.4.6.</span> BPDU Guard</h4>
+<div class="outline-text-4" id="text-1-4-6">
+<ul class="org-ul">
+<li>security feature of a switch</li>
+<li>when a port is not used, must be set here (for avoiding security bridges)</li>
+<li>when a port in bpdu guard receives a BPDU messages, the port will be</li>
+</ul>
+<p>
+automatically be turned off
+</p>
+</div>
+</div>
+<div id="outline-container-org99f5dfe" class="outline-4">
+<h4 id="org99f5dfe"><span class="section-number-4">1.4.7.</span> Alternatives to STP</h4>
+<div class="outline-text-4" id="text-1-4-7">
+<ul class="org-ul">
+<li>Layer 3!!! (routers)</li>
+<li>Multi System Link Aggregation (MLAG)</li>
+<li>Shortest Path Bridgin</li>
+<li>Transparent Interconnect of Lots of Links (TRILL)</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-nil" id="orgef1c6dd">show spanning-tree
+## enable rapid pvst
+enable
+conf t
+spanning-tree mode rapid-pvst (apply this to every switch in the tree)
+spanning-tree portfast
+spanning-tree vlan 1 root primary (to set the root bridge)
+int int-id (go to interface config mode)
+spanning-tree bpduguard enable (to set bpduguard to unused ports)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Emmanuel Parreno</p>
+<p class="date">Created: 2025-03-04 Tue 07:19</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
