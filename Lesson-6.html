@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-03-04 Tue 09:21 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Emmanuel Parreno" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga996704">1. EtherChannel</a>
+<ul>
+<li><a href="#org8ecf964">1.1. Introduction</a></li>
+<li><a href="#orgccf7e3f">1.2. EtherChannel operation</a>
+<ul>
+<li><a href="#orgfa9de0f">1.2.1. Link Aggregation</a></li>
+<li><a href="#org96d9544">1.2.2. EtherChannel</a></li>
+<li><a href="#org86c78d0">1.2.3. Advantages of EtherChannel</a></li>
+<li><a href="#orga5cabdd">1.2.4. Implementation restrictions</a></li>
+<li><a href="#org030a552">1.2.5. AutoNegotiation Protocols</a></li>
+<li><a href="#org6591305">1.2.6. PAgP Operation</a></li>
+<li><a href="#org76c156e">1.2.7. PAgP Modes</a></li>
+<li><a href="#org5d548b6">1.2.8. PAgP Modes</a></li>
+<li><a href="#orga0a89ca">1.2.9. Configure Guidelines</a></li>
+<li><a href="#orgf171769">1.2.10. LACP Operation</a></li>
+</ul>
+</li>
+<li><a href="#orgf582a41">1.3. Configure EtherChannel</a>
+<ul>
+<li><a href="#org887a7c7">1.3.1. Configuration Guidelines</a></li>
+<li><a href="#org800b11d">1.3.2. LACP Configuration</a></li>
+</ul>
+</li>
+<li><a href="#org6a804bd">1.4. Verify and troubleshoot EtherChannel</a>
+<ul>
+<li><a href="#org7fa7c3e">1.4.1. show interfaces port-channel identifier</a></li>
+<li><a href="#org5350889">1.4.2. show etherchannel summary</a></li>
+<li><a href="#org8c1a124">1.4.3. show etherchannel port-channel</a></li>
+<li><a href="#orgfa31297">1.4.4. show interfaces interface-id etherchannel</a></li>
+</ul>
+</li>
+<li><a href="#orga393a8e">1.5. issues</a></li>
+<li><a href="#org54247ca">1.6. Configuration demo</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga996704" class="outline-2">
+<h2 id="orga996704"><span class="section-number-2">1.</span> EtherChannel</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Can be used as a connection to an SVI
+</p>
+</div>
+<div id="outline-container-org8ecf964" class="outline-3">
+<h3 id="org8ecf964"><span class="section-number-3">1.1.</span> Introduction</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+EtherChannel aggregates links between devices into bundles. It is used
+to increase bandwidth, but at the same time a keep a redundant and
+loop free network.
+</p>
+
+
+<p>
+There are two protocols, PAgP and LACP
+</p>
+</div>
+</div>
+<div id="outline-container-orgccf7e3f" class="outline-3">
+<h3 id="orgccf7e3f"><span class="section-number-3">1.2.</span> EtherChannel operation</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<b>Link aggregation</b> is comonly implemented between access layer and
+distribution layer switches to increase the uplink bandwidth. 
+</p>
+</div>
+<div id="outline-container-orgfa9de0f" class="outline-4">
+<h4 id="orgfa9de0f"><span class="section-number-4">1.2.1.</span> Link Aggregation</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+There are scenarios in which more bandwidth or redundancy between
+devices is needed than what can be provided by a single link. Multiple
+links could be connected between devices to increase
+bandwidth. However, STP, which is enable on Layer 2 switches like
+Cisco switches by default, will block redundant links to prevent
+switching loops.
+</p>
+
+
+<p>
+<b>Link aggregation technology</b> allows redundant links between devices
+that will not be blocked by STP. This technology is known as
+EtherChannel.
+</p>
+
+
+<p>
+<b>EtherChannel</b> is a link aggregation technology that groups multiple
+physical ethernet links together into one single logical link. It is
+used to provide fault tolerance, load sharing, increased bandwidth,
+and redundancy between switchjes, routers, and servers
+</p>
+
+
+<p>
+EtherChannel makes it possible to combine the number of physical links
+between the switches to increase the overall speed of switch-to-switch
+communication.
+</p>
+
+<ul class="org-ul">
+<li>bundling channels (links) into one logical link</li>
+<li>called as <b>link aggregation</b> in other standards</li>
+<li>used to provide fault tolerance</li>
+<li>physical links can be increased to increase the bandwidth</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org96d9544" class="outline-4">
+<h4 id="org96d9544"><span class="section-number-4">1.2.2.</span> EtherChannel</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+Was originally developed by Cisco as a LAN switch-to-swtich technique
+of grouping several Fast Ethernet or Gigabit Ethernet ports into one
+logiacl channel. Whenan EhterChannel is configure, the resulting
+virtual interfac eis called a <b>port channel</b>. The physical interfaces
+are bundled together into a port channel interface.
+</p>
+
+<ul class="org-ul">
+<li><b>port channel</b> the resulting virtual interface from EtherChannel</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org86c78d0" class="outline-4">
+<h4 id="org86c78d0"><span class="section-number-4">1.2.3.</span> Advantages of EtherChannel</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<ul class="org-ul">
+<li>most configuration tasks can be done on the etherChannel ports not
+on physical interfaces</li>
+<li>EtherChannel relies on existing switchports, cheap</li>
+<li>loadbalancing takes place on the links bundled
+<ul class="org-ul">
+<li>load balancing is equally distributing data within the bundled
+links</li>
+</ul></li>
+<li>STP can still work with EtherChannel</li>
+<li>links inside the port channel might shutdown, but as long as there
+are ones wortking, it will work</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga5cabdd" class="outline-4">
+<h4 id="orga5cabdd"><span class="section-number-4">1.2.4.</span> Implementation restrictions</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<ul class="org-ul">
+<li>interfaces cannot be mixed</li>
+<li>catalyst 2960 can only bundle up to <b>six</b> interfaces</li>
+<li>port channel names should be named consistently (configuration of
+native vlan, trunks, etc)</li>
+<li>currently, EtherChannel can consists of up to eight
+compatibly-configured ethernet ports. EtherChannel provides
+full-duplex bandwidth up to 800Mbps (Fast EtherChannel) or 8Gbps
+(Gigabit EtherChannel) between one switch and another switch of host</li>
+<li>individual etherchannel group memeber port configuration must be
+consistent on both devices. If the physical ports of one side are
+configured as trunks, the phycial ports of the other side must also
+be configure as trunks within the sam native VLAN. Additionally, all
+ports in each EtherChannel link must be configured as Layer 2 ports.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org030a552" class="outline-4">
+<h4 id="org030a552"><span class="section-number-4">1.2.5.</span> AutoNegotiation Protocols</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<ul class="org-ul">
+<li>EtherChannels can be formed though negotiation using one of two
+protocols: PAgP or LACP
+<ul class="org-ul">
+<li>PAgP
+<ul class="org-ul">
+<li>for cisco</li>
+<li>Port aggregation protocol</li>
+</ul></li>
+
+<li>LACP
+<ul class="org-ul">
+<li>for open standard</li>
+<li>link aggregation control protocol</li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+<p>
+<i>NOTE</i>: It is also possible to configure a static or unconditional
+EtherChannel without PAgP or LACP
+</p>
+</div>
+</div>
+<div id="outline-container-org6591305" class="outline-4">
+<h4 id="org6591305"><span class="section-number-4">1.2.6.</span> PAgP Operation</h4>
+<div class="outline-text-4" id="text-1-2-6">
+<p>
+Is sa Cisco-proprietary protocol that aids in the automatic creation of
+EtherChannel links. When an EtherChannel is configured using PAgP,
+PAgP packaets are sent between EtherChannel-capable prots to negotiate
+the forming of a channel. When PAgP identifies matched Ethernet links,
+it groups the links into an EtherChannel. The EtherChannel is then
+added to the spanning tree as a single port.
+</p>
+
+
+<p>
+When enabled, PAgP also manages the EtherChannel. PAgP packets are
+sent every 30 seconds. PAgP checks for configuration consistency and
+manages link addtions and failures between two switches. It ensures
+that when an EtherChanel is created, all ports have the same type of
+configuration.
+</p>
+
+<p>
+<i>NOTE</i>: In EtherChannel, it is mandatory that all ports have the same
+speed, duplex setting, and VLAN information. Any oprt modification
+after the creation of the channel also changes all other channel ports
+</p>
+
+
+<p>
+PAgP helps create the EtherChannel link by detecting the configuration
+of each side and ensuring that links are compatible so that
+EtheChannel link can be enabled when needed. The modes for PAgP are as
+follows:
+</p>
+<ul class="org-ul">
+<li>On
+<ul class="org-ul">
+<li>This mode forces the interface to channel without PAgP</li>
+<li>interfaces configures in the on mode do not exchange PAgP packets</li>
+</ul></li>
+<li>PAgP desirable
+<ul class="org-ul">
+<li>places an interface in an active negotiating state in which the
+<b>interface initiates negotiations with other interfaces</b> by sending
+PAgP packets</li>
+</ul></li>
+<li>PAgP auto
+<ul class="org-ul">
+<li>places an interfaces in a passive negotiating state in which the
+interface responds to the PAgP packets that is receives but does
+not initiate PAgP negotiation</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org76c156e" class="outline-4">
+<h4 id="org76c156e"><span class="section-number-4">1.2.7.</span> PAgP Modes</h4>
+<div class="outline-text-4" id="text-1-2-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">S1</th>
+<th scope="col" class="org-left">S2</th>
+<th scope="col" class="org-left">Channel establishment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">on</td>
+<td class="org-left">on</td>
+<td class="org-left">yes</td>
+</tr>
+
+<tr>
+<td class="org-left">on</td>
+<td class="org-left">desirable/auto</td>
+<td class="org-left">no</td>
+</tr>
+
+<tr>
+<td class="org-left">desirable</td>
+<td class="org-left">desirable</td>
+<td class="org-left">yes</td>
+</tr>
+
+<tr>
+<td class="org-left">desitable</td>
+<td class="org-left">auto</td>
+<td class="org-left">yes</td>
+</tr>
+
+<tr>
+<td class="org-left">auto</td>
+<td class="org-left">auto</td>
+<td class="org-left">no</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<i>Class notes</i>:
+</p>
+
+
+<p>
+When a port is set to PAgP, it will <b>try to negotiate</b> with the other
+side.
+</p>
+
+
+<p>
+PAgP packets are sent for the port to learn (like in STP)
+</p>
+<ul class="org-ul">
+<li>MANDATORY TO HAVE
+<ul class="org-ul">
+<li>SPEED</li>
+<li>NATIVE VLAN</li>
+<li>VLAN ASSIGNMENT</li>
+</ul></li>
+</ul>
+
+
+<ul class="org-ul">
+<li>ON
+<ul class="org-ul">
+<li>forces the interface to channel without PAgP</li>
+<li>does not exchange PAgP packets</li>
+<li>not counted as PAgP</li>
+</ul></li>
+<li>PAgP desirable
+<ul class="org-ul">
+<li>places an interface in an active negotiation state in which the
+interface <b>initializes</b></li>
+<li></li>
+</ul></li>
+<li>PAgP auto
+<ul class="org-ul">
+<li>places on interfaces in a passive negotiation</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5d548b6" class="outline-4">
+<h4 id="org5d548b6"><span class="section-number-4">1.2.8.</span> PAgP Modes</h4>
+<div class="outline-text-4" id="text-1-2-8">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">mode</th>
+<th scope="col" class="org-left">match</th>
+<th scope="col" class="org-left">desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">on</td>
+<td class="org-left">des</td>
+<td class="org-left">no channel created</td>
+</tr>
+
+<tr>
+<td class="org-left">on</td>
+<td class="org-left">auto</td>
+<td class="org-left">no channel created</td>
+</tr>
+
+<tr>
+<td class="org-left">on</td>
+<td class="org-left">on</td>
+<td class="org-left">channel</td>
+</tr>
+
+<tr>
+<td class="org-left">des</td>
+<td class="org-left">auto</td>
+<td class="org-left">channel</td>
+</tr>
+
+<tr>
+<td class="org-left">des</td>
+<td class="org-left">des</td>
+<td class="org-left">channel</td>
+</tr>
+
+<tr>
+<td class="org-left">auto</td>
+<td class="org-left">auto</td>
+<td class="org-left">nook</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orga0a89ca" class="outline-4">
+<h4 id="orga0a89ca"><span class="section-number-4">1.2.9.</span> Configure Guidelines</h4>
+<div class="outline-text-4" id="text-1-2-9">
+<ul class="org-ul">
+<li>etherchannel support</li>
+<li>speed and duplex</li>
+<li>vlan match</li>
+<li>range of vlans (same)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf171769" class="outline-4">
+<h4 id="orgf171769"><span class="section-number-4">1.2.10.</span> LACP Operation</h4>
+<div class="outline-text-4" id="text-1-2-10">
+<p>
+LACP is specified in <b>IEEE 802.3ad</b> and allows several physical ports to
+be bunmdled to form a single logical channel. LACP allows a switch to
+negotiate an automatic bundle by sending LACP packets to the other
+switch, much like PAgP. Because it is a standard of IEEE, it can be
+used to facilitate EtherChannels in multiventer environments. On Cisco
+devices, both protocols are supported
+</p>
+
+
+<p>
+<i>NOTE</i>: LACP was originally defined as 802.3ad. However, LACP is now
+defined in the newer IEEE 802.1AX standard for local and metropolitan
+area networks
+</p>
+
+
+
+<p>
+It provides the same negotiation benefirs as PAgP. LACP helps create
+the EtherChannel link by detecting the configuration of each side and
+making sure that they are compatible so that EtherChennel link can be
+enable when needed. The modes for LACP are as follows:
+</p>
+<ul class="org-ul">
+<li>On
+<ul class="org-ul">
+<li>this mode forces the interface to channel without LACP</li>
+<li>interfaces configured in the on mode do not exchange LACP packets</li>
+</ul></li>
+<li>LACP active
+<ul class="org-ul">
+<li>this LACP mode places a port in an active negotiating state</li>
+<li>ijn this state, the port initiates negotiations with other ports
+by sending LACP packets</li>
+</ul></li>
+<li>LACP passive
+<ul class="org-ul">
+<li>places a port in a passive negotiating state</li>
+<li>in this state, to port responds to the LACP packets that it
+receives but does not initiate LACP packet negotiation</li>
+</ul></li>
+</ul>
+
+
+
+<p>
+LACP allows up to eight active links, and also eight standby links. A
+standby link will become active should one of current active links
+fail
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="orgf8d7906"></a>LACP modes<br />
+<div class="outline-text-5" id="text-1-2-10-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">S1</th>
+<th scope="col" class="org-left">S2</th>
+<th scope="col" class="org-left">Channel Establishment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">on</td>
+<td class="org-left">on</td>
+<td class="org-left">yes</td>
+</tr>
+
+<tr>
+<td class="org-left">on</td>
+<td class="org-left">active/passive</td>
+<td class="org-left">no</td>
+</tr>
+
+<tr>
+<td class="org-left">active</td>
+<td class="org-left">active</td>
+<td class="org-left">yes</td>
+</tr>
+
+<tr>
+<td class="org-left">active</td>
+<td class="org-left">passive</td>
+<td class="org-left">yes</td>
+</tr>
+
+<tr>
+<td class="org-left">passive</td>
+<td class="org-left">passive</td>
+<td class="org-left">no</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgf582a41" class="outline-3">
+<h3 id="orgf582a41"><span class="section-number-3">1.3.</span> Configure EtherChannel</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org887a7c7" class="outline-4">
+<h4 id="org887a7c7"><span class="section-number-4">1.3.1.</span> Configuration Guidelines</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ul class="org-ul">
+<li>EtherChannel support
+<ul class="org-ul">
+<li>all ethernet interfaces must support etherchannel with no
+requirement that interfaces by physically continguous</li>
+</ul></li>
+<li>speed and duplex
+<ul class="org-ul">
+<li>all interfaces in in a port channel must have the same speed and duplex</li>
+</ul></li>
+<li>VLAN match
+<ul class="org-ul">
+<li>all interfaces inhe etherchannel bundle must be assigned to the
+same vlan or be configured as s trunk</li>
+</ul></li>
+<li>range of VLANs
+<ul class="org-ul">
+<li>an ether channel suports the same allowed range of VLANs on all
+the interfaces in a trunking etherchannel</li>
+<li>if the allowed range of VLANs is not the same, the intefaces do
+not form an EtherChannel, even when they are set to auto or
+desirable mode</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org800b11d" class="outline-4">
+<h4 id="org800b11d"><span class="section-number-4">1.3.2.</span> LACP Configuration</h4>
+<div class="outline-text-4" id="text-1-3-2">
+</div>
+<ol class="org-ol">
+<li><a id="org56182da"></a>Steps<br />
+<div class="outline-text-5" id="text-1-3-2-1">
+<ol class="org-ol">
+<li>spaciface the interfaces that compose the EtherChannel using
+<code>interface range interface</code> global config mode command</li>
+<li>create a port channer interface with the <code>channel group identifier
+   mode active</code> command in interface range configuration mode. This
+identifier specifies a channel group number. The mode active
+keywords identify the port chanel as an LACp EtherChannel config</li>
+<li>to change layer 2 setting on the port channel interface, enter port
+channel interface configuration mode using the <code>interface
+   port-channel</code> command, followed by the interface identifier.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="org9fc1b60">int range range-here
+channel-group id-here mode active
+exit
+interface port-channel 1
+switchport mode trunk
+switchport trunk allowed vlan 1,2,20
+</pre>
+</div>
+
+
+<div id="orge9f4b26" class="figure">
+<p><img src="./media/lacp.png" alt="lacp.png" />
+</p>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org6a804bd" class="outline-3">
+<h3 id="org6a804bd"><span class="section-number-3">1.4.</span> Verify and troubleshoot EtherChannel</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-org7fa7c3e" class="outline-4">
+<h4 id="org7fa7c3e"><span class="section-number-4">1.4.1.</span> show interfaces port-channel identifier</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+displays the general status of the port channel interface
+</p>
+</div>
+</div>
+<div id="outline-container-org5350889" class="outline-4">
+<h4 id="org5350889"><span class="section-number-4">1.4.2.</span> show etherchannel summary</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+when several etherchannels are configured on one device, this command
+can be used to display one line of information per port channel
+</p>
+</div>
+</div>
+<div id="outline-container-org8c1a124" class="outline-4">
+<h4 id="org8c1a124"><span class="section-number-4">1.4.3.</span> show etherchannel port-channel</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<p>
+to display information about a specific port channel interface
+</p>
+</div>
+</div>
+<div id="outline-container-orgfa31297" class="outline-4">
+<h4 id="orgfa31297"><span class="section-number-4">1.4.4.</span> show interfaces interface-id etherchannel</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<p>
+can provide information about the role of the interface in the
+EtherChannel
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-nil" id="org39343ba">show interfaces port-channel
+show interfaces f0/1 etherchannel
+show etherchannel summary &lt;--------------------------------------- most useful 'daw'
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga393a8e" class="outline-3">
+<h3 id="orga393a8e"><span class="section-number-3">1.5.</span> issues</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>mismatch
+<ul class="org-ul">
+<li>different VLAN</li>
+<li>trunking on a single interface</li>
+</ul></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-nil" id="org5ec2f23">show run | begin interface port-channel
+channel-group 1 mode desirable
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org54247ca" class="outline-3">
+<h3 id="org54247ca"><span class="section-number-3">1.6.</span> Configuration demo</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+<pre class="src src-nil" id="org119bb58">
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Emmanuel Parreno</p>
+<p class="date">Created: 2025-03-04 Tue 09:21</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
