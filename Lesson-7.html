@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-03-04 Tue 11:05 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Emmanuel Parreno" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4e48083">1. DHCPv4</a>
+<ul>
+<li><a href="#orge694750">1.1. DHCPv4 Concept</a></li>
+<li><a href="#org9037e61">1.2. DHCPv4 Operation</a></li>
+<li><a href="#org824f955">1.3. Steps to Obtain a Lease (DORA)</a></li>
+<li><a href="#org2305700">1.4. Steps to Renew a Lease</a></li>
+<li><a href="#org601d306">1.5. Configuration of a Cisco IOS DHCPv4 Server</a>
+<ul>
+<li><a href="#orgba09830">1.5.1. Steps</a></li>
+</ul>
+</li>
+<li><a href="#org6201c74">1.6. Verification</a></li>
+<li><a href="#orgdffd8b8">1.7. Verification in End Devices</a></li>
+<li><a href="#orgf00e2ea">1.8. Disable the cisco ios DHCPv4 server</a></li>
+<li><a href="#org6a4741c">1.9. DHCP relay</a></li>
+<li><a href="#org13e60d3">1.10. Server as a DHCP server (in server-PT)</a></li>
+<li><a href="#org51704e2">1.11. Router as a DHCP server</a></li>
+<li><a href="#orga164803">1.12. Configure a DHCPv4</a>
+<ul>
+<li><a href="#org0256f5f">1.12.1. Cisco Router as a DHCPv4 Client</a></li>
+<li><a href="#org2fb5886">1.12.2. steps</a></li>
+<li><a href="#orge8f9518">1.12.3. Home router</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4e48083" class="outline-2">
+<h2 id="org4e48083"><span class="section-number-2">1.</span> DHCPv4</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Dynamic Host Configuration Protocol
+</p>
+</div>
+<div id="outline-container-orge694750" class="outline-3">
+<h3 id="orge694750"><span class="section-number-3">1.1.</span> DHCPv4 Concept</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>assigns ip addresses and other network configuration automatically</li>
+<li>extremely useful and time-saving tool for setting addresses in
+end-devices (as they also compose the bulk of most networks)</li>
+<li>a server (standalone) can act as a DHCP server, servers are
+advisable for large networks.</li>
+<li>if small to medium size network, a router can act as a DHCPv4 server</li>
+<li>DHCP servers assigns, or leases, an IPv4 addresses from a pool of
+addresses for a limited period of time</li>
+<li>clients lease the information from the server for an
+administratively defined priod (set by administrators)</li>
+<li>set time are commonly between 24 hrs to 1 week</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9037e61" class="outline-3">
+<h3 id="org9037e61"><span class="section-number-3">1.2.</span> DHCPv4 Operation</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+A DHCP server works in a client/server mode.
+</p>
+<ul class="org-ul">
+<li>clients connects to he network with that leased IPv4 until the lease expires</li>
+<li>lease ensures that clients that move or power off do not keep
+addresses that they no longer need</li>
+<li>when a lease expired, DHCP server returns the address to the pool
+where it can be reallocated as necessary</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org824f955" class="outline-3">
+<h3 id="org824f955"><span class="section-number-3">1.3.</span> Steps to Obtain a Lease (DORA)</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+REMEMBER DORA!
+</p>
+<ul class="org-ul">
+<li>D (DHCPDISCOVER)</li>
+<li>O (DHCPOFFER)</li>
+<li>R (DHCPREQUEST)</li>
+<li>A (DHCPACK)</li>
+</ul>
+
+
+<p>
+All messages FROM DORA are all BROADCASTS.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">server</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">end-device</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&lt;----</td>
+<td class="org-left">discover message</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#x2013;&#x2014;&gt;</td>
+<td class="org-left">offer</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&lt;---</td>
+<td class="org-left">request</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">-&#x2014;&gt;</td>
+<td class="org-left">acknowledgement</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+APIPA(169.254&#x2026;) if all fails
+</p>
+</div>
+</div>
+<div id="outline-container-org2305700" class="outline-3">
+<h3 id="org2305700"><span class="section-number-3">1.4.</span> Steps to Renew a Lease</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Prior to lease expiration, the client begins a two-step process to
+<b>renew</b> the lease with the DHCPv4 server
+</p>
+<ol class="org-ol">
+<li>DHCP Request</li>
+<li>DHCP Acknowledgement</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org601d306" class="outline-3">
+<h3 id="org601d306"><span class="section-number-3">1.5.</span> Configuration of a Cisco IOS DHCPv4 Server</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-orgba09830" class="outline-4">
+<h4 id="orgba09830"><span class="section-number-4">1.5.1.</span> Steps</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<ol class="org-ol">
+<li>exclude IPv4 addresses. A single address or range of addresses can
+be excluded by specifying the low-address and high-address of the
+range. Excluded addresses should be those addresses that are
+assigned to routers, servers, printers, and other devices that have
+benn or will be manually configured</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="org16e64e7">name(config)# ip dhcp excluded-address low-address [high-address]
+name(config)# ip dhcp excluded-address one-address
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>Define a DHCPv4 pool name. TO create a pool with specified name and
+puts the router in DHCPv4 configuration mode which is identified by
+the prompt router</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="org4e002ef">name(config)# ip dhcp pool-name
+</pre>
+</div>
+
+
+<ol class="org-ol">
+<li>give information to the router, from the DHCP</li>
+</ol>
+
+
+<p>
+<i>common information given by the dhcp ip, subnet, default gateway, dns
+server, domain-name</i>
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-nil" id="orgb8d4c29">(dhcp-config)# network ip-address-v4 subnetmask
+(dhcp-config)# default-router address
+(dhcp-config)# dns-server address [address2, address2, ...]
+(dhcp-config)# domain-name cisco.com
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org6201c74" class="outline-3">
+<h3 id="org6201c74"><span class="section-number-3">1.6.</span> Verification</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+<pre class="src src-nil" id="orgf06ab96">show run | section dhcp
+show ip dhcp binding
+show ip dhcp server statistics
+</pre>
+</div>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">command</th>
+<th scope="col" class="org-left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">show run</td>
+<td class="org-left">section dhcp displays the dhcpv4 commands configured on the router</td>
+</tr>
+
+<tr>
+<td class="org-left">show ip dhcp binding</td>
+<td class="org-left">list all IPv4 address to mac address bindings provided by the DHCPv4 service</td>
+</tr>
+
+<tr>
+<td class="org-left">show ip dhcp server statistics</td>
+<td class="org-left">displays count information reagarding the number of DHCP4 messages that have been sent and received</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgdffd8b8" class="outline-3">
+<h3 id="orgdffd8b8"><span class="section-number-3">1.7.</span> Verification in End Devices</h3>
+<div class="outline-text-3" id="text-1-7">
+<div class="org-src-container">
+<pre class="src src-nil" id="org7749134">ipconfig /all
+ipconfig /renew
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf00e2ea" class="outline-3">
+<h3 id="orgf00e2ea"><span class="section-number-3">1.8.</span> Disable the cisco ios DHCPv4 server</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+is enabled by default
+</p>
+<div class="org-src-container">
+<pre class="src src-nil" id="org56d1719">no service dhcp
+service dhcp
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6a4741c" class="outline-3">
+<h3 id="org6a4741c"><span class="section-number-3">1.9.</span> DHCP relay</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+To allow discover messages to go over the other broadcast domains
+</p>
+<div class="org-src-container">
+<pre class="src src-nil" id="org6874945">R1(config)int int-id
+R1(config-if)ip helper-address address
+R1(config-if)end
+</pre>
+</div>
+
+<p>
+<i>NOTE: After paglagpas ng router, magiging unicast yung broadcast</i>
+</p>
+
+<p>
+<i>NOTE: CAN BE USED (ip helper-address interface config command) IN ROUTER ON
+A STICK topology</i>
+</p>
+</div>
+</div>
+<div id="outline-container-org13e60d3" class="outline-3">
+<h3 id="org13e60d3"><span class="section-number-3">1.10.</span> Server as a DHCP server (in server-PT)</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+Go to <b>services tab</b> &gt; <b>DHCP</b>
+</p>
+
+<ul class="org-ul">
+<li>serverPool set to 0 lahat</li>
+<li>then toggle to on and fill up the needed information</li>
+<li>then set a static IP address</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org51704e2" class="outline-3">
+<h3 id="org51704e2"><span class="section-number-3">1.11.</span> Router as a DHCP server</h3>
+<div class="outline-text-3" id="text-1-11">
+<ul class="org-ul">
+<li>set address to the default gateways</li>
+<li>setup a pool</li>
+<li>set up a dns server
+<ul class="org-ul">
+<li>on the service</li>
+<li>add a name (cisco.com)</li>
+<li>add a ip add (based on requirements)</li>
+</ul></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-nil" id="orgc837e86">enable
+conf term
+ip dhcp excluded-adderess 192.168.20.1 192.168.20.9l
+ip dhcp excluded-adderess 192.168.20.254
+ip dhcp pool pool-name
+network 192.168.30.0 255.255.255.0
+default-router 192.168.20.1
+dns-server 192.168.20.254
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga164803" class="outline-3">
+<h3 id="orga164803"><span class="section-number-3">1.12.</span> Configure a DHCPv4</h3>
+<div class="outline-text-3" id="text-1-12">
+</div>
+<div id="outline-container-org0256f5f" class="outline-4">
+<h4 id="org0256f5f"><span class="section-number-4">1.12.1.</span> Cisco Router as a DHCPv4 Client</h4>
+<div class="outline-text-4" id="text-1-12-1">
+<p>
+For ISP and private/public networks.
+</p>
+</div>
+</div>
+<div id="outline-container-org2fb5886" class="outline-4">
+<h4 id="org2fb5886"><span class="section-number-4">1.12.2.</span> steps</h4>
+<div class="outline-text-4" id="text-1-12-2">
+<ul class="org-ul">
+<li>configure POOL on ISP</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-nil" id="org7a6b247">ip dhcp excluded-address 10.10.10.1
+ip dhcp pool WAN_POOL
+(dhcp-config)# network 10.10.10.0 255.255.255.252 # other information in DHCP is not needed
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>configure dhcp in the router</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-nil" id="org4bca781">int g0/0
+ip address dhcp
+no shutdown
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge8f9518" class="outline-4">
+<h4 id="orge8f9518"><span class="section-number-4">1.12.3.</span> Home router</h4>
+<div class="outline-text-4" id="text-1-12-3">
+<ul class="org-ul">
+<li>GUI &gt; dhcp
+<ul class="org-ul">
+<li>enable (set to Access Point(AP) if access point lang sya)</li>
+</ul></li>
+<li>if dhcp mode &#x2013;&gt; sya magbibigay ng IP address</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Emmanuel Parreno</p>
+<p class="date">Created: 2025-03-04 Tue 11:05</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

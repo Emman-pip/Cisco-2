@@ -1,0 +1,5 @@
+* MIDTERMS
+** Pointers
+- up to module 8 (or 9 if we have time)
+- 80 pts multiple choice
+- 20 pts STP

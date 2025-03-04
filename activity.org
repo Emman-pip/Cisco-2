@@ -1,0 +1,74 @@
+#+NAME: creation vlan
+#+BEGIN_SRC 
+enable
+conf ter
+vlan 10
+name Admin
+vlan 20
+name Accounts
+vlan 30
+name HR
+vlan 40
+name Voice
+vlan 99
+name Management
+vlan 100
+name Native
+
+#+END_SRC
+
+#+NAME: encrypt
+#+BEGIN_SRC 
+enable
+configure terminal
+enable secret class
+line con 0
+password cisco login
+exit
+service pass
+
+banner motd 
+#+END_SRC
+
+
+#+NAME: VLANS
+#+BEGIN_SRC 
+enable
+conf ter
+vlan 10
+name HR
+vlan 20
+name SALES
+vlan 30
+name IT
+vlan 99
+name Management
+
+#+END_SRC
+
+#+NAME: vlan allocation
+#+BEGIN_SRC 
+int range fa0/1-8
+switchport mode access
+switchport access vlan 10
+
+int range fa0/9-15
+switchport mode access
+switchport access vlan 20
+
+int range fa0/16-24
+switchport mode access
+switchport access vlan 30
+
+#+END_SRC
+
+
+#+NAME: cisco
+#+BEGIN_SRC 
+
+#+END_SRC
+
+switchport mode trunk 
+switchport nonegotiate 
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30,99

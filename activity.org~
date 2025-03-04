@@ -1,0 +1,44 @@
+#+NAME: creation vlan
+#+BEGIN_SRC 
+enable
+conf ter
+vlan 10
+name Admin
+vlan 20
+name Accounts
+vlan 30
+name HR
+vlan 40
+name Voice
+vlan 99
+name Management
+vlan 100
+name Native
+
+#+END_SRC
+
+#+NAME: encrypt
+#+BEGIN_SRC 
+enable
+configure terminal
+enable secret class
+lint con 0
+password cisco login
+exit
+service pass
+
+banner motd 
+#+END_SRC
+
+
+#+NAME: VLANS
+#+BEGIN_SRC 
+vlan 10
+name HR
+vlan 20
+name SALES
+vlan 30
+name IT
+vlan 99
+name Management
+#+END_SRC

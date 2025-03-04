@@ -1,0 +1,129 @@
+% Created 2025-02-09 Sun 14:27
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Emmanuel Parreno}
+\date{\today}
+\title{CHAPTER 1}
+\hypersetup{
+ pdfauthor={Emmanuel Parreno},
+ pdftitle={CHAPTER 1},
+ pdfkeywords={},
+ pdfsubject={chapter 1 in cisco 2},
+ pdfcreator={Emacs 29.4 (Org mode 9.6.15)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Chapter 1: Basic Device Configuration}
+\label{sec:orgbb265a6}
+\subsection{1.1 Configure a switch with initial settings}
+\label{sec:orgd63feea}
+\subsubsection{1.1.1 Switch boot sequence}
+\label{sec:orga8e8142}
+Before a switch is configured, it goes through a five-step boot
+sequence
+
+\begin{enumerate}
+\item loads a power-on self-test (POST) program stored in ROM
+\item loads the boot loader software
+\item boot loader performs low-level CPU initialization. It initializes
+the CPU registers which control where physical memory is mapped,
+the quantity of the memory, and its speed
+\item the boot loader initializes the flash file system on the system board
+\item the boot loader locates and loads a default IOS operating system
+software image into memory and gives control of the switch over to
+the IOS
+\end{enumerate}
+
+\subsubsection{1.1.2 The boot system command}
+\label{sec:orgabd0397}
+An environment variable (BOOT) is used by the switches to
+automatically boot to a specific IOS. If it is not set, the switch
+attempts to load and execute the first executatble file it can find.
+
+Admins can use the command \texttt{show boot} to shut which IOS is currently
+running. To boot a different IOS to the switch use the command:
+
+\begin{verbatim}
+S1(config)# boot system flash:/c2960-lanbasek9-mz.150-2.SE/c2960-lanbasek9-mz.150-2.SE.bin
+\end{verbatim}
+
+\subsubsection{1.1.3 Switch LED Indicators}
+\label{sec:org94e7d7c}
+\begin{enumerate}
+\item SYST
+\begin{itemize}
+\item shows whether the system is receiving power and is functioning properly
+\item OFF: system is off
+\item GREEN: system is operating normally
+\item AMBER: system is receiving power but is not functioning properly
+\end{itemize}
+\item RPS
+\begin{itemize}
+\item redundant power supply system
+\item OFF: RPS is off and/or not properly connected
+\item GREEN: connected and ready to provide backup power
+\item BLINKING GREEN: RPS is connected but is unavailable because of
+providing power to other device
+\item AMBER: RPS is in standby mode or in a fault condition
+\item BLINKING AMBER: internal power supply in the switch has failed,
+RPS is providing power
+\end{itemize}
+\item STAT
+\begin{itemize}
+\item Port status LED
+\item when whathever GREEN: port status mode is delected (this is the
+default mode)
+\item OFF: no link or the port is administratively shutdown
+\item GREEN: link is present
+\item BLINKING GREEN: there is activity and the port is sending or
+receiving data
+\item ALTERNATING GREEN-AMBER: there is a link fault
+\item AMBER: the port is blocked to ensure that a loop does not exist
+in the forwarding domain
+\item BLINKING AMBER: port is blocked to prevent a possible loop in the
+forwarding domain
+\end{itemize}
+\item DUPLX
+\begin{itemize}
+\item whenever green: duplex mode is selected
+\item OFF: half-duplex mode
+\item GREEN: full-duplex mode
+\end{itemize}
+\item SPEED
+\begin{itemize}
+\item indicates that the  port speed mode is selected
+\item OFF: port operating at 10Mbps
+\item GREEN: port operating at 100Mbps
+\item BLINKING GREEN: port operating at 1000Mbps
+\end{itemize}
+\item PoE
+\begin{itemize}
+\item Power over ethernet
+\item OFF: PoE mode is not selected
+\item BLINKING AMBER: PoE mode not selected but at least 1 port has
+denied power or placed in a fault condition
+\item GREEN: PoE is on
+\item GREEN-AMBER: denied power because the switch power capacity will
+be exceeded by the port
+\end{itemize}
+\end{enumerate}
+
+\subsubsection{1.1.4 Recovering from a System Crash}
+\label{sec:orgc2a5527}
+\ldots{}Will skip since recall lang naman\ldots{}
+\end{document}

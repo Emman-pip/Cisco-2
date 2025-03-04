@@ -1,0 +1,178 @@
+* DHCPv4
+Dynamic Host Configuration Protocol
+
+** DHCPv4 Concept
+- assigns ip addresses and other network configuration automatically
+- extremely useful and time-saving tool for setting addresses in
+  end-devices (as they also compose the bulk of most networks)
+- a server (standalone) can act as a DHCP server, servers are
+  advisable for large networks. 
+- if small to medium size network, a router can act as a DHCPv4 server
+- DHCP servers assigns, or leases, an IPv4 addresses from a pool of
+  addresses for a limited period of time
+- clients lease the information from the server for an
+  administratively defined priod (set by administrators)
+- set time are commonly between 24 hrs to 1 week
+
+** DHCPv4 Operation
+A DHCP server works in a client/server mode.
+- clients connects to he network with that leased IPv4 until the lease expires
+- lease ensures that clients that move or power off do not keep
+  addresses that they no longer need
+- when a lease expired, DHCP server returns the address to the pool
+  where it can be reallocated as necessary
+
+** Steps to Obtain a Lease (DORA)
+REMEMBER DORA!
+- D (DHCPDISCOVER)
+- O (DHCPOFFER)
+- R (DHCPREQUEST)
+- A (DHCPACK)
+
+
+All messages FROM DORA are all BROADCASTS.
+| server |        | end-device       |
+|        | <----  | discover message |
+|        | -----> | offer            |
+|        | <---   | request          |
+|        | ---->  | acknowledgement  |
+
+APIPA(169.254...) if all fails
+
+
+
+** Steps to Renew a Lease
+Prior to lease expiration, the client begins a two-step process to
+*renew* the lease with the DHCPv4 server
+1. DHCP Request
+2. DHCP Acknowledgement
+
+** Configuration of a Cisco IOS DHCPv4 Server
+*** Steps
+1. exclude IPv4 addresses. A single address or range of addresses can
+   be excluded by specifying the low-address and high-address of the
+   range. Excluded addresses should be those addresses that are
+   assigned to routers, servers, printers, and other devices that have
+   benn or will be manually configured
+#+NAME: exclude ip addresses
+#+BEGIN_SRC
+name(config)# ip dhcp excluded-address low-address [high-address]
+name(config)# ip dhcp excluded-address one-address
+#+END_SRC
+
+2. Define a DHCPv4 pool name. TO create a pool with specified name and
+   puts the router in DHCPv4 configuration mode which is identified by
+   the prompt router
+#+NAME: poolname
+#+BEGIN_SRC 
+name(config)# ip dhcp pool-name
+#+END_SRC
+
+
+3. give information to the router, from the DHCP
+
+
+/common information given by the dhcp ip, subnet, default gateway, dns
+server, domain-name/
+
+
+#+NAME: give info for the protocol
+#+BEGIN_SRC 
+(dhcp-config)# network ip-address-v4 subnetmask
+(dhcp-config)# default-router address
+(dhcp-config)# dns-server address [address2, address2, ...]
+(dhcp-config)# domain-name cisco.com
+#+END_SRC
+** Verification
+#+NAME: verification
+#+BEGIN_SRC 
+show run | section dhcp
+show ip dhcp binding
+show ip dhcp server statistics
+#+END_SRC
+| command                        | description                                                                                         |
+|--------------------------------+-----------------------------------------------------------------------------------------------------|
+| show run                       | section dhcp displays the dhcpv4 commands configured on the router                                  |
+| show ip dhcp binding           | list all IPv4 address to mac address bindings provided by the DHCPv4 service                        |
+| show ip dhcp server statistics | displays count information reagarding the number of DHCP4 messages that have been sent and received |
+
+
+** Verification in End Devices
+#+NAME: end device verification
+#+BEGIN_SRC 
+ipconfig /all
+ipconfig /renew
+#+END_SRC
+** Disable the cisco ios DHCPv4 server
+is enabled by default
+#+NAME: disable dhcp
+#+BEGIN_SRC 
+no service dhcp
+service dhcp
+#+END_SRC
+
+** DHCP relay
+To allow discover messages to go over the other broadcast domains
+#+NAME: relay
+#+BEGIN_SRC 
+R1(config)int int-id
+R1(config-if)ip helper-address address
+R1(config-if)end
+#+END_SRC
+
+/NOTE: After paglagpas ng router, magiging unicast yung broadcast/
+
+/NOTE: CAN BE USED (ip helper-address interface config command) IN ROUTER ON
+A STICK topology/
+
+** Server as a DHCP server (in server-PT)
+Go to *services tab* > *DHCP*
+
+- serverPool set to 0 lahat
+- then toggle to on and fill up the needed information
+- then set a static IP address
+
+** Router as a DHCP server
+- set address to the default gateways
+- setup a pool
+- set up a dns server
+  - on the service
+  - add a name (cisco.com)
+  - add a ip add (based on requirements)
+#+NAME: router	
+#+BEGIN_SRC 
+enable
+conf term
+ip dhcp excluded-adderess 192.168.20.1 192.168.20.9l
+ip dhcp excluded-adderess 192.168.20.254
+ip dhcp pool pool-name
+network 192.168.30.0 255.255.255.0
+default-router 192.168.20.1
+dns-server 192.168.20.254
+#+END_SRC
+
+** Configure a DHCPv4
+*** Cisco Router as a DHCPv4 Client
+For ISP and private/public networks.
+
+*** steps
+- configure POOL on ISP
+#+NAME: pool
+#+BEGIN_SRC 
+ip dhcp excluded-address 10.10.10.1
+ip dhcp pool WAN_POOL
+(dhcp-config)# network 10.10.10.0 255.255.255.252 # other information in DHCP is not needed
+#+END_SRC
+
+- configure dhcp in the router
+#+NAME: r1
+#+BEGIN_SRC 
+int g0/0
+ip address dhcp
+no shutdown
+#+END_SRC
+  
+*** Home router
+- GUI > dhcp
+  - enable (set to Access Point(AP) if access point lang sya)
+- if dhcp mode --> sya magbibigay ng IP address 

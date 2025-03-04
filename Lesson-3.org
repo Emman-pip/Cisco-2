@@ -77,7 +77,7 @@ SNMP. By default, VLAN 1 is configured as the management VLAN.
 
 
 
-**** Voide VLAN
+**** Voice VLAN
 A seperate VLAN called a voice VLAN is needed to support Vocie over
 IP. VoIP traffic requires:
 - assured bandwidth to ensure voice quality
@@ -498,4 +498,5 @@ dynamic desirable
   desirable interfaces
 
 trunk
-- 
+- allows VLAN traffic to propogate between switches
+  
