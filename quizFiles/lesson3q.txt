@@ -1,0 +1,66 @@
+# Lesson 3:
+
+Q: provide segmentation and organizational flexibility in a switched network
+A: Virtual LANs or VLANs
+
+Q: The default VLAN on a Cisco switch is VLAN _.
+A: 1
+
+Q: are VLANs configured to separate user-generated traffic.
+A: data VLANs
+
+Q: They are referred to as user VLANs because they separate the network into groups of users or devices.
+A: data VLANs
+
+Q: Note that ____ and ____ traffic should not be permitted on data VLANs.
+A: voice and network management traffic
+
+Q: is a data VLAN configured specifically for network management traffic including SSH, Telnet, HTTPS, HTTP, and SNMP.
+A: management VLAN
+
+Q: is a point-to-point link between two network devices that carries more than one VLAN.
+A: trunk
+
+Q: When Ethernet frames are placed on a trunk, information about the VLANs to which they belong must be added. This process, called ___
+A: tagging
+
+Q: A 2-byte value called the tag protocol ID (TPID) value. For Ethernet, it is set to hexadecimal 0x8100.
+A: type
+
+Q: A 3-bit value that supports level or service implementation.
+A: user priority
+
+Q: A 1-bit identifier that enables Token Ring frames to be carried across Ethernet links.
+A: canonical format identifier or CFI
+
+Q: A 12-bit VLAN identification number that supports up to 4096 VLAN IDs.
+A: vlan ID or VID
+
+Q: When an untagged frame arrives on a trunk port it is assigned to the _____
+A: native VLAN
+
+Q: normal range vlans range
+A: 1 and 1005
+
+Q: vlan range used in small and medium size business and enterprise networks
+A: normal range vlans
+
+Q: used by service providers to service multiple sutomers and by global enterprises large enoughto need ___ IDs
+A: extended range VLAN
+
+Q: range of extended range VLAN
+A: 1006 and 4094
+
+Q: file that contain normal range VLAN data
+A: vlan.dat
+
+Q: command to configure the voip connected to an interface
+A: mls qos trust cos, switchport voice vlan 150
+
+Q: command to delte the vlan.dat file
+A: delete flash:vlan.dat
+
+# trunk
+# access
+# dynamic auto
+# dynamic desirable

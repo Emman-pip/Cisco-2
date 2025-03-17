@@ -1,0 +1,36 @@
+Q: This is used to describe the port where a frame enters the device.
+A: ingress
+
+Q: This is used to describe the port that frames will use when leaving the device.
+A: egress
+
+Q: MAC address table is also known as ____
+A: content addressable memory trable or CAM table
+
+Q: is a special type of memory used in high-speed searching applications
+A: content addressable memory or CAM
+
+Q: two switching forwading methods
+A: store and forward switching, cut-through switching
+
+Q: this method makes a forwarding decision on a frame after it has received the entire frame and checked the frame for errors using a mathematical error-checking mechanism known as a cyclic redundancy check (CRC). Store-and-forward switching is Cisco’s primary LAN switching method.
+A: store and forward switching
+
+Q: This method begins the forwarding process after the destination MAC address of an incoming frame and the egress port have been determined.
+A: cut-through switching
+
+Q: is an error checking process that helps to ensure that the frame is free of physical and data-link errors
+A: frame check seqence or FCS
+
+Q: is a modified form of cut-through switching in which the switch only starts forwarding the frame.
+A: fragment free switching
+
+Q: The network segments that share the same bandwidth between devices are known as
+A: collision domains
+
+Q: A collection of interconnected switches forms a single ____
+A: broadcast domain
+
+Q: The Layer 2 broadcast domain is referred to as the _______________
+A: MAC broadcast domain
+

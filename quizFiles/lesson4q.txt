@@ -1,0 +1,30 @@
+#: Lesson 4: Inter-VLAN routing
+
+Q: Each router interface was connected to a switch port in different VLANs. The router interfaces served as the default gateways to the local hosts on the VLAN subnet.
+A: legacy inter-vlan routing
+
+Q: overcomes the limitation of the legacy inter-VLAN routing method. It only requires one physical Ethernet interface to route traffic between multiple VLANs on a network.
+A: router on a stick
+
+Q:  The router-on-a-stick method of inter-VLAN routing does not scale beyond __ VLANs
+A: 50
+
+Q: The modern method of performing inter-VLAN routing is to use ______ switches and switched virtual interfaces (SVI)
+A: layer 3 switches
+
+Q: A subinterface is created using the __________ global configuration mode command.
+A: interface interface_id.subinterface_id
+
+Q: this command configures the subinterface to respond to 802.1Q encapsulated traffic from the specified vlan-id. The native keyword option is only appended to set the native VLAN to something other than VLAN 1.
+A: encapsulation dot1q vlan_id [native]
+
+Q: command to see trunk status
+A: show interfaces trunks
+
+Q: ______ use hardware-based switching to achieve higher-packet processing rates than routers. ______ are also commonly implemented in enterprise distribution layer wiring closets.
+A: layer 3 switches
+
+Q:  global configuration command to allow traffic to be exchanged between different VLANs
+A: ip routing
+
+

@@ -1,0 +1,58 @@
+Q: shows whether the system is receiving power and is functioning properly
+A: SYST
+
+Q: LED indicator that shows the status of the redundant power supply
+A: RPS
+
+Q: Port status LED
+A: STAT
+
+Q: LED Indicator that shows information about the interface duplex mode
+A: DUPLX
+
+Q: LED indicator that indicates the port speed mode selected
+A: SPEED
+
+Q: LED indicator that shows powerover ethernet capability of the switch
+A: PoE
+
+
+Q: To prepare for remote management access, a switch must have a ____ configured with an IPv4 address and a subnet mask or IPv5 nad a prefix length
+A: Switch Virtual Interface or SVI
+
+Q: To manage a switch from a remote network, it must be configured with a ______ 
+A: default gateway
+
+Q: duplex type that increases bandwith efficiency by allowing both ends of a connectionto transmit and receive data simultaneously
+A: full-duplex communication
+
+Q: full-duplex comunication is also known as ______
+A: bidirectional communication
+
+Q: a _____ LAN is created when a switchport has only one device connected and is operating in full duplex mode
+A: microsegmented
+
+Q: full-duplex communication requires microsegmentation (t/f)
+A: t
+
+Q: half-duplex communication is also known as _____
+A: unidirectional communication
+
+Q: this duplex mode creates performance issues because data can flow in only one direction at a time
+A: half-duplex communication
+
+Q: duplex mode typically seen in older hardware such as Hubs
+A: half-duplex mode
+
+Q: (t/f) Gigabit Ethernet and 10Gb/s NICs require a full duplex connections to operate
+A: t
+
+Q: this operation is useful when the speed and duplex of the device connecting to the port are known are may change. It automatically negotiates on the common speed and duplex of two interfaces
+A: autonegotiation
+
+Q: eliminated the problem of using certain cable types when connective devices
+A: auto-mdix
+
+Q: command displays *status and statistics information* on the network interfaces of the switch
+A: show interfaces
+

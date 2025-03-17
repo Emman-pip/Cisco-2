@@ -1,0 +1,88 @@
+# Lesson 6: EtherChannel
+
+Q: ______ is needed that allows redundant links between devices that will not be blocked by STP. That technology is known as EtherChannel
+A: link aggregation technology
+
+Q: is a link aggregation technology that groups multiple physical Ethernet links together into one single logical link. It is used to provide fault-tolerance, load sharing, increased bandwidth, and redundancy between switches, routers, and server
+A: EtherChannel
+
+Q: _____ makes it possible to combine the number of physical links between the switches to increase the overall speed of switch-to-switch communication.
+A: EtherChannel
+
+Q: was originally developed by Cisco as a LAN switch-to-switch technique of grouping several fast ethernet or gigabit ethernet ports into one logical channel
+A: EtherChannel
+
+Q: When an EtherChannel is configured, the resulting virtual interface is called a _______.
+A: port channel
+
+Q: (t/f) interface types cannot be mixed on a Port Channel
+A: t
+
+Q: (t/f) an etherchannel can consist of up to 6 compatibly-configured ethernet ports
+A: f
+
+Q: The Cisco Catalyst 2960 Layer 2 switch currently supports up to ___ EtherChannels
+A: 6
+
+Q: (t/f) The individual EtherChannel group member port configuration must be consistent on both devices. If the physical ports of one side are configured as trunks, the physical ports of the other side must also be configured as trunks within the same native VLAN. Additionally, all ports in each EtherChannel link must be configured as Layer 2 ports
+A: t
+
+Q: EtherChannels can be formed through negotiation using one of two protocols, ___ and ___
+A: PAgP and LACP
+
+# PAgP Operation
+Q: is a Cisco-proprietary protocol that aids in the automatic creation of EtherChannel links.
+A: PAgP
+
+Q: PAgP packets are sent ___ every seconds
+A: 30
+
+Q: Three PAgP modes
+A: On, desirable, or auto
+
+Q: This mode forces the interface to channel without PAgP. Interfaces configured in the on mode do not exchange PAgP packets.
+A: on
+
+Q: This PAgP mode places an interface in an active negotiating state in which the interface initiates negotiations with other interfaces by sending PAgP packets.
+A: desirable
+
+Q:  This PAgP mode places an interface in a passive negotiating state in which the interface responds to the PAgP packets that it receives but does not initiate PAgP negotiation.
+A: auto
+
+Q: LACP is part of an IEEE specification (____) that allows several physical ports to be bundled to form a single logical channel.
+A: 802.3ad
+
+Q: LACP is now defined in 802.___
+A: 1AX
+
+Q: it can be used to facilitate EtherChannels in multivendor environments
+A: LACP
+
+Q: LACP modes
+A: on, active, or passsive
+
+Q: This mode forces the interface to channel without LACP. Interfaces configured in the on mode do not exchange LACP packets.
+A: on
+
+Q: This LACP mode places a port in an active negotiating state. In this state, the port initiates negotiations with other ports by sending LACP packets.
+A: active
+
+Q: This LACP mode places a port in a passive negotiating state. In this state, the port responds to the LACP packets that it receives but does not initiate LACP packet negotiation.
+A: passive
+
+Q: command to create a port channel (assumer you are already in interface range configuration mode)
+A: channel-group identifier mode mode-here
+
+Q: command that displays the general status of the port channel interface
+A: show interfaces port-channel identifier
+
+Q: command to display one line of information per port channel
+A: show etherchannel summary
+
+Q: command to display information about a specific port channel interface
+A: show etherchannel port-channel identifier
+
+Q: command that can provide information about the role of the interface in the EtherChannel
+A: show interfaces identifier etherchannel
+
+

@@ -1,0 +1,88 @@
+# Lesson 7: DHCPv4
+Q: Steps to obtain a lease
+A: DORA
+
+Q: The client starts the process using a broadcast ______ message with its own MAC address to discover available DHCPv4 servers. Because the client has no valid IPv4 information at bootup, it uses Layer 2 and Layer 3 broadcast addresses to communicate with the server. The purpose of the ______ message is to find DHCPv4 servers on the network.
+A: DHCPDISCOVER
+
+Q: When the DHCPv4 server receives a DHCPDISCOVER message, it reserves an available IPv4 address to lease to the client. The server also creates an ARP entry consisting of the MAC address of the requesting client and the leased IPv4 address of the client. The DHCPv4 server sends the binding ______ message to the requesting client. step 2 of the DHCPv4 process is a ______ unicast message sent from the DHCPv4 server to the DHCPv4 client that says, in essence, I am a DHCPv4 server, here is an address offer
+A: DHCPOFFER
+
+Q: When the client receives the DHCPOFFER from the server, it sends back a _____ message. This message is used for both lease origination and lease renewal. When used for lease origination, the _____ serves as a binding acceptance notice to the selected server for the parameters it has offered and an implicit decline to any other servers that may have provided the client a binding offer.
+A: DHCPREQUEST
+
+Q: On receiving the DHCPREQUEST message, the server may verify the lease information with an ICMP ping to that address to ensure it is not being used already, it will create a new ARP entry for the client lease, and reply with a _____ message.
+A: DHCPACK
+
+Q: (t/f)The DHCPACK message is a duplicate of the DHCPOFFER, except for a change in the message type field.
+A: t
+
+Q: Two step process of renewing a lease
+A: DHCPREQUEST and DHCPACK
+
+Q: Which message is sent by a DHCPv4 client to initiate the lease obtaining process?
+A: DHCPDISCOVER
+
+Q: Which DHCPv4 messages are sent by the server in the lease obtaining process?
+A: DHCPOFFER and DHCPACK
+
+Q: Which DHCPv4 messages are used in the lease renewal process?
+A: DHCPREQUEST and DHCPACK
+
+# configure a Cisco IOS DHCPv4 server
+# Step 1. Exclude IPv4 addresses.
+# Step 2. Define a DHCPv4 pool name.
+# Step 3. Configure the DHCPv4 pool.
+
+Q: command to exclude addresses for DHCP
+A: ip dhcp excluded-address low-address high-address
+
+Q: command to define a DHCPv4 pool name
+A: ip dhcp pool pool-name
+
+Q: information to be passed on a dhcp pool (all)
+A: network, dns-server, default-router, domain-name, [lease duration, netbias wins]
+
+Q: command to define a dns-service in a dhcp pool
+A: dns-server address1 address2...
+
+Q: command to define the domain name
+A: domain-name domain
+
+Q: command to define the address pool
+A: network network-address subnetmask
+
+Q: command to define the default gateway in an dhcp pool
+A: default-router address1 address2...
+
+Q: Displays the DHCPv4 commands configures on the router
+A: show running-config | section dhcp
+
+Q: displays a list of all IPv4 address to MAC address bindings provided by the DHCPv4 service
+A: show ip dhcp binding
+
+Q: displays count information regarding the number of DHCPv4 that have been sent and received
+A: show ip dhcp server statistics
+
+Q: command to disable the Cisco IOS DHCPv4 server
+A: no service dhcp
+
+Q: command to release all IPv4 addressing information on a windows machine
+A: ipconfig /release
+
+Q: command to renew IPv4 addressing information in a windows computer
+A: ipconfig /renew
+
+Q: command to set a helper address in a router interface
+A: ip helper-address address
+
+# 7.3
+
+Q: command to configure the interface of a router as a DHCP client
+A: ip address dhcp
+
+
+
+
+
+
