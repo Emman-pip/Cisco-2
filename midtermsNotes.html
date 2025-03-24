@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-03-24 Mon 16:27 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Emmanuel Parreno" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga22a629">1. </a></li>
+</ul>
+</div>
+</div>
+<p>
+Scenario
+</p>
+
+<p>
+You are hired as a Network Administrator in a company. The company is
+setting up their initial network that would handle 5 departments. You
+are tasked to configure a network that would segregate the
+department's broadcast domain while allowing them to request an IP
+address through a DHCP server.
+</p>
+
+
+
+<p>
+Requirements
+</p>
+
+<ol class="org-ol">
+<li>Configure VLANs on the network under MLS</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="orgaf65503"># all switches under under MLS (including MLS)
+  vlan 10
+  name IT
+  vlan 20
+  name SALES
+
+# S1
+  int range f0/11-20
+  switchport mode access 
+  switchport access vlan 10
+
+# S2
+  int range f0/11-20
+  switchport mode access 
+  switchport access vlan 20
+
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>Configure VLANs on the network under R1.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="orge436b06"># all switches under R1
+  vlan 10
+  name MARKETING
+  vlan 20
+  name SUPPLY
+  vlan 30
+  name PRODUCTION
+
+# S5
+  int range f0/11-20
+  switchport mode access 
+  switchport access vlan 10
+
+# S7
+  int range f0/11-20
+  switchport mode access 
+  switchport access vlan 20
+
+# S8
+  int range f0/11-20
+  switchport mode access 
+  switchport access vlan 30
+
+
+</pre>
+</div>
+<ol class="org-ol">
+<li>Configure EtherChannel based on the given topology. Use desirable
+mode for PAGP and active mode for LACP.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="org02cab74"># S1
+  int range f0/3-4
+  channel-group 1 mode desirable 
+  no shutdown 
+
+# S2
+  int range f0/3-4
+  channel-group 1 mode desirable 
+  no shutdown 
+  int range f0/1-2
+  channel-group 2 mode desirable 
+  no shutdown 
+
+# MLS
+  int range f0/1-2
+  channel-group 2 mode desirable 
+  no shutdown 
+  int range f0/3-4
+  channel-group 3 mode active
+  no shutdown 
+
+# S4
+  int range f0/3-4
+  channel-group 3 mode active
+  no shutdown 
+  int range f0/1-2
+  channel-group 1 mode active
+  no shutdown 
+
+# S6
+  int f0/7-8
+  int range f0/7-8
+  channel-group 4 mode desirable 
+
+# S5
+  int f0/7-8
+  int range f0/7-8
+  channel-group 4 mode desirable 
+  int range f0/5-6
+  channel-group 3 mode desirable
+  no shut
+
+# S7
+  int range f0/5-6
+  channel-group 3 mode desirable
+  no shut
+  int range f0/3-4
+  channel-group 2 mode desirable
+  no shut
+
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>Configure trunking based on the topology. Use VLAN 1 as the Native
+VLAN.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="org42f125b">
+# S1
+  int port-channel 1
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+
+# S3
+  int port-channel 1
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+  int port-channel 2
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+
+# MLS
+  int port-channel 2
+  switchport mode access
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+  int port-channel 3
+  switchport mode access
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+
+# S4
+  int port-channel 3
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+  int port-channel 1
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+# S2
+  int port-channel 1
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+
+# S6
+  int g0/1
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+  int range f0/7-8
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+
+# S5
+  int range f0/7-8
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+  int range f0/5-6
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+
+# S7
+  int range f0/5-6
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+  int range f0/3-4
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+
+</pre>
+</div>
+<ol class="org-ol">
+<li>Configure INTER-VLAN using Layer 3 Switch on MLS. Use the 1st
+Usable address as the Default Gateway.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="org87e36d8"># MLS
+  int vlan 10
+  ip address 172.16.10.1 255.255.255.0
+  no shutdown 
+  int vlan 20
+  ip address 172.16.20.1 255.255.255.0
+  no shutdown 
+
+</pre>
+</div>
+<ol class="org-ol">
+<li>Configure MLS interface G0/1 base on the addressing on the
+topology.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="org87887ef"># MLS
+  int g0/1
+  no switchport 
+  ip address 10.10.10.1 255.255.255.252
+  no shu
+  exit
+
+</pre>
+</div>
+<ol class="org-ol">
+<li>Configure Default Route using next hop address on MLS going to
+CENTRAL Router.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="org6f04fe0"># MLS
+  ip route 0.0.0.0 0.0.0.0 10.10.10.2
+</pre>
+</div>
+<ol class="org-ol">
+<li>Configure CENTRAL router interfaces. Configure also the static
+routing using next hop address going to the networks inside MLS.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="org51f8a5e"># CENTRAL  
+  int g0/1
+  ip address 10.10.10.2 255.255.255.252
+  no shutdown 
+  int g0/2
+  ip address 209.165.201.1 255.255.255.252
+  no shutdown 
+  int g0/0
+  ip address 20.20.20.2 255.255.255.252
+  no shut
+  exit
+  ip route 172.16.20.0 255.255.255.0 10.10.10.1
+  ip route 172.16.10.0 255.255.255.0 10.10.10.1
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>Configure DHCP Server to have IP pool for VLAN 10 and VLAN 20. Use
+the following IP pool name.</li>
+</ol>
+
+
+<p>
+LAN-IT-POOL
+LAN-SALES-POOL
+</p>
+
+<p>
+Note: Use the 1st usable address
+of the network as Default-Gateway and the last usable as the
+DNS-Server.
+</p>
+
+
+<p>
+Start your pool with a .10 IP address and only assign
+50 addresses.
+</p>
+
+
+<ol class="org-ol">
+<li>Set the PCs under MLS to obtain IP using DHCP.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="orgff7ae5a"># MLS
+  int vlan 10
+  ip helper-address 209.165.201.2
+  int vlan 20
+  ip helper-address 209.165.201.2
+</pre>
+</div>
+<ol class="org-ol">
+<li>On R1, Configure INTER-VLAN using Router on a Stick.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="orgd833424"># R1
+  int g0/1.10
+  ip address 192.168.10.1 255.255.255.0
+  encapsulation dot1Q 10
+  ip address 192.168.10.1 255.255.255.0
+  int g0/1.20
+  encapsulation dot1Q 20
+  ip address 192.168.20.1 255.255.255.0
+  int g0/1.30
+  encapsulation dot1Q 30
+  ip address 192.168.30.1 255.255.255.0
+  int g0/1
+  no shut
+
+</pre>
+</div>
+<p>
+Note: Refer to the Topology for the IP address for each VLAN.
+</p>
+
+<ol class="org-ol">
+<li><p>
+Configure R1 as a DHCP Server for MARKETING, SUPPLY and PRODUCTION
+VLANs. Use the following details:
+</p>
+
+<p>
+Exclude the single digit host addresses.
+Exclude the last usable address.
+Use the following Pool name:
+  LAN-MARKETING-POOL
+  LAN-SUPPLY-POOL
+  LAN-PRODUCTION-POOL
+Default-Gateway = 1st Usable Address
+DNS = Last Usable Address
+Domain = cisco.com
+</p></li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-nil" id="org46e2b36"># R1
+  ip dhcp excluded-address 192.168.10.1 192.168.10.9
+  ip dhcp excluded-address 192.168.20.1 192.168.10.9
+  ip dhcp excluded-address 192.168.30.1 192.168.10.9
+  ip dhcp excluded-address 192.168.30.254
+  ip dhcp excluded-address 192.168.20.254
+  ip dhcp excluded-address 192.168.10.254
+
+  ip dhcp pool LAN-MARKETING-POOL
+  default-router 192.168.10.1
+  network 192.168.10.0 255.255.255.0
+  dns-server 192.168.10.254
+  domain-name cisco.com
+  exit
+  ip dhcp pool LAN-SUPPLY-POOL
+  default-router 192.168.20.1
+  network 192.168.20.0 255.255.255.0
+  dns-server 192.168.20.254
+  domain-name cisco.com
+  exit
+  ip dhcp pool LAN-PRODUCTION-POOL  
+  default-router 192.168.30.1
+  network 192.168.30.0 255.255.255.0
+  dns-server 192.168.30.254
+  domain-name cisco.com
+  exit
+</pre>
+</div>
+<ol class="org-ol">
+<li>Set the PCs to obtain IP using DHCP.</li>
+
+<li>Configure R1 interface G0/0. Refer to the topology for the IP
+addressing.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="org133db00"># R1
+  int g0/0
+  ip address 20.20.20.1 255.255.255.252
+  no shut  
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>On R1, Configure Default Routing using next hop address to route
+traffic between R1 and MLS Network.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-nil" id="orgb8271fd"># R1
+  ip route 0.0.0.0 0.0.0.0 20.20.20.2
+</pre>
+</div>
+<p>
+On CENTRAL, Configure STATIC ROUTING using next hop address
+to route traffic to the networks inside R1.
+</p>
+<div class="org-src-container">
+<pre class="src src-nil" id="org5993bb3">ip route 192.168.10.0 255.255.255.0 20.20.20.1
+ip route 192.168.20.0 255.255.255.0 20.20.20.1
+ip route 192.168.30.0 255.255.255.0 20.20.20.1
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>Test Connectivity. All PCs should be able to ping each other.
+Ping PC2-PC5 Ping PC1-PC4 Ping PC0-PC3</li>
+</ol>
+<div id="outline-container-orga22a629" class="outline-2">
+<h2 id="orga22a629"><span class="section-number-2">1.</span> </h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Emmanuel Parreno</p>
+<p class="date">Created: 2025-03-24 Mon 16:27</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
