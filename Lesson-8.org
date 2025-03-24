@@ -1,0 +1,172 @@
+* SLAAC and DHCPv6
+*EUI-64*
+** IPv6 GUA Assignment
+#+NAME: IPv6 component
+  | x:x:x:     | x:     | x:x:x:x:     |
+  |------------+--------+--------------|
+  | prefix     | subnet | interface ID |
+  | network ID |        |              |
+
+#+NAME: IPv6 public and private
+| ipv4            | ipv6                | start in IPv6 |
+|-----------------+---------------------+---------------|
+| public in ipv4  | global unicast(GUA) | 2/3 - xxx     |
+| private in IPv4 | link-local(LLA)     | fe80          |
+
+A computer can only have 1 or 2 IPv6 address, LLA is always
+present. GUA is dependent on the network setup.
+
+
+*** How is IPv6 added to a router interface
+On a router, it is manually configured ~ipv6 addresshere/prefix~
+
+
+
+*** How is it cconfigured in end devices
+Also possible > configure manually on settings (windows)
+
+
+*** IPv6 Host Link-Local Address
+#+GUA vs LLA
+| type | obtainable by                      |                                                  |
+|------+------------------------------------+--------------------------------------------------|
+| GUA  | manually, automatic (DHCPv6/SLAAC) | needs configuration                              |
+| LLA  | automatically                      | automatically created when the devices is booted |
+
+
+
+*** Router Advertisement
+Router advertises the *network ID* to other devices (broadcast). After
+it is received by a host, the host will be able to create a *LLA*,
+same with GUA (*through MAC address and the network ID*).
+
+/NOTE:/ The addresses are not stored in the router
+
+
+*** Dynamic GUA Assignment
+| Stateless (SLAAC - Stateless address auto configuration)        | Stateful                                              |
+|-----------------------------------------------------------------+-------------------------------------------------------|
+| no bindings (no device tracking the assignment of IPv5 address) | can be tracked                                        |
+|                                                                 | a server is managing the assignment of IPv6 addresses |
+
+
+
+statless options
+| option                 | desc                                                                  |
+|------------------------+-----------------------------------------------------------------------|
+| SLAAC                  | router sends RA messaging all IPv6 addressig information              |
+|                        | host uses tha RA information to create IPv6 addressing                |
+|                        | *only IP, subnet, and default gateway can be generated*               |
+|                        |                                                                       |
+| SLAAC with DHCP Server | SLAAC but is able to communicate to the server with is the DNS-server |
+|                        |                                                                       |
+
+
+stateful options
+| DHCPv6 Server                                 |
+|-----------------------------------------------|
+| RA sends instructions to find a DHCPv6 Server |
+| default gateway is inside RA                  |
+
+
+
+*** Three RA Message Flags
+Inside RA, there are flags that will instruct how will the IPv6
+address will be obtained/generated
+- A
+  - adress autoconfiguration flag
+  - SLAAC and SLAAC with DHCP
+- O
+  - other configuration flag
+  - SLAAC with DHCP
+- M
+  - Managed address flag
+  - stateful
+
+** SLAAC
+Not every network has access ot a DHCPv6 server, but every device in
+an IPv6 network needs a GUA.
+
+
+- It is a stateless service which means no server that maintains
+  address information to know which IPv6 addresses ar  being use and
+  which ones are availble
+- sends periodic RA messages every 200 seconds
+- A host can also send a *Router Solicitation (RS)* messages
+  requesting an RA
+*** Enabling SLAAC
+set a ipv6 address and ~ipv6 unicast-routing~, after that it will send
+an RA every 20 seconds.
+
+
+Can have 3 different addresses:
+- Link-local
+- GUA
+- all node address
+*** Duplicate Address Detection
+DAD - Duplicate Address Detection
+- device sends a NS (Neigbor Solicitation), address non ay address
+  nya. If may magreply, then may *DUPLICATE*. 
+
+** DHCPv6
+STATEFUL DHCP does not require SLAAC
+
+*** SARR
+- Solicit to add DHCPv6 servers (DHCPv6 SOLICIT)
+- Advertise Unicast (DHCPv6 ADVERTISE)
+- Request or Information Request Unicast (DHCPv6 REQUEST for stateful
+  and INFORMATION-REQUEST for stateless)
+- Reply Unicast (DHCPv6 REPLY)
+
+*** Stateless DHCPv6
+#+NAME: Flags
+| A | O | M |
+|---+---+---|
+| 1 | 1 | 0 |
+- host uses information on the RA to get the IP, subnet, and default
+  gateway. Then it would ask the server for the additional information
+
+- to configure this enter the
+  ~ipv6 nd other-config-flag~ (enables the O flag)
+  command
+
+- to disable
+  ~no ipv6 nd other-config-flag~ (disables the O flag)
+
+  
+*** Stateful DHCPv6 Operation
+#+NAME: Flags
+| A | O | M |
+|---+---+---|
+| 0 | 0 | 1 |
+- to configure this enter the
+  ~ipv6 nd managed-config-flag~ (enables the M flag)
+  command
+- if naka on yung O flag and M flag, mali config... (di gagana)
+
+
+/NOTE:/ Other configurations does not work
+
+** Configure DHCPv6 Server
+*** Stateless
+#+NAME: 
+#+BEGIN_SRC 
+ipv6 unicast routing
+ipv6 dhcp pool POOL-NAME
+ipv6 autoconfig
+ipv6 dhcp server POOL-NAME interface command
+---> other config flag
+ipv6 dhcp interface g0/0/1
+#+END_SRC
+*** Stateful
+#+NAME: 
+#+BEGIN_SRC 
+ipv6 unicast routing
+
+#+END_SRC
+*** Configure a DHCPv6 Relay Agent
+~ipv6 dhcp relay destination ADDRESS EXIT_INTERFACE~
+
+
+* DEMO
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!~ipv6 dhcp server poolname~<-----------------

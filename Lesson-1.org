@@ -27,7 +27,7 @@ can find.
 Admins can use the command ~show boot~ to shut which IOS is currently
 running. To boot a different IOS to the switch use the command:
 
-#+NAME: BOOT COMMAND
+#+BOOT COMMAND
 #+BEGIN_SRC
 S1(config)# boot system flash:/c2960-lanbasek9-mz.150-2.SE/c2960-lanbasek9-mz.150-2.SE.bin
 #+END_SRC

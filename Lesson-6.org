@@ -103,7 +103,7 @@ added to the spanning tree as a single port.
 
 
 When enabled, PAgP also manages the EtherChannel. PAgP packets are
-sent every 30 seconds. PAgP checks for configuration consistency and
+sent every *30 seconds*. PAgP checks for configuration consistency and
 manages link addtions and failures between two switches. It ensures
 that when an EtherChanel is created, all ports have the same type of
 configuration.
@@ -136,6 +136,11 @@ follows:
 | desirable | desirable      | yes                   |
 | desitable | auto           | yes                   |
 | auto      | auto           | no                    |
+
+
+/NOTE:/ ON is not under any autonegotiation protocol!!! NOT EVEN IEEE
+802.1ad standard
+
 
 /Class notes/:
 

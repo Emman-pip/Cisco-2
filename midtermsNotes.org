@@ -1,0 +1,379 @@
+Scenario
+
+You are hired as a Network Administrator in a company. The company is
+setting up their initial network that would handle 5 departments. You
+are tasked to configure a network that would segregate the
+department's broadcast domain while allowing them to request an IP
+address through a DHCP server.
+
+
+
+Requirements
+
+1. Configure VLANs on the network under MLS
+#+NAME: VLAN Creation and port assignment
+#+BEGIN_SRC 
+# all switches under under MLS (including MLS)
+  vlan 10
+  name IT
+  vlan 20
+  name SALES
+
+# S1
+  int range f0/11-20
+  switchport mode access 
+  switchport access vlan 10
+
+# S2
+  int range f0/11-20
+  switchport mode access 
+  switchport access vlan 20
+
+#+END_SRC
+   
+2. Configure VLANs on the network under R1.
+#+NAME: configure vlans under R1
+#+BEGIN_SRC 
+# all switches under R1
+  vlan 10
+  name MARKETING
+  vlan 20
+  name SUPPLY
+  vlan 30
+  name PRODUCTION
+
+# S5
+  int range f0/11-20
+  switchport mode access 
+  switchport access vlan 10
+
+# S7
+  int range f0/11-20
+  switchport mode access 
+  switchport access vlan 20
+
+# S8
+  int range f0/11-20
+  switchport mode access 
+  switchport access vlan 30
+  
+
+#+END_SRC
+3. Configure EtherChannel based on the given topology. Use desirable
+   mode for PAGP and active mode for LACP.
+#+NAME: 
+#+BEGIN_SRC 
+# S1
+  int range f0/3-4
+  channel-group 1 mode desirable 
+  no shutdown 
+
+# S2
+  int range f0/3-4
+  channel-group 1 mode desirable 
+  no shutdown 
+  int range f0/1-2
+  channel-group 2 mode desirable 
+  no shutdown 
+
+# MLS
+  int range f0/1-2
+  channel-group 2 mode desirable 
+  no shutdown 
+  int range f0/3-4
+  channel-group 3 mode active
+  no shutdown 
+
+# S4
+  int range f0/3-4
+  channel-group 3 mode active
+  no shutdown 
+  int range f0/1-2
+  channel-group 1 mode active
+  no shutdown 
+
+# S6
+  int f0/7-8
+  int range f0/7-8
+  channel-group 4 mode desirable 
+
+# S5
+  int f0/7-8
+  int range f0/7-8
+  channel-group 4 mode desirable 
+  int range f0/5-6
+  channel-group 3 mode desirable
+  no shut
+
+# S7
+  int range f0/5-6
+  channel-group 3 mode desirable
+  no shut
+  int range f0/3-4
+  channel-group 2 mode desirable
+  no shut
+  
+#+END_SRC
+
+4. Configure trunking based on the topology. Use VLAN 1 as the Native
+   VLAN.
+#+NAME: trunking
+#+BEGIN_SRC
+
+# S1
+  int port-channel 1
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+
+# S3
+  int port-channel 1
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+  int port-channel 2
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+
+# MLS
+  int port-channel 2
+  switchport mode access
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+  int port-channel 3
+  switchport mode access
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+
+# S4
+  int port-channel 3
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+  int port-channel 1
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+# S2
+  int port-channel 1
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,1
+
+# S6
+  int g0/1
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+  int range f0/7-8
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+
+# S5
+  int range f0/7-8
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+  int range f0/5-6
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+
+# S7
+  int range f0/5-6
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+  int range f0/3-4
+  switchport mode trunk 
+  switchport nonegotiate 
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan 10,20,30,1
+
+#+END_SRC
+5. Configure INTER-VLAN using Layer 3 Switch on MLS. Use the 1st
+   Usable address as the Default Gateway.
+#+NAME: 
+#+BEGIN_SRC 
+# MLS
+  int vlan 10
+  ip address 172.16.10.1 255.255.255.0
+  no shutdown 
+  int vlan 20
+  ip address 172.16.20.1 255.255.255.0
+  no shutdown 
+
+#+END_SRC
+6. Configure MLS interface G0/1 base on the addressing on the
+   topology.
+#+NAME: 
+#+BEGIN_SRC 
+# MLS
+  int g0/1
+  no switchport 
+  ip address 10.10.10.1 255.255.255.252
+  no shu
+  exit
+  
+#+END_SRC
+7. Configure Default Route using next hop address on MLS going to
+   CENTRAL Router.
+#+NAME: 
+#+BEGIN_SRC 
+# MLS
+  ip route 0.0.0.0 0.0.0.0 10.10.10.2
+#+END_SRC
+8. Configure CENTRAL router interfaces. Configure also the static
+   routing using next hop address going to the networks inside MLS.
+#+NAME: 
+#+BEGIN_SRC
+# CENTRAL  
+  int g0/1
+  ip address 10.10.10.2 255.255.255.252
+  no shutdown 
+  int g0/2
+  ip address 209.165.201.1 255.255.255.252
+  no shutdown 
+  int g0/0
+  ip address 20.20.20.2 255.255.255.252
+  no shut
+  exit
+  ip route 172.16.20.0 255.255.255.0 10.10.10.1
+  ip route 172.16.10.0 255.255.255.0 10.10.10.1
+#+END_SRC
+
+9. Configure DHCP Server to have IP pool for VLAN 10 and VLAN 20. Use
+   the following IP pool name.
+
+
+   LAN-IT-POOL
+   LAN-SALES-POOL
+
+Note: Use the 1st usable address
+of the network as Default-Gateway and the last usable as the
+DNS-Server.
+
+
+Start your pool with a .10 IP address and only assign
+50 addresses.
+
+
+10. Set the PCs under MLS to obtain IP using DHCP.
+#+NAME: ip helper
+#+BEGIN_SRC 
+# MLS
+  int vlan 10
+  ip helper-address 209.165.201.2
+  int vlan 20
+  ip helper-address 209.165.201.2
+#+END_SRC
+11. On R1, Configure INTER-VLAN using Router on a Stick.
+#+NAME: 
+#+BEGIN_SRC 
+# R1
+  int g0/1.10
+  ip address 192.168.10.1 255.255.255.0
+  encapsulation dot1Q 10
+  ip address 192.168.10.1 255.255.255.0
+  int g0/1.20
+  encapsulation dot1Q 20
+  ip address 192.168.20.1 255.255.255.0
+  int g0/1.30
+  encapsulation dot1Q 30
+  ip address 192.168.30.1 255.255.255.0
+  int g0/1
+  no shut
+  
+#+END_SRC
+Note: Refer to the Topology for the IP address for each VLAN.
+
+12. Configure R1 as a DHCP Server for MARKETING, SUPPLY and PRODUCTION
+    VLANs. Use the following details:
+
+       Exclude the single digit host addresses.
+       Exclude the last usable address.
+       Use the following Pool name:
+         LAN-MARKETING-POOL
+	 LAN-SUPPLY-POOL
+	 LAN-PRODUCTION-POOL
+       Default-Gateway = 1st Usable Address
+       DNS = Last Usable Address
+       Domain = cisco.com
+
+#+NAME: 
+#+BEGIN_SRC 
+# R1
+  ip dhcp excluded-address 192.168.10.1 192.168.10.9
+  ip dhcp excluded-address 192.168.20.1 192.168.10.9
+  ip dhcp excluded-address 192.168.30.1 192.168.10.9
+  ip dhcp excluded-address 192.168.30.254
+  ip dhcp excluded-address 192.168.20.254
+  ip dhcp excluded-address 192.168.10.254
+
+  ip dhcp pool LAN-MARKETING-POOL
+  default-router 192.168.10.1
+  network 192.168.10.0 255.255.255.0
+  dns-server 192.168.10.254
+  domain-name cisco.com
+  exit
+  ip dhcp pool LAN-SUPPLY-POOL
+  default-router 192.168.20.1
+  network 192.168.20.0 255.255.255.0
+  dns-server 192.168.20.254
+  domain-name cisco.com
+  exit
+  ip dhcp pool LAN-PRODUCTION-POOL  
+  default-router 192.168.30.1
+  network 192.168.30.0 255.255.255.0
+  dns-server 192.168.30.254
+  domain-name cisco.com
+  exit
+#+END_SRC
+13. Set the PCs to obtain IP using DHCP.
+
+14. Configure R1 interface G0/0. Refer to the topology for the IP
+    addressing.
+#+NAME: 
+#+BEGIN_SRC 
+# R1
+  int g0/0
+  ip address 20.20.20.1 255.255.255.252
+  no shut  
+#+END_SRC    
+
+15. On R1, Configure Default Routing using next hop address to route
+    traffic between R1 and MLS Network.
+#+NAME: 
+#+BEGIN_SRC 
+# R1
+  ip route 0.0.0.0 0.0.0.0 20.20.20.2
+#+END_SRC
+    On CENTRAL, Configure STATIC ROUTING using next hop address
+    to route traffic to the networks inside R1.
+#+NAME: 
+#+BEGIN_SRC 
+  ip route 192.168.10.0 255.255.255.0 20.20.20.1
+  ip route 192.168.20.0 255.255.255.0 20.20.20.1
+  ip route 192.168.30.0 255.255.255.0 20.20.20.1
+#+END_SRC    
+
+16. Test Connectivity. All PCs should be able to ping each other.
+    Ping PC2-PC5 Ping PC1-PC4 Ping PC0-PC3
+* 

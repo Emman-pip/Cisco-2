@@ -1,0 +1,502 @@
+* VLANs (Week 2)
+Are created at the Layer 2 to reduce or eliminate broadcast
+traffic. VLANs are how you break up your network into smaller networks
+so that the devices and people within a single VLAN are communicating
+with each other and not having tof manage traffic from other networks.jj
+
+** Overview of VLANs
+*** VLAN Definitions
+Provide segmentation and organizational flexibility in a switched
+network. A group of devices withina VLAN communicates as if each
+device was attached to the same cable. VLANs are based on *logical*
+connections instead of physical connections
+
+
+A VLAN creates a logical broadcast domain that can span multiple
+physical LAN segments. VLANs improve network performance by separating
+large broadcast domains into smaller ones. If a device in one VLAN
+sends a broadcast Ethernet frame, all devices in the VLAN receive the
+frame, but devices in other VLANs do not.
+*** Benefits of a VLAN Design
+Each VLAN in a switched netword corresponds to an IP
+network. Therefore, VLAN design must take into consideration the
+implementation of hiearchical network addressing scheme. *Hierarchical
+network addressing* means that IP network numbers are applied to
+network segments or VLANs in a way that takes the network as a whole
+into consideration.
+
+| Benefit                                    | Description                                                                                                                                                                               |
+|--------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Smaller broadcast domains                  | dividing a network into VLANs reduces the number of devices in the broadcase domain                                                                                                       |
+|                                            |                                                                                                                                                                                           |
+| Improved security                          | only used in the same vlan can communicate together                                                                                                                                       |
+|                                            | access control lists can be provided to restrict the traffic between VLANs                                                                                                                |
+|                                            |                                                                                                                                                                                           |
+| Improved IT efficiency                     | VLANs simplify network management because users with similar network requirements can be configured on the same VLAN                                                                      |
+|                                            | VLANs can be named                                                                                                                                                                        |
+|                                            |                                                                                                                                                                                           |
+| Reduced cost                               | reduces the cost for expensive network upgrades                                                                                                                                           |
+|                                            |                                                                                                                                                                                           |
+| better performance                         | smaller broadcast domains reduce unnecessary traffic on the network and improve performance                                                                                               |
+|                                            |                                                                                                                                                                                           |
+| simpler project and application management | VLANs aggregate users and network devices to support business or geographic requirements                                                                                                  |
+|                                            | having seperate functions makes managing a project or working with a specialized application easire; an example of such an application is an e-learning development platform for faculty] |
+
+*** Types of VLANs
+**** Default VLAN
+is the VLAN 1 on a cisco switch.
+
+
+/NOTE/: All port are assigned to VLAN 1 by default. The native VLAN and
+management VLAN is VLAN 1. Also, VLAN 1 cannot be renamed or deleted.
+
+
+The command ~show vlan brief~ outputs the vlans on a switch and the
+ports assigned to them.
+**** Data VLAN
+are VLANs configured to seperate user-generated traffic. Referred to
+as *user VLANs* because they seperate the network into groups of users
+or devices.
+
+/NOTE/: voice and netowrk management traffic should not be permitted
+on data VLANs
+
+**** Native VLAN
+User traffic from a  VLAN must be tagged with its VLAN ID when it is
+sent to another switch. Trunk ports are used between switches to
+support the transmission of tagged traffic. Specifically, an *802.1Q*
+trunk port inserts a 5 byte tag in the ethernet frame header to
+identify the VLAN to which the frame belongs
+
+Where untagged frames are assigned to
+
+**** Management VLAN
+is a data VLAN configured specificalled for network management
+traffic, including secure shell (ssh), telnet, HTTPS, HTTP, and
+SNMP. By default, VLAN 1 is configured as the management VLAN.
+
+
+
+**** Voice VLAN
+A seperate VLAN called a voice VLAN is needed to support Vocie over
+IP. VoIP traffic requires:
+- assured bandwidth to ensure voice quality
+- transmission priority over other types of network traffic
+- ability to be routed around congested areas on the network
+- delay of less than 150 ms across the network
+
+
+To meet the requirements, the entire network must be designed to
+support VoIP.
+
+
+
+** VLANs in a Multi-switched Environment
+
+*** Defining VLAN Trunks
+trunks allow all VLAN trffic to propagate between switches. It is a
+conduit that allows multiple VLANs between switches and routers. 
+
+*** Network Without VLANs
+When a switch receives a broadcast frame on one of its ports, it
+forwards the frame out all other ports except the port where the
+broadcast was received. Meaning, a faulty device could cause network
+congestion to the whole switched network.
+
+
+*** Network with VLANs
+
+
+
+
+*** Vlan Identification with a Tag
+Tagging is the process of putting the VLAN information of an ethernet
+frame when passing through a trunk. This is accomplished by the IEEE
+802.1Q header
+
+
+The VLAN tag control information field consists of a Type field,
+priority field, a canonical format identifier field, and VLAN ID field
+
+| field                             | description                                                                         |
+|-----------------------------------+-------------------------------------------------------------------------------------|
+| type                              | tag protocol ID (TPID)                                                              |
+|                                   | 2-byte value                                                                        |
+|                                   |                                                                                     |
+| user priority                     | 3-bit value that supports level or service implementation                           |
+|                                   |                                                                                     |
+| CFI (canonical format identifier) | 1 bit identifier that enables token ring frames to be carried across ethernet links |
+|                                   |                                                                                     |
+| VLAN ID (VID)                     | 12-bit VLAN identification number that supports up to 4096 VLAN IDs                 |
+
+After the tag control information fields are inserted, the switch
+recalculates the FCS values and inserts the new value into the frame
+
+
+*** Native VLANs and 802.1Q Tagging
+defaults to VLAN 1.
+
+**** Untagged frames on the native VLAN
+handled by/forwarded to the native vlan
+
+
+*** Voice VLAN Tagging
+Seperatate VLAN is required. This enables QoS and security policies to
+be applied to voice traffice
+
+
+Cisco IP Phone contains an integrated three-port 10/100 switch. The
+ports provide dedicated connections to the following devices:
+- Port 1: connects to the switch or other VoIP device
+- Port 2: an internal 10/100 interface that carries the IP phone
+  traffic
+- Port 3: (access port) connects a PC or other device
+
+*** Void Vlan Verification Example
+~show interface fa0/18 switchport~ command will output information
+about the said switchport
+
+
+** VLAN Configuration
+
+*** VLAN Ranges on Catalyst Switches
+Normal Range
+- from 1 to 1005
+- used in small- and medium-sized business and enterprise networks
+- identified by a VLAN ID between 1 to 1005
+- IDs 1002 to 1005 are reserved for legacy network technologies
+- configurations are stored int the flash:vlan.dat
+- when configured, VLAN trunking protocol (VTP) helps synchronize the
+  VLAN database between switches
+
+
+
+Extended range
+- from 1006 to 4094
+- used by service providers
+- by a VLAN ID between 1006 and 4094
+- configurations are saved, by default, in the running configuration
+- the support fewer VLAN features than normal range VLANs
+- required VTP transparent mode configuration support extended range VLANs
+
+*** VLAN Creation Commands
+#+NAME: vlan creation
+#+BEGIN_SRC 
+enable
+conf terminal
+vlan vlan-id
+name vlan-name
+end
+#+END_SRC
+
+*** VLAN Port Assignment Commands
+#+NAME: port assignment
+#+BEGIN_SRC 
+enable
+configure terminal
+interface range inteface-range-here
+switchport mode access
+switchport access vlan vlan-id
+#+END_SRC
+
+*** Data and Voice VLANs
+#+NAME: voice vlan
+#+BEGIN_SRC 
+enable
+configure terminal
+int inteface-id
+switchport mode access
+switchport access vlan vlan-id
+mls qos trust cos
+switchport voice vlan vlan-15
+#+END_SRC
+
+*** Verify VLAN Information
+#+NAME: verification commands
+#+BEGIN_SRC 
+show vlan [brief|vlan-id|vlan-name|summary]
+show interfaces fa0/18 switchport
+
+#+END_SRC
+
+*** Change VLAN Port Membership
+simply renter the command ~switchport access vlan vlan-id~
+
+*** Delete VLANs
+~no vlan vlan-id~ command will delete the selected VLAN. The entire
+vlan.dat file can also be deleted through ~delete vlan.dat~.
+
+/NOTE/: before deleting a VLAN, reassign all the member ports
+
+
+** VLAN Trunks
+*** Trunk configuration commands
+VLAN trunks are layer 2 links between two switches that carries
+traffic for all VLANs.
+
+#+NAME: trunk
+#+BEGIN_SRC 
+enable
+configure terminal
+interface interface-id
+switchport mode trunk
+switchport nonegotiate
+switchport trunk native vlan vlan-id
+switchport trunk allowed vlan vlan-list
+end
+#+END_SRC
+*** 
+*** Verify Trunk Configuration
+#+NAME: trunk verification
+#+BEGIN_SRC 
+show interfaces interface-id switchport
+show interface trunk
+#+END_SRC
+
+*** Reset the Trunk to the Default State
+~no switchport trunk allowed vlan~ and ~no switchport trunk native
+vlan~ to remove the allowed vlans and remove the native vlan
+
+
+** Dynamic Trunking Protocol
+*** Introduction to DTP
+It is a protocol that allows automatic negotiate trunking with a
+neigboring device. It is automatically enabled on 2960 and 3650
+Catalyst switches. To enable this mode enter the ~switchport mode dynamic auto~ interface configuration command. 
+*** Negotiated Interface Modes
+~switchport mode { access | dynamic { auto | desirable } | trunk }~
+
+
+| option            | description                                                                                                      |
+|-------------------+------------------------------------------------------------------------------------------------------------------|
+| access            | puts the interface into permanent nontrunking mode and negotiates to convert the link into a nontrunk link       |
+|                   | the interface becomes a nontrunk interface regardless of whether the neighboring interface is a trunk interface  |
+|                   |                                                                                                                  |
+| dynamic auto      | makes the interface able to convert the link into a trunk link                                                   |
+|                   | interfaces becomes a trunk if the neighboring interface is set to *trunk or desirable*                           |
+|                   |                                                                                                                  |
+| dynamic desirable | makes the interface actively attempt to convert the link to a trunk link                                         |
+|                   | interface becomes a trunk interface if the neighboring interface is set to trunk, desirable or dynamic auto mode |
+|                   |                                                                                                                  |
+| trunk             | puts the interface into permanent trunking mode and negotiates to convert the neighboring link into a trunk link |
+|                   | the interface becomes a trunk interface even if the neightboring interface is not a trunk interface              |
+
+
+*** Verify DTP Mode
+#+NAME: verify DTP
+#+BEGIN_SRC 
+show interface fa0/1
+#+END_SRC
+
+
+* Notes During Class
+
+** [3.0] Overview of a VLAN
+*** LAN
+- Local area network
+- connected devices in a small geographical area
+- usually are a switch network (switch is sufficient to intermediate
+  all)
+- problem is usually the *broadcast domain*
+  - a switch only has one broadcast domain, all devices connected to
+    the switch will receive the b-message
+  - messages can be unintentionally sent, violates the concept of
+    confidentiality 
+
+*** VLAN
+- logical connections with other similar devices
+- idea is splitting the switch into parts for segregation (will split
+  the broadcast domain)
+- *purpose is to virtually split the switch to several LANs*
+
+**** placing devices into various VLANs have the following
+- provides segmentation
+- organization
+- broadcasts, multicasts, and unicasts are isolated
+- VLAN have unique range of IP addressing
+- smaller broadcast domains
+- improves security
+  - user groups on the same vlan
+- reduces cost
+- better performance
+- simpler management
+
+** Types of VLAN
+- Default VLAN
+  - VLAN 1
+  - switches have this by default
+  - default: native VLAN, VLAN, Management VLAN, cannot be deleted or
+    renamed
+  - all ports are here by defaultt
+
+#+NAME: vlan show
+#+BEGIN_SRC 
+Switch# show vlan brief
+#+END_SRC
+
+- Data vlan
+  - where users data flow through
+- Native VLAN
+  - free passes
+  - used for trunk links
+
+- Management VLAN
+  - for SSH and Telnet VTY    
+- Voice VLAN
+  - when there is an voIP, a voice VLAN is required
+  - 
+
+/VLANS will be changed as best practive/
+
+/one [END] device can only have one vlan/
+
+A cisco (catalysy) switch can have 4096 vlans
+
+** [3.2] VLANs in a multi switched environment
+- VLAN trunk
+  - allows vlan of the same number (vlan 10) through other switches
+  - will allow devices can have the same broadcast domain even if long
+    distance
+  - Trunk link: allows links between switches' VLANs
+  - *a point to point link* between two switches, switch or another
+    networking device
+  - allows more than one vlan
+  - extend vlan over the whole network
+  - 802.1Q trunking
+  - Vlans cannot communicate without a router (inter VLAN)
+
+    
+** VLAN Identification with Tag
+- *IEEE 802.1Q*
+- used to identify which member of vlan is the frame
+*** Basics
+- if a message will do throught a trunk, 802.1Q(Tagging) is needed
+- if native vlan, then tagging is not required
+- both ends of the trunk link must be configured with the same native VLAN
+** VLAN in multiple switch environment
+*** VoIP VLAN
+- middle man, will still work on the end device at the end...
+~show interfaces fa0/18 switchport~
+
+- modes of VoiP
+- auto
+- dynamic auto
+- dynamic desirable
+- access
+- trunk
+*** [3.3] VLAN Configuration
+- stored in a vlan.dat in flash
+- vlan-id can be form vlan 2-1000
+
+  *default mode:* dynamic auto
+  *needs to be changed to access*
+#+NAME: VLAN CONFIG
+#+BEGIN_SRC 
+# show vlan brief
+# config terminal
+(config)# vlan vlan-id
+(config-vlan)# name vlan-name
+(config-vlan)# exit
+---- ililipat yung port to the newly created vlan ----
+(config)# interface interface-id
+(config-if)# switchport mode access
+(config-if)# switchport access vlan vlan-id
+#+END_SRC
+
+#+NAME: VLAN CONFIG
+#+BEGIN_SRC 
+# show vlan brief
+# config terminal
+(config)# vlan vlan-id
+(config-vlan)# name vlan-name
+(config-vlan)# exit
+---- ililipat yung port to the newly created vlan ----
+(config)# interface interface-id
+(config-if)# switchport mode access
+(config-if)# switchport access vlan vlan-id
+(config-if)# mls qos trust cos
+(config-if)# switchport voice vlan 150
+#+END_SRC
+*** Changing vlan port membership
+> ~no switchport access vlan~ -> goes back to VLAN 1
+> ~no vlan~ -> deletes vlan (but will persist on memory)
+> ~delete flash:vlan.dat~ -> deletes the database file
+
+* demo notes
+#+NAME: demo
+#+BEGIN_SRC 
+enable
+conf t
+hostname swname
+show vlan br -- will probably show vlan 1
+do show flash -- wala pa vlan database
+
+---- vlan creation
+vlan 10
+name FACULTY
+vlan 20
+name STUDENT
+vlan 30
+name GUEST
+
+do show vlan br -- will show new vlans but with no ports
+
+-- setting ports
+
+int range fa0/1-10
+switchport mode access
+switchport access vlan 10
+
+int range fa0/11-15
+switchport mode access
+switchport access vlan 10
+
+int range fa0/16-20
+switchport mode access
+switchport access vlan 10
+
+do show vlan br -- will now show created vlans with ports
+
+#+END_SRC
+** STEPS
+1. create the vlans
+2. configure the ports to specify the vlans
+3. TRUNK: 
+
+#+NAME: trunk link
+#+BEGIN_SRC
+interface interface-id
+switchport mode trunk
+switchport nonegotiate# para di magusap yung dalawng switch
+switchport trunk native vlan vlan-id (1)
+switchport trunk allowed vlan 10,20,30,40,99,100
+end
+verify show interfaces fa0/1 switchport
+#+END_SRC
+
+
+*TCI sa headers ay kung saang vlan pupunta/galing*
+** Dynamic trunking protocol
+- IN NETWORKING: dynamic == automatic
+- switches automatically make trunk links
+- allows two switches to build a common configuration
+** DTP
+- proprietary Cisco protocol
+- default on in catalyst 2960 and 2950 switches
+- dynamic trunk protocol
+** switch port modes
+
+access
+- permanent access mode
+- convert the neighboring link into an access link
+
+dynamic auto
+- becomes trunk or desirable mode
+  
+dynamic desirable
+- actively seeks to become trunk by negotiating with other auto or
+  desirable interfaces
+
+trunk
+- allows VLAN traffic to propogate between switches
+  
