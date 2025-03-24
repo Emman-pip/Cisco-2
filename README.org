@@ -9,5 +9,8 @@ Welcome to Cisco 2 notes... yaw ko na..
 *** [[file:Lesson-5.org][Lesson 5]]:
 *** [[file:Lesson-6.org][Lesson 6]]:
 *** [[file:Lesson-7.org][Lesson 7]]:
+*** [[file:midtermsNotes.html][Midterms skills notes]]
+
 
 /THIS SITE IS LIVE AT [[https://emman-pip.github.io/Cisco-2/][this link]]/
+
