@@ -1,0 +1,240 @@
+* vlan creation
+enable
+conf t
+vlan 10
+name CICSFACULTY
+vlan 15
+name CICSSTUDENT
+vlan 20
+name CABEIHMFACULTY
+vlan 25
+name CABEIHMSTUDENT
+vlan 30
+name CETFACULTY
+vlan 35
+name CETSTUDENT
+vlan 40
+name CTEFACULTY
+vlan 45
+name CTESTUDENT
+vlan 50
+name CASFACULTY
+vlan 55
+name CASSTUDENT
+vlan 99
+name MANAGEMENT
+
+
+* configure trunks
+int port-channel 1
+switchport mode trunk 
+switchport mode access 
+switchport mode trunk 
+switchport nonegotiate 
+switchport trunk allowed vlan 10,15,20,25,30,35,40,45,50,55,99
+
+* set addresses on MLS
+int vlan 10
+ip add 192.168.10.1 255.255.255.0
+ip helper-address 209.100.201.2
+int vlan 15
+ip add 192.168.15.1  255.255.255.0
+ip helper-address 209.100.201.2
+int vlan 20
+ip add 192.168.20.1  255.255.255.0
+ip helper-address 209.100.201.2
+int vlan 25
+ip add 192.168.25.1  255.255.255.0
+ip helper-address 209.100.201.2
+int vlan 30
+ip add 192.168.30.1  255.255.255.0
+ip helper-address 209.100.201.2
+int vlan 35
+ip add 192.168.35.1  255.255.255.0
+ip helper-address 209.100.201.2
+int vlan 40
+ip add 192.168.40.1  255.255.255.0
+ip helper-address 209.100.201.2
+int vlan 45
+ip add 192.168.45.1  255.255.255.0
+ip helper-address 209.100.201.2
+int vlan 50
+ip add 192.168.50.1  255.255.255.0
+ip helper-address 209.100.201.2
+int vlan 55
+ip add 192.168.55.1  255.255.255.0
+ip helper-address 209.100.201.2
+int vlan 99
+ip add 192.168.99.1  255.255.255.0
+ip helper-address 209.100.201.2
+
+* SET default gateway and addressing on switches 
+** CICS_SW
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.2 255.255.255.0
+no shut
+
+** CICS_FACULTY
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.3 255.255.255.0
+no shut
+
+
+** CICS_STUDENT
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.4 255.255.255.0
+no shut
+
+** CABEIHM_SW
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.5 255.255.255.0
+no shut
+
+** CABEIHM_FACULTY
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.6 255.255.255.0
+no shut
+
+
+** CABEIHM_STUDENT
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.7 255.255.255.0
+no shut
+
+
+** CET_SW
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.8 255.255.255.0
+no shut
+
+** CET_FACULTY
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.9 255.255.255.0
+no shut
+
+
+** CET_STUDENT
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.10 255.255.255.0
+no shut
+
+
+** CTE_SW
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.11 255.255.255.0
+no shut
+
+** CTE_FACULTY
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.12 255.255.255.0
+no shut
+
+
+** CTE_STUDENT
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.13 255.255.255.0
+no shut
+
+
+** CAS_SW
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.14 255.255.255.0
+no shut
+
+** CAS_FACULTY
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.15 255.255.255.0
+no shut
+
+
+** CAS_STUDENT
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.16 255.255.255.0
+no shut
+
+** Portal
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.17 255.255.255.0
+no shut
+
+
+** Portal2
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.18 255.255.255.0
+no shut
+
+
+
+** Portal3
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.19 255.255.255.0
+no shut
+
+
+** MLS
+ip default-gateway 192.168.99.1
+int vlan 99
+
+ip add 192.168.99.1 255.255.255.0
+no shut
+
+* SSH:
+enable
+
+conf t
+
+username user password pass
+
+line vty 0 15
+
+login local
+
+transport input ssh 
+
+exit
+
+ip ssh version 2
+
+ip domain-name cisco.com
+
+crypto key generate rsa general-keys modulus 1024
+
+enable secret class
+
+
