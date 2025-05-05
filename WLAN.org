@@ -1,0 +1,70 @@
+* WLAN
+Configuring home routers are not that scalable and error-prone. They
+must be configured manually. *SOLUTION* is to use a *WLC* or Wireless
+LAN Controller.
+
+Autonomous access point
+- individual
+
+
+Controller based AP
+- centralized config
+- monitored by a WLC
+
+  
+* WLC
+- controls the APs (authentication and configuration)
+- controls functions such as SSH, default gateway, 
+- is configured with a static IP
+- the APs under this will have DHCP addresses
+- WLC to SW is a trunk link, *AP to SW is a trunk*
+
+* DEMONSTRATION  
+#+NAME: DEMO
+#+BEGIN_SRC 
+- GAGAMITIN AY 2504 (WLC)
+config > Management, change address, subnet mask, DNS server, and default gateway 
+server > services > DHCP > fill information > add *WLC address* from past line ^^^
+lagay ng same network address yong pc -> web browser -> type the ip address of WLC -> create account -> fill up necessary
+  SYSTEM-NAME
+  management IP address (address ng WLC)
+  subnet mask
+  defualt gateway
+  
+* WAG!! -> management vlan ID should stay at 0
+NEXT
+  initial network name
+
+after submitting the information, change the PC's VLAN to the WLC VLAN
+ make https://ip address of WLC
+  
+  goto:
+  CONTROLLER > interfaced (side) > portnumber [based sa kung saan nakaconnect WLC] (photo sa phone)
+
+  GOTO:
+  WLANs > AP Groups
+    AP Groups is for organizational purposes
+    create group, then ...
+    WLANs > enter a wifi name
+    APs  > add APs
+
+  ^^^^ Ginagawa nito ay filter yung nibbroadcast na WLANs
+  
+
+  
+
+  WLANs > WLANS
+    create new, go
+    profile name
+    ssid
+    ID (kung pang ilang wifi number, incremental is ideal)
+    
+  status - enabled
+
+  interface/interface group - select group
+
+  Security -  WAG KALIMUTAN FLEX VLAN
+
+  *BY DEFAULT*: ibbroadcast lahat ng configured na WLANs!
+
+#+END_SRC

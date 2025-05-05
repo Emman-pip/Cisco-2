@@ -238,3 +238,13 @@ crypto key generate rsa general-keys modulus 1024
 enable secret class
 
 
+* WLC
+connect fa0/3 of MLS to  g0/3 of WLC
+** ADDRESS
+ip add 192.168.99.20 255.255.255.0
+PC is 192.168.99.21
+
+web:
+password: Admin123
+
+

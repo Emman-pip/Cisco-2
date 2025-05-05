@@ -1,0 +1,43 @@
+
+* WLAN Concepts
+
+** Scenario
+Router on a stick between 2 VLANs. Using wireless router, connect
+wireless devices. Will be done on *physical mode*. 
+
+** Steps
+1. put laptop, change the module to a wireless one (WPC~chuchu)
+2. use a *HOME ROUTER* as the AP
+3. 
+
+# A modem can be a switch, default gateway, etc.
+* Active and Passive
+- Passive
+  - kita yung SSID as long as within range
+- Active
+  - hidden network, dapat alam yung SSID (service set ID) and password
+
+* AP
+  - gives the option to connect wirelessly to the router
+  - connect to an access port of the switch
+  - setup
+    - go GUI tab
+    - select Wireless AP (to allow the modem to forward the trffic...)
+    - go GUI > Wireless
+      - meddle with the settings
+    - wireless sec
+      - security mode, AES, enter password
+    - 
+
+  - setup active AP
+    - turn off ssid broadcast
+    - change standard channel (different sa overlapping)
+    - same sa wireless sec
+    - to connect, profile, infra, type network name, set security,
+      type passphrase, then connect to networkz
+
+#+NAME: DEMO of wireless (HOME ROUTER)
+#+BEGIN_SRC
+
+
+#+END_SRC

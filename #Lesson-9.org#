@@ -1,0 +1,96 @@
+* FHRP Concepts (First Hop Redundancy Protocols)
+
+** First Hop Redundancy Protocol (FHRP)
+Another way to prevent single point of failure. Like STP to Layer 3. 
+
+
+see thiss--->
+https://www.znetlive.com/blog/wp-content/uploads/2016/10/Distribution-Layer.jpg
+
+
+Basically allows multiple default gateways.
+
+
+
+
+
+*** Router Redundancy
+- a redundancy protocol provides the machanism for which router should
+  take the *active role* in forwarding traffic. 
+*FIRST HOP REDUNDANCY (definition)* 
+**** Virtual Routers
+- will allow access to different default gateways
+- two or more routers can act as a virtual router, thus providing
+  alternate routes for default gateways
+- also creates a virtual mac address
+
+
+*** FHRP Options
+FHRP is 
+| HSRP                           | cisco                                                                       |
+| HSRP for IPv6                  |                                                                             |
+| VRRPv2                         | non-cisco                                                                   |
+| GLBP                           | cisco-proprietary FHRP                                                      |
+|                                | protects data traffic from failed router circuit that allows load balancing |
+| ICMP Router Discovery Protocol | to look for routers that could be a member of the FHRP                      |
+
+
+** HSRP
+Cisco-proprietary. 
+
+*** HSRP Priority and Preemption
+- *default priority is 100* (in routers, changeable)
+- if equal, active is the one with higher address
+- 
+
+*** HSRP Preemption
+- an active router will stay as *active* even if there is a new router
+  with higher priority
+- to preemp means to, make a router win the election. Without it, the
+  active router might change.
+
+  
+*** HSRP States and Times
+| HSRP State | Desc                                |
+|------------+-------------------------------------|
+| Initial    | when an interface becomes available |
+| learn      | router has not seen a hello message |
+| listen     | neither active nor the standby      |
+| speak      | sends hello message                 |
+| standby    | can be active router anytime        |
+
+*HSRP HELLO TIMER IS 3 secs*
+
+
+*standby will become active router without HELLO TIMER FOR 10 SECS*
+
+
+#+NAME: 
+#+BEGIN_SRC 
+CHANGE PRITORITY OF ACTIVE ROUTER
+  int g0/0
+  standby priority 150
+  standby ip 192.168.10.1
+
+SET A STANDBY
+  int g0/0
+  standby ip 192.168.10.1
+
+REELECT
+  standby preempt
+
+CHECK STATUS
+  show standby
+#+END_SRC
+
+/NOTE:/ lagi nakabroadcast kasi hindi massave yung nangagaling sa
+*physical interface* yung replies. (Massave temporarily but mawaala
+din kasi hindi nagrreply yung virtual router)
+
+
+#+NAME: configuration
+#+BEGIN_SRC
+int interface-id
+standby version 2
+standyby 1 ip 192.168.1.254
+#+END_SRC

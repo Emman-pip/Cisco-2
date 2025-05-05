@@ -1,0 +1,38 @@
+* Itenerary
+1. VLANS
+   - creation
+   - port assignment
+     
+2. Inter-VLANs
+   - Router on a stick
+   - MLS
+     
+3. EtherChannel
+   - PAGP
+   - LACP
+     
+4. DHCPv4
+   - exclude address
+   - ip helper-address
+   - server (router and server device)
+     
+5. SLAAC and DHCPv6
+   - SLAAC only
+   - SLAAC with DHCPv6
+   - DHCPv6
+     
+6. FHRP Concepts
+   - HSRP configuration
+     
+7. LAN Security Concepts
+   - portfast and portguard
+     
+8. WLAN (Home router)
+   - home router config
+     
+9. WLAN (WLC)
+   - WLC config
+     
+10. Static routing
+    - how to static rout
+  
