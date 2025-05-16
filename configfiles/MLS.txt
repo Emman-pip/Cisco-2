@@ -1,0 +1,156 @@
+enable
+configure terminal
+
+service password-encryption
+!
+hostname MLS
+!
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+!
+!
+ip routing
+!
+!
+!
+!
+username admin password 7 08204843001715160118
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+ip domain-name cisco.com
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+ no switchport
+ ip address 192.168.3.153 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/2
+ no switchport
+ ip address 192.168.3.105 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/3
+ no switchport
+ ip address 192.168.3.145 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+ no switchport
+ ip address 192.168.3.65 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ no switchport
+ ip address 192.168.3.89 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 192.168.1.0 255.255.255.128 192.168.3.90 
+ip route 192.168.1.0 255.255.255.128 192.168.3.66 
+ip route 192.168.1.128 255.255.255.128 192.168.3.90 
+ip route 192.168.2.128 255.255.255.128 192.168.3.90 
+ip route 192.168.2.0 255.255.255.128 192.168.3.90 
+ip route 192.168.1.128 255.255.255.128 192.168.3.66 
+ip route 192.168.2.0 255.255.255.128 192.168.3.66 
+ip route 192.168.2.128 255.255.255.128 192.168.3.66 
+ip route 192.168.3.0 255.255.255.192 192.168.3.66 
+ip route 192.168.3.0 255.255.255.192 192.168.3.90 
+ip route 0.0.0.0 0.0.0.0 192.168.3.106 
+ip route 0.0.0.0 0.0.0.0 192.168.3.146 
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^CWelcome to MLS.^C
+!
+!
+!
+!
+!
+line con 0
+ history size 100
+ password 7 0822455D0A16
+ login
+!
+line aux 0
+!
+line vty 0 4
+ login local
+ transport input ssh
+!
+!
+!
+!
+end

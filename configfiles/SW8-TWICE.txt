@@ -1,0 +1,216 @@
+enable
+configure terminal
+vlan 10
+name BINI-members
+vlan 15
+name BINI-managers
+vlan 20
+name Twice-members
+vlan 25
+name Twice-managers
+vlan 99
+name Management
+
+service password-encryption
+!
+hostname SW8-TWICE-MEMBERS
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+ip ssh version 2
+ip domain-name cisco.com
+!
+username admin privilege 1 password 7 08204843001715160118
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 00E0.A385.1217
+ spanning-tree portfast
+!
+interface FastEthernet0/2
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0001.6461.D3EE
+ spanning-tree portfast
+!
+interface FastEthernet0/3
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0090.0C30.CBBA
+ spanning-tree portfast
+!
+interface FastEthernet0/4
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 00E0.B072.01BE
+ spanning-tree portfast
+!
+interface FastEthernet0/5
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0007.ECC9.A37E
+ spanning-tree portfast
+!
+interface FastEthernet0/6
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 00E0.B046.3622
+ spanning-tree portfast
+!
+interface FastEthernet0/7
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0060.47C6.2789
+ spanning-tree portfast
+!
+interface FastEthernet0/8
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 000B.BE3C.9454
+ spanning-tree portfast
+!
+interface FastEthernet0/9
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 00E0.F725.2277
+ spanning-tree portfast
+!
+interface FastEthernet0/10
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/11
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/12
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/13
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/14
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/15
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/16
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/17
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/18
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/19
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/20
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/21
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface FastEthernet0/22
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/23
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface FastEthernet0/24
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet0/1
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet0/2
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan99
+ ip address 192.168.3.13 255.255.255.192
+!
+ip default-gateway 192.168.3.1
+!
+banner motd ^CWelcome to SW8-TWICE-MEMBERS.^C
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ login
+!
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+!
+!
+!
+end

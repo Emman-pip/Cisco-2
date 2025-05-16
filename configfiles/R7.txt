@@ -1,0 +1,92 @@
+enable
+configure terminal
+
+Current configuration : 1031 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname R7
+!
+!
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2911/K9 sn FTX152424KF-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 192.168.3.146 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 192.168.3.130 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ ip address 192.168.3.122 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 192.168.3.121 
+ip route 0.0.0.0 0.0.0.0 192.168.3.145 
+ip route 192.168.3.136 255.255.255.248 192.168.3.129 
+ip route 192.168.3.136 255.255.255.248 192.168.3.121 
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^CWelcome to R7.^C
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ login
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end

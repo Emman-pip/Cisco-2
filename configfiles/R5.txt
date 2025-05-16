@@ -1,0 +1,87 @@
+enable
+configure terminal
+
+service password-encryption
+!
+hostname R5
+!
+!
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2911/K9 sn FTX1524NFC8-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 192.168.3.106 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 192.168.3.113 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ ip address 192.168.3.121 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 192.168.3.105 
+ip route 0.0.0.0 0.0.0.0 192.168.3.122 
+ip route 192.168.3.136 255.255.255.248 192.168.3.122 
+ip route 192.168.3.136 255.255.255.248 192.168.3.114 
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^CWelcome to R5.^C
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ login
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end

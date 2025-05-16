@@ -1,0 +1,204 @@
+* Steps
+The following are the steps taken by the network administrators to
+configure the network
+0. Name the devices
+   
+1. VLAN Creation (insert to all switches in the topology)
+#+NAME: VLAN Creation
+#+BEGIN_SRC 
+enable
+conf terminal
+vlan 10
+name BINI-members
+vlan 15
+name BINI-managers
+vlan 20
+name Twice-members
+vlan 25
+name Twice-managers
+vlan 99
+name Management
+
+#+END_SRC
+
+
+
+* Port assignment
+for BINI-members SW, BINI-managers-SW, TWICE-members-SW,
+TWICE-managers SW, and Management
+
+S6-BINI-MEMBERS
+#+NAME: port assignment
+#+BEGIN_SRC port assignment 
+int r fa0/1-8
+switchport mode access
+switchport access vlan 10
+# disable unused ports
+  int r fa0/9-19,fa0/21-23
+  shutdown 
+shutdown 
+#+END_SRC
+
+S7-BINI-MANAGERS
+#+NAME: port assignment
+#+BEGIN_SRC port assignment 
+int r fa0/1-6
+switchport mode access
+switchport access vlan 15
+  int range fa0/7-20,fa0/23,g0/2
+  shutdown 
+#+END_SRC
+
+S8-TWICE-MEMBERS
+#+NAME: port assignment
+#+BEGIN_SRC port assignment 
+  int r fa0/1-9
+  switchport mode access 
+  switchport access vlan 20
+  int ra fa0/10-20, fa0/22,g0/2
+  shutdown 
+#+END_SRC
+
+S8-TWICE-MANAGERS
+#+NAME: port assignment
+#+BEGIN_SRC port assignment 
+  int range fa0/1-6
+  switchport mode access 
+  switchport access vlan 25
+  int range fa0/7-19, fa0/21-23
+  shutdown   
+  shutdown 
+#+END_SRC
+
+
+* Configurations
+
+VLAN Creation:
+
+* Trunking
+S6-BINI-MEMBERS(config-if-range)#
+int r fa0/20,fa0/24,g0/1-2
+   switchport mode access
+   switchport mode trunk
+   switchport nonegotiate
+   switchport trunk allowed vlan 10,15,20,25,99
+   switchport trunk native vlan 99
+
+
+
+ SW3
+ do show ip int br | include up
+  int r fa0/1-2,fa0/20-22,g0/1-2
+   switchport mode access
+   switchport mode trunk
+   switchport nonegotiate
+   switchport trunk allowed vlan 10,15,20,25,99
+   switchport trunk native vlan 99
+
+
+ SW1
+   int r fa0/1-2, g0/2, g0/1
+  shutdown 
+  no shutdown 
+     switchport mode access
+     switchport mode trunk
+     switchport nonegotiate
+     switchport trunk allowed vlan 10,15,20,25,99
+     switchport trunk native vlan 99
+
+SW7-BINI-MANAGERS(config-if-range)#
+int r fa0/21-22, fa0/24
+  shutdown 
+  no shutdown 
+       switchport mode access
+       switchport mode trunk
+       switchport nonegotiate
+       switchport trunk allowed vlan 10,15,20,25,99
+       switchport trunk native vlan 99
+    do show his
+
+
+
+SW2(config-if-range)#
+int r fa0/1-2, fa0/4, g0/1-2
+  no shutdown 
+  shutdown 
+  no shutdown 
+        switchport mode access
+         switchport mode trunk
+         switchport nonegotiate
+         switchport trunk allowed vlan 10,15,20,25,99
+         switchport trunk native vlan 99
+      do show his
+
+
+SW4(config-if-range)#
+int r fa0/1-3, fa0/20-21, fa0/23, g0/1-2
+  shutdown 
+  no shutdown 
+         switchport mode access
+           switchport mode trunk
+           switchport nonegotiate
+           switchport trunk allowed vlan 10,15,20,25,99
+           switchport trunk native vlan 99
+  do show his
+
+
+SW8-TWICE-MEMBERS(config-if-range)#  do show his
+  no shutdown 
+  int r fa0/21,fa0/23-24
+  shutdown 
+  no shutdown 
+           switchport mode access
+             switchport mode trunk
+             switchport nonegotiate
+             switchport trunk allowed vlan 10,15,20,25,99
+             switchport trunk native vlan 99
+    do show his
+
+    
+
+
+SW5(config-if-range)#do show his
+  int r fa0/3-4
+  shutdown 
+  no shutdown 
+             switchport mode access
+               switchport mode trunk
+               switchport nonegotiate
+               switchport trunk allowed vlan 10,15,20,25,99
+               switchport trunk native vlan 99
+      do show his
+
+
+SW9-TWICE-MANAGERS(config-if-range)#do show his
+  int r fa0/20, fa0/24,g0/2
+  shutdown 
+  no shutdown 
+               switchport mode access
+                 switchport mode trunk
+                 switchport nonegotiate
+                 switchport trunk allowed vlan 10,15,20,25,99
+                 switchport trunk native vlan 99
+        do show his      
+
+
+
+	
+* Security
+• Enable and configure port security on at least one switch.
+THIS LIMITS THE NUMBER OF MACADDRESSES, THUS PREVENTING MAC ADDRESS
+TABLE ATTACKS
+
+S1(config)# interface f0/1
+S1(config-if)# switchport port-security
+Command rejected: FastEthernet0/1 is a dynamic port. *GAGANA LANG SA STATIC PORTS*
+S1(config-if)# switchport mode access
+S1(config-if)# switchport port-security
+S1(config-if)# end
+
+*
+
+• Restrict the number of MAC addresses that can connect to certain ports.
+• Test and demonstrate the behavior when an unauthorized device attempts to connect.
+

@@ -1,0 +1,179 @@
+enable
+configure terminal
+vlan 10
+name BINI-members
+vlan 15
+name BINI-managers
+vlan 20
+name Twice-members
+vlan 25
+name Twice-managers
+vlan 99
+name Management
+
+service password-encryption
+!
+hostname SW4
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+ip ssh version 2
+ip domain-name cisco.com
+!
+username admin privilege 1 password 7 08204843001715160118
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface FastEthernet0/2
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface FastEthernet0/3
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface FastEthernet0/4
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/5
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/6
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/7
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/8
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/9
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/10
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/11
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/12
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/13
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/14
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/15
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/16
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/17
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/18
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/19
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/20
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface FastEthernet0/21
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface FastEthernet0/22
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/23
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface FastEthernet0/24
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface GigabitEthernet0/1
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet0/2
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,15,20,25,99
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan99
+ ip address 192.168.3.6 255.255.255.192
+!
+ip default-gateway 192.168.3.1
+!
+banner motd ^CWelcome to SW4.^C
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ login
+!
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+!
+!
+!
+end
